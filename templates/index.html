@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TrueVote - Audit</title>
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+		  <div class="row-fluid">
+		    <div class="span3">
+		      <!--Sidebar content-->
+		      {% include "sidebar.html" %}
+		    </div>
+		    <div class="span9">
+		      <!--Body content-->
+		      {% include "vote_count.html" %}
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>
