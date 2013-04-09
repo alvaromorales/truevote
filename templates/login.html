@@ -9,7 +9,10 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 	</head>
 	<body>
-		<h1>This is the login screen</h1>
-		<a href="/audit">Go to the audit page</a>
+		<h1>Welcome to TrueVote</h1>
+		Username: <input type="text" name="Username"><br>
+		Password: <input type="text" name="Password"><br>
+		<input type="submit" value="Submit" onclick="location.href='/audit'">
+		<!--a href="/audit">Go to the audit page</a-->
 	</body>
 </html>
