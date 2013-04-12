@@ -30,6 +30,7 @@ var updateButtons = function(winner) {
 
 		$('.raceBtn').click(function(e) {
 			var winner = e.target.value;
+			addCandidate(winner, race);
 			updateButtons(winner);
 		});
 	}

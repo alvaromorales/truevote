@@ -1,3 +1,14 @@
 h1 {
 	
 }
+
+.name{
+	height: 20px;
+	margin: 5px;
+}
+
+.entry{
+	margin: 5px;
+	height: 30px;
+	font-size: 25px;
+}
