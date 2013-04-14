@@ -54,6 +54,9 @@
             	var bar = document.getElementById('counter');
             	bar.innerHTML = "<progress value=\""+(audit.currentBallot).toString()+"\" max=\""+totalBallots.toString()+"\"><\/progress>";
                   console.log("ProgressBarUpdated");
+
+                  var ballotNum = document.getElementById('ballotNumber');
+                  ballotNum.innerHTML = "<p>Ballot #" + (audit.currentBallot).toString() + "<\/p>";
             }
 
             //Candidate is entered and is added to sidebar
@@ -79,16 +82,21 @@
 	</head>
 
 	<body>
-		<h1>Sidebar</h1>
 		<div id="header">
+                  <div id="ballotNumber">
+                        <p>Ballot #1</p>
+                  </div>
 			<div id="counter">
-				<progress value="0" max="50"></div>
-			</div>
-		<div id="currentBallot">
-			<h2>Current Ballot</h2>
+				<progress value="0" max="50">
+                  </div>
 		</div>
-		<div id="previousBallot">
-			<h2>Previous Ballot</h2>
-		</div>
+            <div id="enteredInfo">
+      		<div id="currentBallot">
+      			<h3>Current Ballot</h3>
+      		</div>
+      		<div id="previousBallot">
+      			<h3>Previous Ballot</h3>
+      		</div>
+            </div>
 	</body>
 </html>

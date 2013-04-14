@@ -3,12 +3,38 @@ h1 {
 }
 
 .name{
-	height: 20px;
 	margin: 5px;
 }
 
 .entry{
 	margin: 5px;
-	height: 30px;
 	font-size: 25px;
+}
+
+#enteredInfo{
+	height: 100%;
+	clear: left;
+/*	overflow: auto;
+*/}
+
+#container-fluid{
+	overflow: hidden;
+	height: 100%;
+}
+
+#ballotNumber{
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	margin: 20px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	line-height: 30px;
+	float: left;
+}
+
+#counter{
+	margin: 20px;
+	margin-left: 0px;
+	clear: left;
 }
