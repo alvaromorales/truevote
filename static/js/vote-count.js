@@ -52,6 +52,7 @@ var updateButtons = function(winner) {
 			} else {
 				candidate.css('top',(15 + currentOther*(70.0/numOther + 2.5*(numOther-1))) +'%');
 				candidate.css('width','15%');
+				candidate.css('right','55%');
 
 				var height = Math.min((70.0/numOther - 2.5*(numOther-1)),32.5);
 				candidate.css('height', height + '%');
