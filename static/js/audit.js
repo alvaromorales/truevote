@@ -83,6 +83,10 @@ var Ballot = function(races) {
 		this.currentRace++;
 		return race;
 	};
+	
+	this.getRace(number) = function (current) {
+		return races[current];
+	};
 };
 
 /**
@@ -99,6 +103,10 @@ var Audit = function(numBallots, races) {
 		this.ballots.push(new Ballot(races));
 	};	
 
+	this.getPreviousBallot = function() {
+		return this.ballots[currentBallot-1];
+	};
+	
 	this.getCurrentBallot = function() {
 		return this.ballots[this.currentBallot];
 	};
