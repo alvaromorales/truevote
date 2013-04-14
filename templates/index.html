@@ -10,15 +10,16 @@
 
 		<script type="text/javascript" src="{{ STATIC_URL }}js/audit.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/vote-count.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/sidebar.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
 		  <div class="row-fluid">
-		    <div class="span3">
+		    <div id="sidebarDiv" class="span3">
 		      <!--Sidebar content-->
 		      {% include "sidebar.html" %}
 		    </div>
-		    <div class="span9">
+		    <div id="voteCountDiv" class="span9">
 		      <!--Body content-->
 		      {% include "vote_count.html" %}
 		    </div>
