@@ -30,9 +30,12 @@
                         console.log("2");
             		var entryDiv1 = document.createElement("div");
             		entryDiv1.innerHTML = "<div id=\"1"+oneRace+"Entry\" class=\"entry\"><\/div>";
+            		var buttonDiv1 = document.createElement("div");
+            		buttonDiv1.innerHTML = "<div id=\"1"+oneRace+"Button\" ><\/div>";
 
             		raceDiv1.appendChild(nameDiv1);
             		raceDiv1.appendChild(entryDiv1);
+            		raceDiv1.appendChild(buttonDiv1);
             		ballot1.appendChild(raceDiv1);
 
 
@@ -42,13 +45,30 @@
             		nameDiv2.innerHTML = "<div id=\"2"+oneRace+"Title\" class=\"name\"><p>"+oneRace+"<\/p><\/div>";
             		var entryDiv2 = document.createElement("div");
             		entryDiv2.innerHTML = "<div id=\"2"+oneRace+"Entry\" class=\"entry\"><\/div>";
+            		var buttonDiv2 = document.createElement("div");
+            		buttonDiv2.innerHTML = "<div id=\"2"+oneRace+"Button\" ><\/div>";
 
             		raceDiv2.appendChild(nameDiv2);
             		raceDiv2.appendChild(entryDiv2);
+            		raceDiv2.appendChild(buttonDiv2);
             		ballot2.appendChild(raceDiv2);
             	}
 
+				$("#fixMistakeButton").click(function(){
+            	console.log("button pressed");
+            	//Add buttons to divs
+            	for (var i = 0; i < allRaces.length; i++){
+                        var raceName = allRaces[i].name;
+                        var oldDiv = document.getElementById('1'+raceName+"Button");
+                        var newDiv = document.getElementById('2'+raceName+"Button");
+                        newDiv.innerHTML = "<input type=\"Button\" id=\"1"+raceName+"Button\" >";
+                        oldDiv.innerHTML = "<input type=\"Button\" id=\"2"+raceName+"Button\" >";
+                  } 
+            	//displayPreviousBallot();
+           		 });
+            
             });
+            
 
             function updateStatusBar(){
             	var bar = document.getElementById('counter');
@@ -73,7 +93,26 @@
                         newDiv.innerHTML = oldDiv.innerHTML;
                         oldDiv.innerHTML = "";
                   }  
-            }
+            };
+            
+             //Moves the ballot information up one,
+            //Replaces previous ballot with the one before
+            var displayPreviousBallot = function displayPreviousBallot(){
+            console.log("audit"+audit.ballots);
+            	  previousBallot = audit.getPreviousBallot();	
+                  for (var i = 0; i < allRaces.length; i++){
+                        var raceName = allRaces[i].name;
+                        var upperDiv = document.getElementById('1'+raceName+"Entry");
+                        var lowerDiv = document.getElementById('2'+raceName+"Entry");
+                        upperDiv.innerHTML = lowerDiv.innerHTML;
+                        
+                        //Update previous ballot
+                        candidateName = previousBallot.getRace(i).winner;
+                        lowerDiv.innerHTML = "<p>"+candidateName+"<\/p>";
+                  }  
+            };
+            
+            
 
 	</script>
 	</head>
@@ -89,6 +128,9 @@
 		</div>
 		<div id="previousBallot">
 			<h2>Previous Ballot</h2>
+		</div>
+		<div id="previousBallot">
+			<input type="button" id="fixMistakeButton" value="Fix Mistake">
 		</div>
 	</body>
 </html>

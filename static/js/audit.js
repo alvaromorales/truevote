@@ -34,7 +34,7 @@ var Race = function(name,candidates) {
 	this.candidates = candidates;
 
 	this.setWinner = function(winner) {
-		if (candidates.indexOf(winnder) > -1) {
+		if (candidates.indexOf(winner) > -1) {
 			this.winner = winner;
 			return this;
 		}
@@ -68,6 +68,10 @@ var Ballot = function(races) {
 		this.currentRace++;
 		return this.getCurrentRace();
 	};
+	
+	this.getRace(number) = function (current) {
+		return races[current];
+	};
 };
 
 /**
@@ -83,6 +87,10 @@ var Audit = function(numBallots, races) {
 		this.ballots.push(new Ballot(races));
 	};
 
+	this.getPreviousBallot = function() {
+		return this.ballots[currentBallot-1];
+	};
+	
 	this.getCurrentBallot = function() {
 		return this.ballots[currentBallot];
 	};
