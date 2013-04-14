@@ -1,5 +1,15 @@
-h1 {
-	
+html, body {
+	height: 100%;
+}
+
+.container-fluid {
+	min-height: 100%;
+	overflow: hidden;
+}
+
+#sidebarDiv, #voteCountDiv { 
+	margin-bottom: -9999px;
+	padding-bottom: 9999px;
 }
 
 .name{
@@ -37,4 +47,9 @@ h1 {
 	margin: 20px;
 	margin-left: 0px;
 	clear: left;
+
+.countButtons {
+	height: 100%;
+	width: 100%;
+	margin: 5%;
 }
