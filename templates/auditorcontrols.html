@@ -12,8 +12,8 @@
 		<div class="tabbable"> <!-- Only required for left/right tabs -->
 		  <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab1" data-toggle="tab">Results</a></li>
-			<li><a href="#tab2" data-toggle="tab">Auditors</a></li>
-			<li><a href="#tab3" data-toggle="tab">Audits to approve</a></li>
+			<li><a href="#tab2" data-toggle="tab">Audits to approve</a></li>
+			<li><a href="#tab3" data-toggle="tab">Auditors</a></li>
 		  </ul>
 		  <div class="tab-content">
 			<div class="tab-pane active" id="tab1">
@@ -65,7 +65,10 @@
 				</table>
 			</div>
 			<div class="tab-pane" id="tab2">
+			<div class="well">
 			<h2> Finished Audits awaiting approval: </h2>
+			<h5 class="muted">The results of these audits have not yet been entered into the totals. Approve or Deny these audits, then click "Submit".</h5>
+			</div>
 			  <table class="table">
 				<tr>
 				<th>Name</th>
@@ -124,7 +127,10 @@
 				<a href="/warden/"><button class="btn">Cancel</button></a>
 			</div>
 			<div class="tab-pane" id="tab3">
+			  <div class="well">
 			  <h2> Auditors: </h2>
+			  <h5 class="muted">You can assign new audits to any auditor who is not busy. Assigning a new audit will give this auditor 50 ballots.</h5>
+			  </div>
 			  <table class="table">
 				<tr>
 				<th>Name</th>
