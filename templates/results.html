@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TrueVote - Warden</title>
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script>
+		$('.carousel').carousel();
+		</script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart);
+		  function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Obama and Biden',  1170],
+			  ['Romney and Ryan',  990],
+			  ['Johnson and Gray',  660],
+			  ['Stein and Honkala',  330]
+			]);
+
+			var options = {
+			  title: 'President and Vice President'
+			};
+
+			var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart2);
+		  function drawChart2() {
+			var data2 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Elizabeth A. Warren',  1150],
+			  ['Scott P. Brown',  700]
+			]);
+
+			var options2 = {
+			  title: 'Senator in Congress'
+			};
+
+			var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
+			chart2.draw(data2, options2);
+		  }
+		</script>
+	  </head>
+	  <body>
+		<div class="container">
+		<h1> Election #87a63b: 2012 Presidential Election Results </h1>
+		<div class="tabbable"> <!-- Only required for left/right tabs -->
+		  <ul class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab">President and Vice President</a></li>
+			<li><a href="#tab2" data-toggle="tab">Senator in Congress</a></li>
+		  </ul>
+		  <div class="tab-content">
+			<div class="tab-pane active" id="tab1">
+				<div class="center" id="chart_div" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab2">
+				<div class="center" id="chart_div2" style="width: 800px; height: 400px;"></div>
+			</div>
+		  </div>
+		</div>
+		<a href="/warden/"><button class="btn btn-primary">Back</button></a>
+		</div>
+	  </body>
+	</html>
