@@ -109,6 +109,10 @@ var Audit = function(numBallots, races) {
 		newBallot(); //Create a new ballot in the sidebar
 		return this.getCurrentBallot();
 	};
+	
+	this.getPreviousBallot = function() {
+		return this.ballots[currentBallot-1];
+	};
 
 	this.getNextRace = function() {
 		var race = this.getCurrentBallot().getNextRace();
