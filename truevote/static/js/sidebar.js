@@ -8,14 +8,23 @@ $(document).ready(function() {
 
       //Create progress bar at top
 
-      var ballot1 = document.getElementById('currentBallot');
+      
+	  createSidebar();
+      
+
+            	   
+});
+
+function createSidebar(){
+
+	var ballot1 = document.getElementById('currentBallot');
       var ballot2 = document.getElementById('previousBallot');
       console.log(audit);
       allRaces = audit.getCurrentBallot().races;
       console.log("Races");
       console.log(allRaces);
 
-      //allRaces.each(function(oneRace){
+	//allRaces.each(function(oneRace){
       for (var i = 0; i < allRaces.length; i++){
             var oneRace = allRaces[i].name;
             console.log(oneRace);
@@ -52,19 +61,74 @@ $(document).ready(function() {
 
 			// Click functionality for fix mistake button
              $("#fixMistakeButton").click(function(){
-      			console.log("here button pressed + here"+allRaces.length);
-      			//Add buttons to divs
+      			
+      			//Turn selections into buttons
       			for (var i = 0; i < allRaces.length; i++){
       			addButtonToSideBar(i);
             	
-      		} 
+      			} 
+      			addResetButtons();
     		 // displayPreviousBallot();
       		 });
       		 
 
-            	   
-});
+}
 
+//Adds reset buttons on ballots when error mode is entered
+function addResetButtons(){
+	var ballot1 = document.getElementById('currentBallotresetButtonDiv');
+	console.log(ballot1.innerHTML);
+	
+	ballot1.innerHTML= "<button id="+'currentBallotresetButton '+ "class='btn-primary errorButton'>"+"Reset Ballot"+"<button>";
+    var button1 = document.getElementById('currentBallotresetButton');
+    $(button1).click(function(){
+    	console.log("reset current ballot");
+    	resetCurrentBallot();
+    });
+    
+    var ballot2 = document.getElementById('previousBallotresetButtonDiv');
+    ballot2.innerHTML= "<button id='previousBallotresetButton' class='btn-primary errorButton'>"+"Reset Ballot"+"<button>";
+    var button2 = document.getElementById('previousBallotresetButton');
+    $(button2).click(function(){
+    	console.log("reset previous ballot");
+    });
+};
+
+function resetCurrentBallot(){
+	for (var i = 0; i < allRaces.length; i++){
+			var raceName = allRaces[i].name;
+            console.log("race!"+raceName);
+      		var raceDiv = document.getElementById('1'+raceName+"Entry");
+      		raceDiv.innerHTML='';
+      		//Reset main
+      		//audit.getCurrentBallot().currentRace=0;
+            	
+      	} 
+};
+
+function resetBallotFromRace(ballotNumber, raceName){
+	var after = false;
+	for (var i = 0; i < allRaces.length; i++){
+			var currentRaceName = allRaces[i].name;
+            if (raceName == currentRaceName){
+            after=true;
+            //Make actual audit go back to this race
+            };
+            if (after){
+            	var raceDiv = document.getElementById(ballotNumber+currentRaceName+"Entry");
+      			raceDiv.innerHTML='';
+            }
+      		
+      		//Reset main
+      		//audit.getCurrentBallot().currentRace=0;
+            	
+      	}
+      	exitErrorMode();
+	
+};
+function exitErrorMode(){
+console.log("exit error mode");
+}
 
 function addButtonToSideBar(i){
 				var raceName = allRaces[i].name;
@@ -87,11 +151,13 @@ function addButtonToSideBar(i){
 	
 };
 
+// Adds click listener for given ballot and race name
 function addClickListener(ballot, raceName){
  		var id = ballot+raceName+"button";
  		var button = document.getElementById(id);
         $(button).click({ballot: ballot,currentRace: raceName},function(){
             	console.log(ballot + raceName);
+            	resetBallotFromRace(ballot, raceName);
             });
 };
 
@@ -126,7 +192,7 @@ function newBallot(){
  //Moves the ballot information up one,
 //Replaces previous ballot with the one before
 var displayPreviousBallot = function displayPreviousBallot(){
-console.log("audit"+audit.ballots);
+	console.log("audit"+audit.ballots);
         previousBallot = audit.getPreviousBallot();   
       for (var i = 0; i < allRaces.length; i++){
             var raceName = allRaces[i].name;
