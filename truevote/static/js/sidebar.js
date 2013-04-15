@@ -26,12 +26,12 @@ $(document).ready(function() {
             console.log("2");
             var entryDiv1 = document.createElement("div");
             entryDiv1.innerHTML = "<div id=\"1"+oneRace+"Entry\" class=\"entry\"><\/div>";
-            var buttonDiv1 = document.createElement("div");
-            buttonDiv1.innerHTML = "<div id=\"1"+oneRace+"Button\" ><\/div>";
+          //  var buttonDiv1 = document.createElement("div");
+           // buttonDiv1.innerHTML = "<div id=\"1"+oneRace+"Button\" ><\/div>";
 
             raceDiv1.appendChild(nameDiv1);
             raceDiv1.appendChild(entryDiv1);
-            raceDiv1.appendChild(buttonDiv1);
+           // raceDiv1.appendChild(buttonDiv1);
             ballot1.appendChild(raceDiv1);
 
 
@@ -41,30 +41,59 @@ $(document).ready(function() {
             nameDiv2.innerHTML = "<div id=\"2"+oneRace+"Title\" class=\"name\"><p>"+oneRace+"<\/p><\/div>";
             var entryDiv2 = document.createElement("div");
             entryDiv2.innerHTML = "<div id=\"2"+oneRace+"Entry\" class=\"entry\"><\/div>";
-            var buttonDiv2 = document.createElement("div");
-            buttonDiv2.innerHTML = "<div id=\"2"+oneRace+"Button\" ><\/div>";
+          //  var buttonDiv2 = document.createElement("div");
+          //  buttonDiv2.innerHTML = "<div id=\"2"+oneRace+"Button\" ><\/div>";
 
             raceDiv2.appendChild(nameDiv2);
             raceDiv2.appendChild(entryDiv2);
-            raceDiv2.appendChild(buttonDiv2);
+           // raceDiv2.appendChild(buttonDiv2);
             ballot2.appendChild(raceDiv2);
       }
 
-            $("#fixMistakeButton").click(function(){
-      console.log("button pressed");
-      //Add buttons to divs
-      for (var i = 0; i < allRaces.length; i++){
-            var raceName = allRaces[i].name;
-            var oldDiv = document.getElementById('1'+raceName+"Button");
-            var newDiv = document.getElementById('2'+raceName+"Button");
-            newDiv.innerHTML = "<input type=\"Button\" id=\"1"+raceName+"Button\" >";
-            oldDiv.innerHTML = "<input type=\"Button\" id=\"2"+raceName+"Button\" >";
-      } 
-      //displayPreviousBallot();
-       });
+			// Click functionality for fix mistake button
+             $("#fixMistakeButton").click(function(){
+      			console.log("here button pressed + here"+allRaces.length);
+      			//Add buttons to divs
+      			for (var i = 0; i < allRaces.length; i++){
+      			addButtonToSideBar(i);
+            	
+      		} 
+    		 // displayPreviousBallot();
+      		 });
+      		 
 
+            	   
 });
 
+
+function addButtonToSideBar(i){
+				var raceName = allRaces[i].name;
+            	var oldDiv = document.getElementById('2'+raceName+"Entry");
+            	var newDiv = document.getElementById('1'+raceName+"Entry");
+            	console.log(newDiv.innerHTML);
+            	if (newDiv.innerHTML!= ""){
+            		newDiv.innerHTML = "<button id='1"+raceName+"button' class='btn-primary errorButton'>"+newDiv.innerHTML+"<button>";
+           		 	// Add click listener for new buttons
+           		 	addClickListener(1, raceName);
+            
+            	}
+           		 if (oldDiv.innerHTML!= ""){
+           		 console.log("replacing inner html for first div");
+            		oldDiv.innerHTML = "<button id='2"+raceName+"button' class='btn btn-primary errorButton'>"+oldDiv.innerHTML+"<button>";
+            		console.log("olddiv inner html"+ oldDiv.innerHTML);
+            		addClickListener(2, raceName);
+            	}
+            	console.log(newDiv);
+	
+};
+
+function addClickListener(ballot, raceName){
+ 		var id = ballot+raceName+"button";
+ 		var button = document.getElementById(id);
+        $(button).click({ballot: ballot,currentRace: raceName},function(){
+            	console.log(ballot + raceName);
+            });
+};
 
 function updateStatusBar(){
       var bar = document.getElementById('counter');
@@ -109,4 +138,8 @@ console.log("audit"+audit.ballots);
             candidateName = previousBallot.getRace(i).winner;
             lowerDiv.innerHTML = "<p>"+candidateName+"<\/p>";
       }  
+};
+
+function removeSpaces(val) {
+   return val.split(' ').join('');
 };
