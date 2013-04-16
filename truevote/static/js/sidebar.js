@@ -134,8 +134,8 @@ var displayFixPreviousBallot  = function(previousBallotObj) {
 
 var restartAudit = function (){
 	var confirmationDialog = $('#confirmationDialog');
-	$("errorTitle").html("Reset Entire Audit");
-	$("errorBody").html("<p> You are about to restart the entire audit. Would you like to continue? <\/p>");
+	$("#errorTitle").text("Reset Entire Audit");
+	$("#errorBody").html("<p> You are about to restart the entire audit. Would you like to continue? <\/p>");
 	$(continueButton).click(function(){
 	location.reload();
 	});
