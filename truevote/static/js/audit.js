@@ -94,10 +94,19 @@ var Audit = function(numBallots, races) {
 	this.numBallots = numBallots;
 	this.ballots = [];
 	this.currentBallot = 0;
+	this.totalNumRaces = numBallots*races.length;
+	this.currentRaceNumber = 0;
 
-	for (var i=0;i<numBallots;i++) {
+	this.racesMap = {};
+
+	for (var i=0;i<races.length;i++) {
+		var r = races[i];
+		this.racesMap[r.name] = i;
+	}
+
+	for (var j=0;j<numBallots;j++) {
 		this.ballots.push(new Ballot(races));
-	};	
+	};
 
 	this.getCurrentBallot = function() {
 		return this.ballots[this.currentBallot];
@@ -105,16 +114,15 @@ var Audit = function(numBallots, races) {
 
 	this.getNextBallot = function() {
 		this.currentBallot++;
-		updateStatusBar(); //Update the sidebar progress bar
-		newBallot(); //Create a new ballot in the sidebar
 		return this.getCurrentBallot();
 	};
 	
 	this.getPreviousBallot = function() {
-		return this.ballots[currentBallot-1];
+		return this.ballots[this.currentBallot-1];
 	};
 
 	this.getNextRace = function() {
+		this.currentRaceNumber++;
 		var race = this.getCurrentBallot().getNextRace();
 		if (!race) {
 			try { 
@@ -158,7 +166,7 @@ var congress = new Race("Representative in Congress", [
 	]);
 
 var councillor = new Race("Councillor", [
-		new Candidate("Marilyn M. Petitto Devaney","Petitto Devaney",democraticParty),
+		new Candidate("Marilyn M. Petitto","Petitto",democraticParty),
 		new Candidate("Thomas Sheff","Sheff",unenrolledParty)
 	]);
 
