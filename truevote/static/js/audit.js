@@ -158,7 +158,7 @@ var congress = new Race("Representative in Congress", [
 	]);
 
 var councillor = new Race("Councillor", [
-		new Candidate("Marilyn M. Petitto Devaney","Petitto Devaney",democraticParty),
+		new Candidate("Marilyn M. Petitto","Petitto",democraticParty),
 		new Candidate("Thomas Sheff","Sheff",unenrolledParty)
 	]);
 
