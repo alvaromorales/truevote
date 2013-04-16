@@ -2,20 +2,16 @@ $(function() {
 	updateButtons();
 });
 
-var updateButtons = function(winner) {
-	// SET RESULTS OF PREVIOUS RACE
-	if (winner) {
-		var previousRace = audit.getCurrentBallot().getPreviousRace();
-		previousRace.setWinner(winner);
-		//console.log(previousRace); //PRINT OUT RESULTS OF PREVIOUS RACE
-	}
-
-	updateStatusBar();
-
+var updateButtons = function(isRestore) {
 	var buttonsDiv = $('.countButtons');
 	buttonsDiv.html(''); //clear buttons
 
-	var race = audit.getNextRace();
+	if (!isRestore) {
+		var race = audit.getNextRace();
+	} else {
+		var race = audit.getCurrentBallot().getCurrentRace();
+	}
+
 	if (race) {
 		var candidates = race.candidates;
 		var candidateName = $("<h1>" + race.name + "</h1>");
@@ -85,8 +81,14 @@ var updateButtons = function(winner) {
 
 		$('.raceBtn').click(function(e) {
 			var winner = e.target.value;
-			addCandidate(winner, race);
-			updateButtons(winner);
+			
+			// SET RESULTS OF PREVIOUS RACE
+			if (winner) {
+				var previousRace = audit.getCurrentBallot().getPreviousRace();
+				previousRace.setWinner(winner);
+				updateSidebar(previousRace);
+			}
+			updateButtons();
 		});
 	}
 

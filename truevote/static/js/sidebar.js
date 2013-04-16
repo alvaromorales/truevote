@@ -1,27 +1,28 @@
 var current = null;
 var previous = null;
 var allRaces = [];
-var raceNumber = -2; 
+var raceNumber = -2;
+var sidebarState = [];
+
 //This is the value because the status bar is 
 //updated twice before the user begins entering information,
 //And race number should be 0 when the user begins.
 //Each call to update the status increase race number by 1.
 
-//GET THESE FROM AUDIT
-totalBallots=audit.numBallots;
-
 $(document).ready(function() {
 	  createSidebar();
 });
 
-function createSidebar(){
-  allRaces = audit.getCurrentBallot().races;
+var createSidebar = function(){
+  $('#enteredInfo').html('');
+  $('#enteredInfo').append("<table id='currentBallot'></table>");
+  currentBallot = $('#currentBallot');
 
+  allRaces = audit.getCurrentBallot().races;
   var currentBallot = $('#currentBallot');
 
   for (var i = 0; i < allRaces.length; i++){
         var race = allRaces[i].name;
-
         currentBallot.append('<tr><td class=\'raceName\'>' + race + '</td></tr>');
         currentBallot.append('<tr><td id=\'race' + i + 'winner\' class=\'candidateName\'></td></tr>');
         currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
@@ -29,141 +30,97 @@ function createSidebar(){
 
 	// Click functionality for fix mistake button
   $("#fixMistakeButton").click(function(){
-  			//Turn selections into buttons
-  			for (var i = 0; i < allRaces.length; i++){
-  			addButtonToSideBar(i);
-
-  			} 
-  			addResetButtons();
-  		 });
-  		 
-}
-
-//Adds reset buttons on ballots when error mode is entered
-function addResetButtons(){
-	var ballot1 = $('#currentBallotresetButtonDiv');
-	
-	ballot1.innerHTML= "<button id="+'currentBallotresetButton '+ "class='btn-primary errorButton'>"+"Reset Ballot"+"<button>";
-    var button1 = $('#currentBallotresetButton');
-    $(button1).click(function(){
-    	resetCurrentBallot();
-    });
-    
-    var ballot2 = $('#previousBallotresetButtonDiv');
-    ballot2.innerHTML= "<button id='previousBallotresetButton' class='btn-primary errorButton'>"+"Reset Ballot"+"<button>";
-    var button2 = $('#previousBallotresetButton');
-    $(button2).click(function(){
-    });
-};
-
-function resetCurrentBallot(){
-	for (var i = 0; i < allRaces.length; i++){
-			var raceName = allRaces[i].name;
-      		var raceDiv = $('#1'+raceName+"Entry");
-      		raceDiv.innerHTML='';
-      		//Reset main
-      		//audit.getCurrentBallot().currentRace=0;
-            	
-      	} 
-};
-
-function resetBallotFromRace(ballotNumber, raceName){
-	var after = false;
-	for (var i = 0; i < allRaces.length; i++){
-			var currentRaceName = allRaces[i].name;
-            if (raceName == currentRaceName){
-            after=true;
-            //Make actual audit go back to this race
-            };
-            if (after){
-            	var raceDiv = document.getElementById(ballotNumber+currentRaceName+"Entry");
-      			raceDiv.innerHTML='';
-            }
-      		
-      		//Reset main
-      		//audit.getCurrentBallot().currentRace=0;
-            	
-      	}
-      	exitErrorMode();
-	
-};
-function exitErrorMode(){
-
-}
-
-function addButtonToSideBar(i){
-				var raceName = allRaces[i].name;
-            	var oldDiv = $('#2'+raceName+"Entry");
-            	var newDiv = $('#1'+raceName+"Entry");
-
-            	if (newDiv.innerHTML!= ""){
-            		newDiv.innerHTML = "<button id='1"+raceName+"button' class='btn-primary errorButton'>"+newDiv.innerHTML+"<button>";
-           		 	// Add click listener for new buttons
-           		 	addClickListener(1, raceName);
-            
-            	}
-           		 if (oldDiv.innerHTML!= ""){
-
-            		oldDiv.innerHTML = "<button id='2"+raceName+"button' class='btn btn-primary errorButton'>"+oldDiv.innerHTML+"<button>";
-
-            		addClickListener(2, raceName);
-            	}
-	
-};
-
-// Adds click listener for given ballot and race name
-function addClickListener(ballot, raceName){
- 		var id = ballot+raceName+"button";
- 		var button = document.getElementById(id);
-        $(button).click({ballot: ballot,currentRace: raceName},function(){
-            	resetBallotFromRace(ballot, raceName);
-            });
-};
-
-function updateStatusBar(){
-      var bar = $('#counter');
-      bar.innerHTML = "<progress value=\""+(audit.currentBallot).toString()+"\" max=\""+totalBallots.toString()+"\"><\/progress>";
-
-      var ballotNum = $('#ballotNumber');
-      ballotNum.innerHTML = "<p>Ballot #" + (audit.currentBallot).toString() + "<\/p>";
-      raceNumber =0;
+    enterErrorMode();
+  });
 }
 
 //Candidate is entered and is added to sidebar
-function addCandidate(candidateName, raceObject){
-      var allRaces = audit.getCurrentBallot().races;
-      var raceNumber = allRaces.indexOf(raceObject);
-      $('#race' + raceNumber+ 'winner').html(candidateName);
+var updateSidebar = function(raceObject){
+  // update ballot number and progress bar
+  $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
+  $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
+
+  var raceNumber = audit.racesMap[raceObject.name];
+  if (raceNumber==0 && audit.currentBallot != 0) {
+    $('.candidateName').html('');
+    sidebarState = [];
+  }
+  $('#race' + raceNumber + 'winner').html(raceObject.winner.name);
+  sidebarState.push(raceObject.winner.name);
 }
 
-//Moves the ballot information down one,
-//Current Ballot now doesn't display any information
-function newBallot(){
-      for (var i = 0; i < allRaces.length; i++){
-            var raceName = allRaces[i].name;
-            var oldDiv = $('#1'+raceName+"Entry");
-            var newDiv = $('#2'+raceName+"Entry");
-            newDiv.innerHTML = oldDiv.innerHTML;
-            oldDiv.innerHTML = "";
-      }  
-};
+var exitErrorMode = function() {
 
- //Moves the ballot information up one,
-//Replaces previous ballot with the one before
-var displayPreviousBallot = function displayPreviousBallot(){
-        previousBallot = audit.getPreviousBallot();   
-      for (var i = 0; i < allRaces.length; i++){
-            var raceName = allRaces[i].name;
-            var upperDiv = $('#1'+raceName+"Entry");
-            var lowerDiv = $('#2'+raceName+"Entry");
-            upperDiv.innerHTML = lowerDiv.innerHTML;
-            
-            //Update previous ballot
-            candidateName = previousBallot.getRace(i).winner;
-            lowerDiv.innerHTML = "<p>"+candidateName+"<\/p>";
-      }  
-};
+}
 
-function removeSpaces(val) {
-   return val.split(' ').join('');
-};
+var enterErrorMode = function() {
+  displayHelp();
+
+  // display buttons
+  $('#fixMistakeButton').html("<button id='btnRestart' class='btn btn-danger'>Restart Audit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id='cancelFixMistake' class='btn'>Cancel</button>");
+
+  // clear sidebar
+  $('#enteredInfo').html('');
+
+  //Add current ballot header
+  $('#enteredInfo').append("<div id='currentBallotHeader'><h3>Current Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'><button class='btn btn-danger'>Reset</button></span></h3></div>");
+
+  // Show entered fields for current ballot
+  var currentBallotDisplay = $("<div id='currentBallotEntered'></div>");
+  currentBallotDisplay.html("<table id=currentBallot></table>");
+  currentBallotDisplay.addClass('scrollable');
+  $('#enteredInfo').append(currentBallotDisplay);
+
+  displayFixCurrentBallot()
+
+  // Show entered fields for previous ballot
+  var previousBallotObj = audit.getPreviousBallot();
+  if (previousBallotObj) {
+    //Add previous ballot header
+    $('#enteredInfo').append("<div id='previousBallotHeader'><h3>Previous Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'><button class='btn btn-danger'>Reset</button></span></h3></div>");
+    $('#previousBallotHeader').css('position','absolute');
+    $('#previousBallotHeader').css('top','52.5%');
+
+    var previousBallotDisplay = $("<div id='previousBallotEntered' class='scrollable'></div>");
+    previousBallotDisplay.css('top','61%');
+    previousBallotDisplay.html("<table id=previousBallot></table>");
+    $('#enteredInfo').append(previousBallotDisplay);
+
+    displayFixPreviousBallot(previousBallotObj);
+  } else {
+    // no previous ballot. cover whole height
+    currentBallotDisplay.css('height','65%');
+  }
+
+  $('#cancelFixMistake').click(function(e) {
+    exitErrorMode();
+  });
+}
+
+var displayHelp = function() {
+  var buttonsDiv = $('.countButtons');
+  buttonsDiv.html(''); //clear buttons
+
+  // SHOW STUFF
+}
+
+var displayFixCurrentBallot = function() {
+  var currentBallot = $('#currentBallot');
+  currentBallot.css('margin-top','0%');
+  for (var i=0;i<sidebarState.length;i++) {
+    currentBallot.append('<tr><td class=\'raceName\'>' + audit.getCurrentBallot().races[i].name + '</td></tr>');
+    currentBallot.append('<tr><td><button class=\'btn btn-danger fixCurrent\' value=\'' + i + '\'>' + sidebarState[i] + '</button></td></tr>');
+    currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+  }
+}
+
+var displayFixPreviousBallot  = function(previousBallotObj) {
+  var previousBallot = $('#previousBallot');
+
+  for (var i = 0; i < previousBallotObj.races.length; i++){
+        var race = previousBallotObj.races[i];
+        previousBallot.append('<tr><td class=\'raceName\'>' + race.name + '</td></tr>');
+        previousBallot.append('<tr><td><button id=\'previousrace' + i + 'winner\' class=\'btn btn-danger fixPrevious\' value=\'' + i + '\'>' + race.winner.name + '</button></td></tr>');
+        previousBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+  }
+}
