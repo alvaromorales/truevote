@@ -17,17 +17,20 @@ var createSidebar = function(){
   $('#enteredInfo').html('');
   $('#enteredInfo').append("<table id='currentBallot'></table>");
   currentBallot = $('#currentBallot');
+  
 
   allRaces = audit.getCurrentBallot().races;
+  
   var currentBallot = $('#currentBallot');
 
   for (var i = 0; i < allRaces.length; i++){
+  		
         var race = allRaces[i].name;
         currentBallot.append('<tr><td class=\'raceName\'>' + race + '</td></tr>');
         currentBallot.append('<tr><td id=\'race' + i + 'winner\' class=\'candidateName\'></td></tr>');
         currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
   }
-
+	
 	// Click functionality for fix mistake button
   $("#fixMistakeButton").click(function(){
     enterErrorMode();
@@ -95,6 +98,10 @@ var enterErrorMode = function() {
   $('#cancelFixMistake').click(function(e) {
     exitErrorMode();
   });
+  $('#btnRestart').click(function(e) {
+  	restartAudit();
+    exitErrorMode();
+  });
 }
 
 var displayHelp = function() {
@@ -123,4 +130,18 @@ var displayFixPreviousBallot  = function(previousBallotObj) {
         previousBallot.append('<tr><td><button id=\'previousrace' + i + 'winner\' class=\'btn btn-danger fixPrevious\' value=\'' + i + '\'>' + race.winner.name + '</button></td></tr>');
         previousBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
   }
+}
+
+var restartAudit = function (){
+	var confirmationDialog = $('#confirmationDialog');
+	$("errorTitle").html("Reset Entire Audit");
+	$("errorBody").html("<p> You are about to restart the entire audit. Would you like to continue? <\/p>");
+	$(continueButton).click(function(){
+	location.reload();
+	});
+	$(cancelButton).click(function(){
+	confirmationDialog.modal('hide');
+	});
+	confirmationDialog.modal({show: true});
+	
 }
