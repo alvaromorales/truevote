@@ -1,14 +1,18 @@
 var current = null;
 var previous = null;
+var allRaces = [];
+var raceNumber = -2; 
+//This is the value because the status bar is 
+//updated twice before the user begins entering information,
+//And race number should be 0 when the user begins.
+//Each call to update the status increase race number by 1.
 
 //GET THESE FROM AUDIT
 totalBallots=audit.numBallots;
 
 $(document).ready(function() {
 
-      //Create progress bar at top
-
-      
+      //Create progress bar at top  
 	  createSidebar();
       
 
@@ -19,20 +23,19 @@ function createSidebar(){
 
 	var ballot1 = document.getElementById('currentBallot');
       var ballot2 = document.getElementById('previousBallot');
-      console.log(audit);
       allRaces = audit.getCurrentBallot().races;
-      console.log("Races");
-      console.log(allRaces);
+      updateStatusBar();
+
+
+      //$('#counter').value = "<progress value=\""+(audit.currentBallot).toString()+"\" max=50><\/progress>";
+      //The max number doesn't matter, as long as the initial progress is zero
 
 	//allRaces.each(function(oneRace){
       for (var i = 0; i < allRaces.length; i++){
             var oneRace = allRaces[i].name;
-            console.log(oneRace);
             var raceDiv1 = document.createElement("div");
             var nameDiv1 = document.createElement("div");
-            console.log("1");
             nameDiv1.innerHTML = "<div id=\"1"+oneRace+"Title\" class=\"name\"><p>"+oneRace+"<\/p><\/div>";
-            console.log("2");
             var entryDiv1 = document.createElement("div");
             entryDiv1.innerHTML = "<div id=\"1"+oneRace+"Entry\" class=\"entry\"><\/div>";
           //  var buttonDiv1 = document.createElement("div");
@@ -163,11 +166,14 @@ function addClickListener(ballot, raceName){
 
 function updateStatusBar(){
       var bar = document.getElementById('counter');
-      bar.innerHTML = "<progress value=\""+(audit.currentBallot).toString()+"\" max=\""+totalBallots.toString()+"\"><\/progress>";
-      console.log("ProgressBarUpdated");
+      raceNumber = raceNumber +1;
+      bar.innerHTML = "<progress value=\""+(audit.currentBallot*allRaces.length+raceNumber).toString()+"\" max=\""+(totalBallots*allRaces.length).toString()+"\"><\/progress>";
+}
 
+function updateBallotNum(){
       var ballotNum = document.getElementById('ballotNumber');
       ballotNum.innerHTML = "<p>Ballot #" + (audit.currentBallot).toString() + "<\/p>";
+      raceNumber =0;
 }
 
 //Candidate is entered and is added to sidebar
