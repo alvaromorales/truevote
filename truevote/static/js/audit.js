@@ -134,6 +134,7 @@ var Audit = function(numBallots, races) {
 			return race;
 		}
 	}
+
 };
 
 
