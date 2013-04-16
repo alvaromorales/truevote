@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TrueVote - Results</title>
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script>
+		$('.carousel').carousel();
+		</script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart);
+		  function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Obama and Biden',  1170],
+			  ['Romney and Ryan',  990],
+			  ['Johnson and Gray',  660],
+			  ['Stein and Honkala',  330]
+			]);
+
+			var options = {
+			  title: 'President and Vice President'
+			};
+
+			var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart2);
+		  function drawChart2() {
+			var data2 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Elizabeth A. Warren',  1150],
+			  ['Scott P. Brown',  700]
+			]);
+
+			var options2 = {
+			  title: 'Senator in Congress'
+			};
+
+			var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
+			chart2.draw(data2, options2);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart3);
+		  function drawChart3() {
+			var data3 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Nicola S. Tsongas',  930],
+			  ['Jonathan A. Golnik',  700]
+			]);
+
+			var options3 = {
+			  title: 'Representative in Congress'
+			};
+
+			var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
+			chart3.draw(data3, options3);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart4);
+		  function drawChart4() {
+			var data4 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Marilyn M. Petitto Devaney',  1930],
+			  ['Thomas Sheff',  200]
+			]);
+
+			var options4 = {
+			  title: 'Councillor'
+			};
+
+			var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
+			chart4.draw(data4, options4);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart5);
+		  function drawChart5() {
+			var data5 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Michael J. Barrett',  1000],
+			  ['Sandi Martinez',  500]
+			]);
+
+			var options5 = {
+			  title: 'Senator in General Court'
+			};
+
+			var chart5 = new google.visualization.BarChart(document.getElementById('chart_div5'));
+			chart5.draw(data5, options5);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart6);
+		  function drawChart6() {
+			var data6 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Cory Atkins',  1000],
+			  ['Michael J. Benn',  500]
+			]);
+
+			var options6 = {
+			  title: 'Representative in General Court'
+			};
+
+			var chart6 = new google.visualization.BarChart(document.getElementById('chart_div6'));
+			chart6.draw(data6, options6);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart7);
+		  function drawChart7() {
+			var data7 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Michael A. Sullivan',  1000]
+			]);
+
+			var options7 = {
+			  title: 'Clerk of Courts'
+			};
+
+			var chart7 = new google.visualization.BarChart(document.getElementById('chart_div7'));
+			chart7.draw(data7, options7);
+		  }
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart8);
+		  function drawChart8() {
+			var data8 = google.visualization.arrayToDataTable([
+			  ['Candidate', 'Votes'],
+			  ['Maria C. Curtatone',  800]
+			]);
+
+			var options8 = {
+			  title: 'Register of Deeds'
+			};
+
+			var chart8 = new google.visualization.BarChart(document.getElementById('chart_div8'));
+			chart8.draw(data8, options8);
+		  }
+		</script>
+	  </head>
+	  <body>
+		<div class="container">
+		<div class="well"><h1> Election #87a63b: 2012 Presidential Election Results </h1></div>
+		<div class="tabbable"> <!-- Only required for left/right tabs -->
+		  <ul class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab">President and Vice President</a></li>
+			<li><a href="#tab2" data-toggle="tab">Senator in Congress</a></li>
+			<li><a href="#tab3" data-toggle="tab">Representative in Congress</a></li>
+			<li><a href="#tab4" data-toggle="tab">Councillor</a></li>
+			<li><a href="#tab5" data-toggle="tab">Senator in General Court</a></li>
+			<li><a href="#tab6" data-toggle="tab">Representative in General Court</a></li>
+			<li><a href="#tab7" data-toggle="tab">Clerk of Courts</a></li>
+			<li><a href="#tab8" data-toggle="tab">Register of Deeds</a></li>
+		  </ul>
+		  <div class="tab-content">
+			<div class="tab-pane active" id="tab1">
+				<div class="center" id="chart_div" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab2">
+				<div class="center" id="chart_div2" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab3">
+				<div class="center" id="chart_div3" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab4">
+				<div class="center" id="chart_div4" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab5">
+				<div class="center" id="chart_div5" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab6">
+				<div class="center" id="chart_div6" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab7">
+				<div class="center" id="chart_div7" style="width: 800px; height: 400px;"></div>
+			</div>
+			<div class="tab-pane" id="tab8">
+				<div class="center" id="chart_div8" style="width: 800px; height: 400px;"></div>
+			</div>
+		  </div>
+		</div>
+		<a href="/warden/"><button class="btn btn-primary">Back</button></a>
+		</div>
+	  </body>
+	</html>

@@ -120,7 +120,7 @@ var Audit = function(numBallots, races) {
 			try { 
 				return this.getNextBallot().getNextRace();
 			} catch (err) {
-				alert("Audit over");
+				$(".alert").alert();
 			}
 		} else {
 			return race;
