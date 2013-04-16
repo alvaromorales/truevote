@@ -79,6 +79,7 @@ function updateStatusBar(){
 function addCandidate(candidateName, raceObject){
       var raceName = raceObject.name;
       var updateDiv = document.getElementById('1'+raceName+"Entry");
+      console.log(updateDiv);
       updateDiv.innerHTML = "<p>"+candidateName+"<\/p>";
 }   
 

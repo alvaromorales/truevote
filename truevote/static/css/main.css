@@ -12,20 +12,46 @@ html, body {
 	padding-bottom: 9999px;
 }
 
+p{
+	overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+
+}
+
 .name{
 	margin: 5px;
+	height: 25px;
+	overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .entry{
 	margin: 5px;
 	font-size: 25px;
+	height: 25px;
+	overflow: hidden;
+	width: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+
 }
 
 #enteredInfo{
 	height: 100%;
 	clear: left;
 /*	overflow: auto;
-*/}
+*/
+/*	overflow: hidden;
+	word-break: break-all;
+	word-wrap: break-word;
+	text-overflow: ellipsis;*/
+}
 
 #container-fluid{
 	overflow: hidden;
