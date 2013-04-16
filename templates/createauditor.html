@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TrueVote - Warden: Create Ballot</title>
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/createballot.js"></script>
+	</head>
+	<body>
+		<h1> Create Ballot for Election</h1>
+		<form class="form-horizontal">
+		<fieldset>
+
+		<!-- Form Name -->
+		<legend></legend>
+
+		<!-- Text input-->
+		<div class="control-group">
+		  <label class="control-label">Election ID</label>
+		  <div class="controls">
+			<input id="electionID" name="electionID" type="text" placeholder="67e346b" class="input-xlarge">
+			
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
+		  <label class="control-label">Election Name</label>
+		  <div class="controls">
+			<input id="electionName" name="electionName" type="text" placeholder="" class="input-xlarge" required="">
+			
+		  </div>
+		</div>
+
+		<!-- Select Basic -->
+		<div class="control-group">
+		  <label class="control-label">Number of Races</label>
+		  <div class="controls">
+			<select id="raceNumber" name="raceNumber" class="input-xlarge">
+			  <option>1</option>
+			  <option>2</option>
+			  <option>3</option>
+			  <option>4</option>
+			  <option>5</option>
+			  <option>6</option>
+			  <option>7</option>
+			  <option>8</option>
+			  <option>9</option>
+			  <option>10</option>
+			  <option>11</option>
+			  <option>12</option>
+			</select>
+		  </div>
+		</div>
+	
+		<div class="well">
+		<!-- Select Basic -->
+		<div class="control-group">
+		  <label class="control-label">Race</label>
+		  <div class="controls">
+			<select id="race" name="race" class="input-xlarge">
+			  <option>President and Vice President</option>
+			  <option>Senator in Congress</option>
+			  <option>Representative in Congress</option>
+			  <option>Councillor</option>
+			  <option>Senator in General Court</option>
+			  <option>Representative in General Court</option>
+			  <option>Clerk of Courts</option>
+			  <option>Register of Deeds</option>
+			  <option>Sheriff</option>
+			</select>
+		  </div>
+		</div>
+
+		<!-- Select Basic -->
+		<div class="control-group">
+		  <label class="control-label">Number of Candidates</label>
+		  <div class="controls">
+			<select id="numCand" name="numCand" class="input-xlarge">
+			  <option>1</option>
+			  <option>2</option>
+			  <option>3</option>
+			  <option>4</option>
+			  <option>5</option>
+			  <option>6</option>
+			  <option>7</option>
+			  <option>8</option>
+			  <option>9</option>
+			  <option>10</option>
+			  <option>11</option>
+			  <option>12</option>
+			</select>
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
+		  <label class="control-label">Candidate</label>
+		  <div class="controls">
+			<input id="candName" name="candName" type="text" placeholder="" class="input-xlarge">
+			
+		  </div>
+		</div>
+
+		<!-- Select Basic -->
+		<div class="control-group">
+		  <label class="control-label">Party</label>
+		  <div class="controls">
+			<select id="party" name="party" class="input-xlarge">
+			  <option>Democratic</option>
+			  <option>Republican</option>
+			  <option>Libertarian</option>
+			  <option>Green-Rainbow</option>
+			  <option>Unenrolled</option>
+			</select>
+		  </div>
+		</div>
+		</div>
+
+		<!-- Button (Double) -->
+		<div class="control-group">
+		  <label class="control-label"></label>
+		  <div class="controls">
+			<a href="/warden/"><button id="save" name="save" class="btn btn-primary">Save</button></a>
+			<a href="/warden/"><button id="cancel" name="cancel" class="btn btn-default">Cancel</button></a>
+		  </div>
+		</div>
+
+		</fieldset>
+		</form>
+	</body>
+</html>

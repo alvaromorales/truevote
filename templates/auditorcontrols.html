@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TrueVote - Warden</title>
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="tabbable"> <!-- Only required for left/right tabs -->
+		  <ul class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab">Results</a></li>
+			<li><a href="#tab2" data-toggle="tab">Audits to approve</a></li>
+			<li><a href="#tab3" data-toggle="tab">Auditors</a></li>
+		  </ul>
+		  <div class="tab-content">
+			<div class="tab-pane active" id="tab1">
+			<div class="page-header">
+				<div class="well">
+				<h2>Results as of 9:45:13 AM, 04/15/2013 <a href="/warden/results"><button class="btn btn-default btn-small">Details</button></a> </h2>
+				<h5 class="muted">These results are up-to-date, based on the last audit you approved. Click "Details" to see more information.</h5>
+				</div>
+				</div>
+				<h2><small>Projected Winners: </small></h2>
+				<table class="table">
+				<tr>
+				<th>Race</th>
+				<th>Candidate</th>
+				</tr>
+				<tr>
+				<td>President and Vice President</td>
+				<td>Obama and Biden</td>
+				</tr>
+				<tr>
+				<td>Senator in Congress</td>
+				<td>Elizabeth A. Warren</td>
+				</tr>
+				<tr>
+				<td>Representative in Congress</td>
+				<td>Nicola S. Tsongas</td>
+				</tr>
+				<tr>
+				<td>Councillor</td>
+				<td>Marilyn M. Petitto Devaney</td>
+				</tr>
+				<tr>
+				<td>Senator in General Court</td>
+				<td>Michael J. Barrett</td>
+				</tr>
+				<tr>
+				<td>Representative in General Court</td>
+				<td>Cory Atkins</td>
+				</tr>
+				<tr>
+				<td>Clerk of Courts</td>
+				<td>Michael A. Sullivan</td>
+				</tr>
+				<tr>
+				<td>Register of Deeds</td>
+				<td>Maria C. Curtatone</td>
+				</tr>
+				<tr>
+				<td>Sheriff</td>
+				<td>Peter J. Koutoujian</td>
+				</tr>
+				</table>
+			</div>
+			<div class="tab-pane" id="tab2">
+			<div class="well">
+			<h2> Finished Audits awaiting approval: </h2>
+			<h5 class="muted">The results of these audits have not yet been entered into the totals. Approve or Deny these audits, then click "Submit".</h5>
+			</div>
+			  <table class="table">
+				<tr>
+				<th>Name</th>
+				<th>Number of Ballots</th>
+				<th>Time completed</th>
+				<th>Approve</th>
+				<th>Deny</th>
+				</tr>
+				<tr>
+				<td>Denise</td>
+				<td>50</td>
+				<td>2013-04-15 M 11:15 UTC</td>
+				<td>
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</td>
+				<td>
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</td>
+				</tr>
+				<tr>
+				<td>Steve</td>
+				<td>50</td>
+				<td>2013-04-15 M 10:35 UTC</td>
+				<td>
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</td>
+				<td>
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</td>
+				</tr>
+				<tr>
+				<td>Denise</td>
+				<td>50</td>
+				<td>2013-04-15 M 10:25 UTC</td>
+				<td>
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</td>
+				<td>
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</td>
+				</tr>
+				</table>
+				<a href="/warden/"><button class="btn btn-primary">Submit</button></a>
+				<a href="/warden/"><button class="btn">Cancel</button></a>
+			</div>
+			<div class="tab-pane" id="tab3">
+			  <div class="well">
+			  <h2> Auditors: </h2>
+			  <h5 class="muted">You can assign new audits to any auditor who is not busy. Assigning a new audit will give this auditor 50 ballots.</h5>
+			  </div>
+			  <table class="table">
+				<tr>
+				<th>Name</th>
+				<th></th>
+				</tr>
+				<tr>
+				<td> Barbara </td>
+				<td><button id="button1id" name="button1id" class="btn btn-success">Assign New Audit</button></td>
+				</tr>
+				<tr>
+				<td> Denise </td>
+				<td><button id="button1id" name="button1id" class="btn btn-success">Assign New Audit</button></td>
+				</tr>
+				<tr>
+				<td> Evan </td>
+				<td><button id="button1id" name="button1id" class="btn btn-success disabled">Busy</button></td>
+				</tr>
+				<tr>
+				<td> Jessica </td>
+				<td><button id="button1id" name="button1id" class="btn btn-success disabled">Busy</button></td>
+				</tr>
+				<tr>
+				<td> Steve </td>
+				<td><button id="button1id" name="button1id" class="btn btn-success">Assign New Audit</button></td>
+				</tr>
+				</table>
+				<button id="button1id" name="button1id" class="btn btn-primary">Create New Auditor</button>
+			</div>
+		  </div>
+		</div>
+	</body>
+</html>

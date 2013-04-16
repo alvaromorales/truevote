@@ -9,10 +9,47 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 	</head>
 	<body>
-		<h1>Welcome to TrueVote</h1>
+	
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Welcome to TrueVote!</legend>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label">Text Input</label>
+  <div class="controls">
+    <input id="Username" name="Username" type="text" placeholder="" class="input-xlarge">
+    
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="control-group">
+  <label class="control-label">Password </label>
+  <div class="controls">
+    <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="input-xlarge">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label"></label>
+  <div class="controls">
+    <a id="" name="" class="btn btn-primary" href="/audit">Log-in</a>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+		<!--<h1>Welcome to TrueVote</h1>
 		Username: <input type="text" name="Username"><br>
 		Password: <input type="text" name="Password"><br>
 		<input type="submit" value="Submit" onclick="location.href='/audit'">
-		<!--a href="/audit">Go to the audit page</a-->
+		<!--a href="/audit">Go to the audit page</a--> 
 	</body>
 </html>
+

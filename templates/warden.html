@@ -8,7 +8,51 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 	</head>
+	
 	<body>
-		<h1>This is the warden page</h1>
+	<div class="container">
+	<div class="well">
+	<h1>Welcome, Amy!</h1>
+	<h2>You are currently viewing:</h2><h2> Election #87a63b: 2012 Presidential Election <small> <a href="#changeElection" data-toggle="modal">Change </a> </small> <small><a href="/warden/createballot">New</a> </small></h2>	
+	</div>
+	<div id="changeElection" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="changeElectionLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h2 id="changeElectionLabel">You are in Election # 87a63b: 2012 Presidential Election</h2>
+	  </div>
+	  <div class="modal-body">
+		<h3>Change Election: </h3>
+		<p>
+		<div class="control-group">
+		<label class="control-label">Election ID</label>
+			<div class="controls">
+			<select id="electionid" name="election" class="input-xlarge">
+				<option>87a63b</option>
+			</select>
+			</div>
+			<div class="controls">
+			<label class="control-label">Election Name</label>
+				<div class="controls">
+				<input id="usname" name="usname" type="text" placeholder="2012 Presidential Election" class="input-xlarge uneditable-input" required="">
+				</div>
+			</div>
+		</div>
+		</p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Save</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	  </div>
+	</div>
+	
+	<div class="container-fluid" style="overflow:hidden;">
+		<div class="row-fluid">
+			<div id="auditorDiv" class="span12">
+		      <!--Sidebar content-->
+		      {% include "auditorcontrols.html" %}
+		    </div>
+		</div>
+	</div>
+	</div>
 	</body>
 </html>
