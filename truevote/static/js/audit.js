@@ -105,7 +105,7 @@ var Audit = function(numBallots, races) {
 
 	this.getNextBallot = function() {
 		this.currentBallot++;
-		updateStatusBar(); //Update the sidebar progress bar
+		updateBallotNum();
 		newBallot(); //Create a new ballot in the sidebar
 		return this.getCurrentBallot();
 	};

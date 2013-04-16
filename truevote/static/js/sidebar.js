@@ -1,11 +1,16 @@
 var current = null;
 var previous = null;
+var allRaces = [];
+var raceNumber = -2; 
+//This is the value because the status bar is 
+//updated twice before the user begins entering information,
+//And race number should be 0 when the user begins.
+//Each call to update the status increase race number by 1.
 
 //GET THESE FROM AUDIT
 totalBallots=audit.numBallots;
 
 $(document).ready(function() {
-      //Create progress bar at top
 	  createSidebar();
 });
 
@@ -32,7 +37,6 @@ function createSidebar(){
   			addResetButtons();
   		 });
   		 
-
 }
 
 //Adds reset buttons on ballots when error mode is entered
@@ -122,6 +126,7 @@ function updateStatusBar(){
 
       var ballotNum = $('#ballotNumber');
       ballotNum.innerHTML = "<p>Ballot #" + (audit.currentBallot).toString() + "<\/p>";
+      raceNumber =0;
 }
 
 //Candidate is entered and is added to sidebar

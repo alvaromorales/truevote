@@ -10,6 +10,8 @@ var updateButtons = function(winner) {
 		//console.log(previousRace); //PRINT OUT RESULTS OF PREVIOUS RACE
 	}
 
+	updateStatusBar();
+
 	var buttonsDiv = $('.countButtons');
 	buttonsDiv.html(''); //clear buttons
 
