@@ -2,6 +2,22 @@ html, body {
 	height: 100%;
 }
 
+h1 {
+	font-size: 3.8em;
+	line-height: 1em;
+	font: 400 70px/1.2 'Istok Web', Verdana, Helvetica, sans-serif
+	font-weight:bold;
+}
+
+.btn-info {
+	white-space: normal;
+	line-height: 1.5em;
+	font-size: 2.2em;
+	font-weight: bold;
+	font-family: 'Georgia', Verdana, Helvetica, sans-serif;
+	border-radius: 15px;
+}
+
 .container-fluid {
 	min-height: 100%;
 	overflow: hidden;
@@ -58,4 +74,9 @@ html, body {
 	height: 100%;
 	width: 100%;
 	margin: 5%;
+}
+
+.raceBtn {
+	font-family: "Georgia",serif;
+	font-size: 4em;
 }
