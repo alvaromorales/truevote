@@ -1,56 +1,147 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>TrueVote</title>
-		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
-		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
-		
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
-	</head>
-	<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<title>TrueVote</title>
+	<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <style type="text/css">
+      /* Override some defaults */
+      html, body {
+        background-color: #eee;
+      }
+      body {
+		position: relative;
+        padding-top: 40px; 
+      }
+	  
+	  .containerParent{
+		position: relative;
+	  }
+	  
+      .container-outer {
+		position: absolute;
+		padding-top: 8%;
+		padding-left: 33%;		
+		z-index: 10;
+      }
+	  
+	  .background {
+		position: absolute;
+		left: 6%;
+      }
+
+      /* The white background content wrapper */
+      .container-outer > .content {
+		position: relative;
+		width: 500px ;
+		margin-left: auto ;
+		margin-right: auto ;
+        background-color: #fff;
+        padding: 20px;
+        margin: 0px; 
+        -webkit-border-radius: 10px 10px 10px 10px;
+           -moz-border-radius: 10px 10px 10px 10px;
+                border-radius: 10px 10px 10px 10px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+	  .login-form {
+		position: relative;
+		margin-left: 20px;
+	  }
 	
-<form class="form-horizontal">
-<fieldset>
+	  legend {
+		margin-right: -50px;
+		font-weight: bold;
+	  	color: #404040;
+	  }
+	  .center {
+		  width: 500px ;
+		  margin-left: auto ;
+		  margin-right: auto ;
+		}
 
-<!-- Form Name -->
-<legend>Welcome to TrueVote!</legend>
+    </style>
 
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label">Username</label>
-  <div class="controls">
-    <input id="Username" name="Username" type="text" placeholder="" class="input-xlarge">
-    
-  </div>
-</div>
+</head>
+<body>
+	<div class="navbar">
+	  <div class="navbar-inner navbar-fixed-top">
+		<div class="row">
+		<div class="span3">
+		<a class="brand" href="#"><img src="{{ STATIC_URL }}img\logo.png" width="500" height="120"></a>
+		</div>
+		</div>
+	  </div>
+	</div>
+	<div class="containerParent">
+	<div class="background">
+		<img src="{{ STATIC_URL }}img/login.png" width="1200" height="800">
+	</div>
+	<div class="container-outer">
+    <div class="content">
+      <div class="row">
+        <div class="login-form">
+          <form class="form-horizontal center">
+			<fieldset>
+			<legend>Sign in to TrueVote</legend>
 
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label">Password </label>
-  <div class="controls">
-    <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="input-xlarge">
-    
-  </div>
-</div>
+			<div class="control-group">
+			  <label class="control-label">Username</label>
+			  <div class="controls">
+				<input id="username" name="username" type="text" placeholder="" class="input-xlarge">
+				
+			  </div>
+			</div>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label"></label>
-  <div class="controls">
-    <a id="log-inButton" name="" class="btn btn-primary" href="/audit">Log-in</a>
-  </div>
-</div>
+			<div class="control-group">
+			  <label class="control-label">Password</label>
+			  <div class="controls">
+				<input id="password" name="password" type="password" placeholder="" class="input-xlarge">
+				
+			  </div>
+			</div>
 
-</fieldset>
-</form>
+			<div class="control-group">
+			  <label class="control-label"></label>
+			  <div class="controls">
+				<label class="checkbox">
+				  <input type="checkbox" name="checkboxes" value="Remember Me">
+				  Remember Me
+				</label>
+			  </div>
+			</div>
 
-		<!--<h1>Welcome to TrueVote</h1>
-		Username: <input type="text" name="Username"><br>
-		Password: <input type="text" name="Password"><br>
-		<input type="submit" value="Submit" onclick="location.href='/audit'">
-		<!--a href="/audit">Go to the audit page</a--> 
-	</body>
+			<div class="control-group">
+			  <label class="control-label"></label>
+			  <div class="controls">
+				<a href="/audit/" class="btn btn-primary">Login</a></button>
+			  </div>
+			</div>
+
+			</fieldset>
+			</form>
+        </div>
+      </div>
+	</div>
+    </div>
+  </div> 
+  <div class="navbar">
+	  <div class="navbar-inner navbar-fixed-bottom">
+		<div class="row">
+		<div class="span3">
+		<a class="brand" href="#"></a>
+		</div>
+		</div>
+	  </div>
+	</div>
+</body>
 </html>
-

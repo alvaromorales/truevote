@@ -39,9 +39,9 @@
 			  ['Scott P. Brown',  700]
 			]);
 
-			var options2 = {
-			  title: 'Senator in Congress'
-			};
+			var options2 = {'title':'Senator in Congress',
+                     'width':600,
+                     'height':400};
 
 			var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
 			chart2.draw(data2, options2);
@@ -56,8 +56,9 @@
 			]);
 
 			var options3 = {
-			  title: 'Representative in Congress'
-			};
+			  title: 'Representative in Congress',
+                     'width':600,
+                     'height':400};
 
 			var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
 			chart3.draw(data3, options3);
@@ -72,8 +73,9 @@
 			]);
 
 			var options4 = {
-			  title: 'Councillor'
-			};
+			  title: 'Councillor',
+                     'width':600,
+                     'height':400};
 
 			var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
 			chart4.draw(data4, options4);
@@ -88,8 +90,9 @@
 			]);
 
 			var options5 = {
-			  title: 'Senator in General Court'
-			};
+			  title: 'Senator in General Court',
+                     'width':600,
+                     'height':400};
 
 			var chart5 = new google.visualization.BarChart(document.getElementById('chart_div5'));
 			chart5.draw(data5, options5);
@@ -104,8 +107,9 @@
 			]);
 
 			var options6 = {
-			  title: 'Representative in General Court'
-			};
+			  title: 'Representative in General Court',
+                     'width':600,
+                     'height':400};
 
 			var chart6 = new google.visualization.BarChart(document.getElementById('chart_div6'));
 			chart6.draw(data6, options6);
@@ -119,8 +123,9 @@
 			]);
 
 			var options7 = {
-			  title: 'Clerk of Courts'
-			};
+			  title: 'Clerk of Courts',
+                     'width':600,
+                     'height':400};
 
 			var chart7 = new google.visualization.BarChart(document.getElementById('chart_div7'));
 			chart7.draw(data7, options7);
@@ -134,8 +139,9 @@
 			]);
 
 			var options8 = {
-			  title: 'Register of Deeds'
-			};
+			  title: 'Register of Deeds',
+                     'width':600,
+                     'height':400};
 
 			var chart8 = new google.visualization.BarChart(document.getElementById('chart_div8'));
 			chart8.draw(data8, options8);
@@ -144,8 +150,11 @@
 	  </head>
 	  <body>
 		<div class="container">
-		<div class="well"><h1> Election #87a63b: 2012 Presidential Election Results </h1></div>
-		<div class="tabbable"> <!-- Only required for left/right tabs -->
+		<div class="well">
+		<h1> 2012 Presidential Election Results </h1>
+		<img src="truevote\static\img\logo.png">
+		</div>
+		<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
 		  <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab1" data-toggle="tab">President and Vice President</a></li>
 			<li><a href="#tab2" data-toggle="tab">Senator in Congress</a></li>
@@ -158,28 +167,36 @@
 		  </ul>
 		  <div class="tab-content">
 			<div class="tab-pane active" id="tab1">
-				<div class="center" id="chart_div" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Obama and Biden </h3>
+				<div class="center" id="chart_div" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab2">
-				<div class="center" id="chart_div2" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Elizabeth A. Warren </h3>
+				<div class="center" id="chart_div2" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab3">
-				<div class="center" id="chart_div3" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Nicola S. Tsongas </h3>
+				<div class="center" id="chart_div3" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab4">
-				<div class="center" id="chart_div4" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Marilyn M. Petitto Devaney </h3>
+				<div class="center" id="chart_div4" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab5">
-				<div class="center" id="chart_div5" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Michael J. Barrett </h3>
+				<div class="center" id="chart_div5" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab6">
-				<div class="center" id="chart_div6" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Cory Atkins </h3>
+				<div class="center" id="chart_div6" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab7">
-				<div class="center" id="chart_div7" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Michael A. Sullivan </h3>
+				<div class="center" id="chart_div7" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab8">
-				<div class="center" id="chart_div8" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Maria C. Curtatone </h3>
+				<div class="center" id="chart_div8" style="width: 600px; height: 400px;"></div>
 			</div>
 		  </div>
 		</div>
