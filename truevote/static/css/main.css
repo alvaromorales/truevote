@@ -21,8 +21,8 @@ html, body {
 }
 
 #sidebarHeader{
-	border-style: solid;
-	border-left: 0px;
+/*	border-style: solid;
+*/	border-left: 0px;
 	border-right: 0px;
 	border-top: 0px;
 }
@@ -54,6 +54,21 @@ html, body {
 	background-color: #ECEDF2;
 	float:right;
 	width:10%;
+}
+
+
+/*Can remove this next set when formatting is figured out;
+This just makes the table visible while debugging*/
+#errorInstructions{
+	position: absolute;
+	left: 450px;
+	top: 0px;
+	width: 75%;
+	height: 100%;
+}
+
+#errorInstructions img{
+	height: 20%;
 }
 
 #currentBallot {
@@ -147,6 +162,10 @@ html, body {
 
 #enteredInfo{
 	clear: left;
+	border-style: solid;
+	border-left: 0;
+	border-right: 0;
+	border-bottom:0;
 /*	overflow: auto;
 */
 /*	overflow: hidden;
@@ -217,8 +236,37 @@ html, body {
 #cancelButton{
 	border-color:black;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	line-height: 1em;
 
 }
+
+#endAudit {
+	background-color: #F2F2F2;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#endAudit p {
+	
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#endAudit h3 {
+	font-weight: bold;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#auditSubmit{
+	border-color:black;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	line-height: 1em;
+}
+
+#auditCancel{
+	border-color:black;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	line-height: 1em;
+}
+
 
 /*#sidebarHeader p{
 	font-size: 30px;
@@ -227,4 +275,13 @@ html, body {
 
 .progress .bar{
 	background-color: #000000;
+}
+
+.eICell{
+	margin: 10px;
+	padding: 10px;
+}
+
+#errorInstructionTitle{
+	text-align: center;
 }

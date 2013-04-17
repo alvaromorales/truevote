@@ -107,9 +107,18 @@ var enterErrorMode = function() {
 
 var displayHelp = function() {
   var buttonsDiv = $('.countButtons');
-  buttonsDiv.html(''); //clear buttons
+  buttonsDiv.html('');
 
-  // SHOW STUFF
+  buttonsDiv.append("<table id='errorInstructions' class='span9'></table>");
+  errorTable = $('#errorInstructions');
+
+  //Add each of the four instructions individually
+  buttonsDiv.append('<h2>Instructions</h2>');
+  buttonsDiv.append('<tr><td class=\"eICell\"><img src=\"{{ STATIC_URL }}img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell\"><p>To reset and stuff</p></td></tr>');
+  buttonsDiv.append('<tr><td class=\"eICell\"><<img src=\"{{ STATIC_URL }}img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell\"><p>To reset a whole ballot, click the \“Reset\” button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</p></td></tr>')
+  buttonsDiv.append('<tr><td class=\"eICell\"><img src=\"{{ STATIC_URL }}img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell\"><p>To restart the entire audit, click the \“Restart Audit button\” at the bottom left of your screen.</p></td></tr>');
+  buttonsDiv.append('<tr><td class=\"eICell\"><img src=\"{{ STATIC_URL }}img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell\"><p>To continue entering ballots without making any changes, click the \“Cancel\” button at the bottom left of your screen.</p></td></tr>');
+
 }
 
 var displayFixCurrentBallot = function() {

@@ -21,8 +21,8 @@ html, body {
 }
 
 #sidebarHeader{
-	border-style: solid;
-	border-left: 0px;
+/*	border-style: solid;
+*/	border-left: 0px;
 	border-right: 0px;
 	border-top: 0px;
 }
@@ -56,11 +56,45 @@ html, body {
 	width:10%;
 }
 
+#errorInstructions{
+	position: absolute;
+	left: 100px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
 #currentBallot {
 	margin-top: 10%;
 	table-layout: fixed;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+#resultsTitle{
+	font-family: 'Istok Web', sans-serif;
+	font-weight: bold;
+	font-size: 1em;
+	line-height: 0em;
+	height: 0.9em;
+	color: #7A8EA0;
+}
+
+#raceTitle {
+	font-family: "Georgia";
+	font-size: 1.2em;
+	height:1.3em;
+	margin-top: -1em;
+	width: 100%;
+}
+
+#resultsContainer{
+	vertical-align:middle;
+}
+
+
+.auditDone{
+	visibility:hidden;
 }
 
 .name{
@@ -121,6 +155,10 @@ html, body {
 
 #enteredInfo{
 	clear: left;
+	border-style: solid;
+	border-left: 0;
+	border-right: 0;
+	border-bottom:0;
 /*	overflow: auto;
 */
 /*	overflow: hidden;
@@ -135,18 +173,29 @@ html, body {
 }
 
 #ballotNumber{
-	font-size: 35px;
-	font-weight: bold;
-	text-align: center;
+	text-align: left;
 	margin: 20px;
+	margin-top: 23px;
 	margin-bottom: 0px;
 	margin-left: 0px;
-	line-height: 30px;
+	line-height: 40px;
 	float: left;
 }
 
+#ballotNumber p{
+	font-size: 38px;
+	text-align: left;
+}
+
+#logo{
+	margin: 5px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	line-height: 40px;
+}
+
 #counter{
-	margin: 20px;
 	margin-left: 0px;
 	clear: left;
 }
@@ -183,10 +232,10 @@ html, body {
 
 }
 
-#sidebarHeader p{
+/*#sidebarHeader p{
 	font-size: 30px;
 	align: left;
-}
+}*/
 
 .progress .bar{
 	background-color: #000000;

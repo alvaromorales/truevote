@@ -109,34 +109,16 @@ var displayHelp = function() {
   var buttonsDiv = $('.countButtons');
   buttonsDiv.html('');
 
-  t = document.createElement('table');
-  r = t.insertRow(0);
-  c = r.insertCell(0);
-  c.innerHTML = '<p>IMAGE HERE<\/p>';
-  c = r.insertCell(1);
-  c.innerHTML = '<p>To fix a specific race, click on the candidate’s name.<\/p>';
-  buttonsDiv.appendChild(t);
+  buttonsDiv.append("<table id='errorInstructions' class='span9'></table>");
+  errorTable = $('#errorInstructions');
 
-    // <table>
-    //   <tr>
-    //     <td><p> IMAGE HERE YO</p></td>
-    //     <td><p>To fix a specific race, click on the candidate’s name.</p></td>
-    //   </tr>
-    //   <tr>
-    //     <td><p> IMAGE HERE YO</p></td>
-    //     <td><p>To reset a whole ballot, click the \“Reset\” button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</p></td>
-    //   </tr>
-    //   <tr>
-    //     <td><p> IMAGE HERE YO</p></td>
-    //     <td><p>To restart the entire audit, click the \“Restart Audit button\” at the bottom left of your screen.</p></td>
-    //   </tr>
-    //   <tr>
-    //     <td><p> IMAGE HERE YO</p></td>
-    //     <td><p>To continue entering ballots without making any changes, click the \“Cancel\” button at the bottom left of your screen.</p></td>
-    //   </tr>
-    // </table>'); //clear buttons
+  //Add each of the four instructions individually
+  errorTable.append('<h2 class="span12" id=\'errorInstructionTitle\'>Instructions</h2>');
+  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To fix a specific race, click on the candidate’s name.</p></td><td class=\"span3\"></td></tr>');
+  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To reset a whole ballot, click the \“Reset\” button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</p></td><td class=\"span3\"></td></tr>')
+  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To restart the entire audit, click the \“Restart Audit button\” at the bottom left of your screen.</p></td><td class=\"span3\"></td></tr>');
+  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To continue entering ballots without making any changes, click the \“Cancel\” button at the bottom left of your screen.</p></td><td class=\"span3\"></td></tr>');
 
-  // SHOW STUFF
 }
 
 var displayFixCurrentBallot = function() {
