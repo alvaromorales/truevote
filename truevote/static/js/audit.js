@@ -128,7 +128,7 @@ var Audit = function(numBallots, races) {
 			try { 
 				return this.getNextBallot().getNextRace();
 			} catch (err) {
-				$(".alert").alert();
+				$('#endAudit').modal('show');
 			}
 		} else {
 			return race;

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TrueVote - Results</title>
+		<title>TrueVote - Warden</title>
 		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
 		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
 		
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
-		<script>
-		$('.carousel').carousel();
-		</script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 		  google.load("visualization", "1", {packages:["corechart"]});
@@ -39,9 +36,9 @@
 			  ['Scott P. Brown',  700]
 			]);
 
-			var options2 = {
-			  title: 'Senator in Congress'
-			};
+			var options2 = {'title':'Senator in Congress',
+                     'width':600,
+                     'height':400};
 
 			var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
 			chart2.draw(data2, options2);
@@ -56,8 +53,9 @@
 			]);
 
 			var options3 = {
-			  title: 'Representative in Congress'
-			};
+			  title: 'Representative in Congress',
+                     'width':600,
+                     'height':400};
 
 			var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
 			chart3.draw(data3, options3);
@@ -72,8 +70,9 @@
 			]);
 
 			var options4 = {
-			  title: 'Councillor'
-			};
+			  title: 'Councillor',
+                     'width':600,
+                     'height':400};
 
 			var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
 			chart4.draw(data4, options4);
@@ -88,8 +87,9 @@
 			]);
 
 			var options5 = {
-			  title: 'Senator in General Court'
-			};
+			  title: 'Senator in General Court',
+                     'width':600,
+                     'height':400};
 
 			var chart5 = new google.visualization.BarChart(document.getElementById('chart_div5'));
 			chart5.draw(data5, options5);
@@ -104,8 +104,9 @@
 			]);
 
 			var options6 = {
-			  title: 'Representative in General Court'
-			};
+			  title: 'Representative in General Court',
+                     'width':600,
+                     'height':400};
 
 			var chart6 = new google.visualization.BarChart(document.getElementById('chart_div6'));
 			chart6.draw(data6, options6);
@@ -119,8 +120,9 @@
 			]);
 
 			var options7 = {
-			  title: 'Clerk of Courts'
-			};
+			  title: 'Clerk of Courts',
+                     'width':600,
+                     'height':400};
 
 			var chart7 = new google.visualization.BarChart(document.getElementById('chart_div7'));
 			chart7.draw(data7, options7);
@@ -134,8 +136,9 @@
 			]);
 
 			var options8 = {
-			  title: 'Register of Deeds'
-			};
+			  title: 'Register of Deeds',
+                     'width':600,
+                     'height':400};
 
 			var chart8 = new google.visualization.BarChart(document.getElementById('chart_div8'));
 			chart8.draw(data8, options8);
@@ -144,46 +147,69 @@
 	  </head>
 	  <body>
 		<div class="container">
-		<div class="well"><h1> Election #87a63b: 2012 Presidential Election Results </h1></div>
-		<div class="tabbable"> <!-- Only required for left/right tabs -->
+		<div class="resultsContainer">
+		<div class="well">
+			<ul class="nav pull-right">
+			  <li class="active">
+				<a href="/">Log Out</a>
+			  </li>
+			</ul>
+			<div class="row-fluid">
+				<div class="span3">
+				<img src="{{ STATIC_URL }}img\logo.png" width="500" height="120">
+				</div>
+				<div class="span9">
+				<h1><div id="resultsTitle"> 2012 Presidential Election Results </div></h1>
+				</div>
+			</div>
+		</div>
+		<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
 		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#tab1" data-toggle="tab">President and Vice President</a></li>
-			<li><a href="#tab2" data-toggle="tab">Senator in Congress</a></li>
-			<li><a href="#tab3" data-toggle="tab">Representative in Congress</a></li>
-			<li><a href="#tab4" data-toggle="tab">Councillor</a></li>
-			<li><a href="#tab5" data-toggle="tab">Senator in General Court</a></li>
-			<li><a href="#tab6" data-toggle="tab">Representative in General Court</a></li>
-			<li><a href="#tab7" data-toggle="tab">Clerk of Courts</a></li>
-			<li><a href="#tab8" data-toggle="tab">Register of Deeds</a></li>
+			<li class="active"><a href="#tab1" data-toggle="tab"><div class="raceTitle">President and Vice President</div></a></li>
+			<li><a href="#tab2" data-toggle="tab"><div class="raceTitle">Senator in Congress</div></a></li>
+			<li><a href="#tab3" data-toggle="tab"><div class="raceTitle">Representative in Congress</div></a></li>
+			<li><a href="#tab4" data-toggle="tab"><div class="raceTitle">Councillor</div></a></li>
+			<li><a href="#tab5" data-toggle="tab"><div class="raceTitle">Senator in General Court</div></a></li>
+			<li><a href="#tab6" data-toggle="tab"><div class="raceTitle">Representative in General Court</div></a></li>
+			<li><a href="#tab7" data-toggle="tab"><div class="raceTitle">Clerk of Courts</div></a></li>
+			<li><a href="#tab8" data-toggle="tab"><div class="raceTitle">Register of Deeds</div></a></li>
 		  </ul>
 		  <div class="tab-content">
 			<div class="tab-pane active" id="tab1">
-				<div class="center" id="chart_div" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Obama and Biden </h3>
+				<div class="center" id="chart_div" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab2">
-				<div class="center" id="chart_div2" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Elizabeth A. Warren </h3>
+				<div class="center" id="chart_div2" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab3">
-				<div class="center" id="chart_div3" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Nicola S. Tsongas </h3>
+				<div class="center" id="chart_div3" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab4">
-				<div class="center" id="chart_div4" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Marilyn M. Petitto Devaney </h3>
+				<div class="center" id="chart_div4" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab5">
-				<div class="center" id="chart_div5" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Michael J. Barrett </h3>
+				<div class="center" id="chart_div5" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab6">
-				<div class="center" id="chart_div6" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Cory Atkins </h3>
+				<div class="center" id="chart_div6" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab7">
-				<div class="center" id="chart_div7" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Michael A. Sullivan </h3>
+				<div class="center" id="chart_div7" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab8">
-				<div class="center" id="chart_div8" style="width: 800px; height: 400px;"></div>
+				<h3> Projected Winner: Maria C. Curtatone </h3>
+				<div class="center" id="chart_div8" style="width: 600px; height: 400px;"></div>
 			</div>
 		  </div>
 		</div>
-		<a href="/warden/"><button class="btn btn-primary">Back</button></a>
+		</div>
 		</div>
 	  </body>
 	</html>
