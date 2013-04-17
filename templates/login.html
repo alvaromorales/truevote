@@ -4,8 +4,6 @@
     <meta charset="utf-8">
 	<title>TrueVote</title>
 	<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
-	<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
-
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
@@ -21,20 +19,22 @@
 		position: relative;
         padding-top: 40px; 
       }
-      .container {
+	  
+	  .containerParent{
 		position: relative;
-        width: 500px;
-		top: -650px;
-		padding-top: -500px;
-		padding-left: 0px;		
+	  }
+	  
+      .container {
+		position: absolute;
+        width: 100%;
+		padding-top: 8%;
+		padding-left: 33%;		
 		z-index: 10;
       }
 	  
 	  .background {
-		position: relative;
-        width: 1200px;
-		height: 800px;
-		padding-left: 200px;
+		position: absolute;
+		left: 10%;
       }
 
       /* The white background content wrapper */
@@ -83,8 +83,9 @@
 		</div>
 	  </div>
 	</div>
+	<div class="containerParent">
 	<div class="background">
-		<img src="{{ STATIC_URL }}img\login.png" width="1200" height="800">
+		<img src="{{ STATIC_URL }}img/login.png" width="1200" height="800">
 	</div>
 	<div class="container">
     <div class="content">
@@ -92,11 +93,8 @@
         <div class="login-form">
           <form class="form-horizontal center">
 			<fieldset>
-
-			<!-- Form Name -->
 			<legend>Sign in to TrueVote</legend>
 
-			<!-- Text input-->
 			<div class="control-group">
 			  <label class="control-label">Username</label>
 			  <div class="controls">
@@ -105,7 +103,6 @@
 			  </div>
 			</div>
 
-			<!-- Password input-->
 			<div class="control-group">
 			  <label class="control-label">Password</label>
 			  <div class="controls">
@@ -114,7 +111,6 @@
 			  </div>
 			</div>
 
-			<!-- Multiple Checkboxes -->
 			<div class="control-group">
 			  <label class="control-label"></label>
 			  <div class="controls">
@@ -125,7 +121,6 @@
 			  </div>
 			</div>
 
-			<!-- Button -->
 			<div class="control-group">
 			  <label class="control-label"></label>
 			  <div class="controls">
@@ -137,8 +132,9 @@
 			</form>
         </div>
       </div>
+	</div>
     </div>
-  </div> <!-- /container -->
+  </div> 
   <div class="navbar">
 	  <div class="navbar-inner navbar-fixed-bottom">
 		<div class="row">
