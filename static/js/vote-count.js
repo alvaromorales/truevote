@@ -2,21 +2,22 @@ $(function() {
 	updateButtons();
 });
 
-var updateButtons = function(winner) {
-	// SET RESULTS OF PREVIOUS RACE
-	if (winner) {
-		var previousRace = audit.getCurrentBallot().getPreviousRace();
-		previousRace.setWinner(winner);
-		//console.log(previousRace); //PRINT OUT RESULTS OF PREVIOUS RACE
-	}
-
+var updateButtons = function(isRestore) {
 	var buttonsDiv = $('.countButtons');
 	buttonsDiv.html(''); //clear buttons
 
-	var race = audit.getNextRace();
+	if (!isRestore) {
+		var race = audit.getNextRace();
+	} else {
+		var race = audit.getCurrentBallot().getCurrentRace();
+	}
+
 	if (race) {
 		var candidates = race.candidates;
 		var candidateName = $("<h1>" + race.name + "</h1>");
+		candidateName.css('font-family','\'Istok Web\', sans-serif');
+		candidateName.css('color','#6F0000');
+		candidateName.css('font-weight','bold');
 		candidateName.css('position','absolute');
 		candidateName.css('top','42.5%');
 		candidateName.css('right','22.75%');
@@ -44,11 +45,13 @@ var updateButtons = function(winner) {
 				candidate.css('width','32.5%');
 				candidate.css('left','47.5%');
 				candidate.css('bottom','5%');
+				candidate.addClass('btn-info-top');
 			} else if (c.party == democraticParty) {
 				candidate.css('top','5%');
 				candidate.css('height','20%');
 				candidate.css('width','32.5%');
 				candidate.css('left','47.5%');
+				candidate.addClass('btn-info-top');
 			} else {
 				candidate.css('top',(15 + currentOther*(70.0/numOther + 2.5*(numOther-1))) +'%');
 				candidate.css('width','15%');
@@ -78,8 +81,14 @@ var updateButtons = function(winner) {
 
 		$('.raceBtn').click(function(e) {
 			var winner = e.target.value;
-			addCandidate(winner, race);
-			updateButtons(winner);
+			
+			// SET RESULTS OF PREVIOUS RACE
+			if (winner) {
+				var previousRace = audit.getCurrentBallot().getPreviousRace();
+				previousRace.setWinner(winner);
+				updateSidebar(previousRace);
+			}
+			updateButtons();
 		});
 	}
 

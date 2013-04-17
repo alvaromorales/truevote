@@ -29,9 +29,8 @@
 		position: relative;
 	  }
 	  
-      .container {
+      .container-outer {
 		position: absolute;
-        width: 100%;
 		padding-top: 8%;
 		padding-left: 33%;		
 		z-index: 10;
@@ -39,11 +38,11 @@
 	  
 	  .background {
 		position: absolute;
-		left: 10%;
+		left: 6%;
       }
 
       /* The white background content wrapper */
-      .container > .content {
+      .container-outer > .content {
 		position: relative;
 		width: 500px ;
 		margin-left: auto ;
@@ -108,7 +107,7 @@
 	<div class="background">
 		<img src="{{ STATIC_URL }}img/login.png" width="1200" height="800">
 	</div>
-	<div class="container">
+	<div class="container-outer">
     <div class="content">
       <div class="row">
         <div class="login-form">
