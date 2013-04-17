@@ -7,6 +7,10 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
+	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -14,6 +18,7 @@
       /* Override some defaults */
       html, body {
         background-color: #eee;
+        background-image:url('{{ STATIC_URL }}img/wavegrid.png');
       }
       body {
 		position: relative;
@@ -61,13 +66,29 @@
 	  legend {
 		margin-right: -50px;
 		font-weight: bold;
-	  	color: #404040;
+	  	color: #5F0000;
+	  	font-family: 'Istok Web', sans-serif;
+		font-weight: bold;
+		font-size: 2em;
+		
 	  }
 	  .center {
 		  width: 500px ;
 		  margin-left: auto ;
 		  margin-right: auto ;
 		}
+		
+		.login-label{
+			font-family: "Georgia";
+			font-size: 1.2em;
+		}
+		
+		.login-button{
+			font-family: "Georgia";
+			font-size: 1.2em;
+			border-radius: 0px;
+		}
+
 
     </style>
 
@@ -95,7 +116,7 @@
 			<legend>Sign in to TrueVote</legend>
 
 			<div class="control-group">
-			  <label class="control-label">Username</label>
+			  <label class="control-label login-label">Username</label>
 			  <div class="controls">
 				<input id="username" name="username" type="text" placeholder="" class="input-xlarge">
 				
@@ -103,7 +124,7 @@
 			</div>
 
 			<div class="control-group">
-			  <label class="control-label">Password</label>
+			  <label class="control-label login-label">Password</label>
 			  <div class="controls">
 				<input id="password" name="password" type="password" placeholder="" class="input-xlarge">
 				
@@ -113,7 +134,7 @@
 			<div class="control-group">
 			  <label class="control-label"></label>
 			  <div class="controls">
-				<label class="checkbox">
+				<label class="checkbox login-label">
 				  <input type="checkbox" name="checkboxes" value="Remember Me">
 				  Remember Me
 				</label>
@@ -123,7 +144,7 @@
 			<div class="control-group">
 			  <label class="control-label"></label>
 			  <div class="controls">
-				<a href="/audit/" class="btn btn-primary">Login</a></button>
+				<a href="/audit/" class="btn btn-info login-button">Login</a></button>
 			  </div>
 			</div>
 
