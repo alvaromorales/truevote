@@ -5,11 +5,24 @@
 		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
 		<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
 		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
-		<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link href="{{ STATIC_URL }}css/jquery-ui-1.10.2.custom.css" rel="stylesheet" media="screen">
+		<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>		
+
+		<style type="text/css">
+		body {
+			background-image:url('{{ STATIC_URL }}img/wavegrid.png');
+		}
+
+		#sidebarDiv {
+		       background-image:url('{{ STATIC_URL }}img/cream_dust.png');
+		}
+		</style>
+
 
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootbox.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.2.custom.js"></script>
 
 		<script type="text/javascript" src="{{ STATIC_URL }}js/audit.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/vote-count.js"></script>

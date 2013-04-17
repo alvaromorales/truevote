@@ -22,7 +22,7 @@ var displayVoteCountButtons = function(race) {
 		var candidates = race.candidates;
 		var candidateName = $("<h1>" + race.name + "</h1>");
 		candidateName.css('font-family','\'Istok Web\', sans-serif');
-		candidateName.css('color','#6F0000');
+		candidateName.css('color','#5F0000');
 		candidateName.css('font-weight','bold');
 		candidateName.css('position','absolute');
 		candidateName.css('top','42.5%');

@@ -86,6 +86,8 @@ var exitErrorMode = function() {
   $('#btnRestart').hide();
   $('#cancelFixMistake').hide();
 
+  $('#enteredInfo').css('margin-left','2em');
+
   restoreSidebar();
   displayVoteCountButtons(audit.getCurrentBallot().getPreviousRace());
 }
@@ -100,15 +102,15 @@ var enterErrorMode = function() {
 
   // clear sidebar
   $('#enteredInfo').html('');
+  $('#enteredInfo').html("<div id='accordion'></div>");
+
+  var accordion = $('#accordion');
 
   //Add current ballot header
-  $('#enteredInfo').append("<div id='currentBallotHeader'><h3>Current Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'><button class='btn btn-danger resetBallot' value='current'>Reset</button></span></h3></div>");
+  accordion.append("<h3>Current Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger resetBallot pull-right' value='current'>Reset</button></span></h3><div id='currentBallotAccordion'></div>");
 
   // Show entered fields for current ballot
-  var currentBallotDisplay = $("<div id='currentBallotEntered'></div>");
-  currentBallotDisplay.html("<table id=currentBallot></table>");
-  currentBallotDisplay.addClass('scrollable');
-  $('#enteredInfo').append(currentBallotDisplay);
+    $('#currentBallotAccordion').append("<table id='currentBallot'></table>");
 
   displayFixCurrentBallot();
 
@@ -116,19 +118,13 @@ var enterErrorMode = function() {
   var previousBallotObj = audit.getPreviousBallot();
   if (previousBallotObj && !(audit.currentBallot == 1 && audit.getCurrentBallot.currentRace == 0)) {
     //Add previous ballot header
-    $('#enteredInfo').append("<div id='previousBallotHeader'><h3>Previous Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'><button class='btn btn-danger resetBallot' value='previous'>Reset</button></span></h3></div>");
-    $('#previousBallotHeader').css('position','absolute');
-    $('#previousBallotHeader').css('top','45%');
-
-    var previousBallotDisplay = $("<div id='previousBallotEntered' class='scrollable'></div>");
-    previousBallotDisplay.css('top','54%');
-    previousBallotDisplay.html("<table id=previousBallot></table>");
-    $('#enteredInfo').append(previousBallotDisplay);
-
+    accordion.append("<h3>Previous Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger pull-right' value='previous'>Reset</button></span></h3><div id='previousBallotAccordion'></div>");
+    $('#previousBallotAccordion').html("<table id=previousBallot></table>");
     displayFixPreviousBallot(previousBallotObj);
+    $("#accordion").accordion({autoHeight: false, collapsible: true});    
   } else {
+    $("#accordion").accordion({autoHeight: false, collapsible: false});    
     // no previous ballot. cover whole height
-    currentBallotDisplay.css('height','65%');
   }
 
   $('.resetBallot').click(function(e) {
@@ -149,8 +145,8 @@ var enterErrorMode = function() {
     audit.currentRaceNumber = (audit.currentBallot)*allRaces.length + audit.getCurrentBallot().currentRace;
     $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
     $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
-
   });
+  $('#enteredInfo').css('margin-left','0em');
 
 }
 
@@ -163,10 +159,10 @@ var displayHelp = function() {
 
 var displayFixCurrentBallot = function() {
   var currentBallot = $('#currentBallot');
-  currentBallot.css('margin-top','0%');
+
   for (var i=0;i<sidebarState.length;i++) {
     currentBallot.append('<tr><td class=\'raceName\'>' + audit.getCurrentBallot().races[i].name + '</td></tr>');
-    currentBallot.append('<tr><td><button class=\'btn btn-danger fixCurrent\' value=\'' + i + '\'>' + sidebarState[i] + '</button></td></tr>');
+    currentBallot.append('<tr><td><button style=\'border-radius: 3px; height=:1.3em; margin-top:0.5em;\' class=\'fixCurrent btn btn-info  input-large\' value=\'' + i + '\'>' + sidebarState[i] + '</button></td></tr>');
     currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
   }
 
@@ -181,13 +177,13 @@ var displayFixPreviousBallot  = function(previousBallotObj) {
   for (var i = 0; i < previousBallotObj.races.length; i++){
         var race = previousBallotObj.races[i];
         previousBallot.append('<tr><td class=\'raceName\'>' + race.name + '</td></tr>');
-        previousBallot.append('<tr><td><button id=\'previousrace' + i + 'winner\' class=\'btn btn-danger fixPrevious\' value=\'' + i + '\'>' + race.winner.name + '</button></td></tr>');
+        previousBallot.append('<tr><td><button style=\'border-radius: 3px;\' id=\'previousrace' + i + 'winner\' class=\'fixPrevious btn btn-info input-large\' value=\'' + i + '\'>' + race.winner.name + '</button></td></tr>');
         previousBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
   }
 
-  $('.fixPrevious').click(function(e) {
-    fixFromRace(parseInt(e.target.value),false);
-  });
+  // $('.fixPrevious').click(function(e) {
+  //   fixFromRace(parseInt(e.target.value),false);
+  // });
 }
 
 var fixFromRace = function(raceNumber,isCurrent) {

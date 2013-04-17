@@ -94,10 +94,19 @@ var Audit = function(numBallots, races) {
 	this.numBallots = numBallots;
 	this.ballots = [];
 	this.currentBallot = 0;
+	this.totalNumRaces = numBallots*races.length;
+	this.currentRaceNumber = 0;
 
-	for (var i=0;i<numBallots;i++) {
+	this.racesMap = {};
+
+	for (var i=0;i<races.length;i++) {
+		var r = races[i];
+		this.racesMap[r.name] = i;
+	}
+
+	for (var j=0;j<numBallots;j++) {
 		this.ballots.push(new Ballot(races));
-	};	
+	};
 
 	this.getCurrentBallot = function() {
 		return this.ballots[this.currentBallot];
@@ -105,27 +114,27 @@ var Audit = function(numBallots, races) {
 
 	this.getNextBallot = function() {
 		this.currentBallot++;
-		updateStatusBar(); //Update the sidebar progress bar
-		newBallot(); //Create a new ballot in the sidebar
 		return this.getCurrentBallot();
 	};
 	
 	this.getPreviousBallot = function() {
-		return this.ballots[currentBallot-1];
+		return this.ballots[this.currentBallot-1];
 	};
 
 	this.getNextRace = function() {
+		this.currentRaceNumber++;
 		var race = this.getCurrentBallot().getNextRace();
 		if (!race) {
 			try { 
 				return this.getNextBallot().getNextRace();
 			} catch (err) {
-				alert("Audit over");
+				$(".alert").alert();
 			}
 		} else {
 			return race;
 		}
 	}
+
 };
 
 
@@ -148,44 +157,38 @@ var presidential = new Race("President and Vice President", [
 	]);
 
 var senate = new Race("Senator in Congress", [
-		new Candidate("Elizabeth A. Warren","Warren",democraticParty),
-		new Candidate("Scott P. Brown","Brown",republicanParty)
+		new Candidate("Elizabeth Warren","Warren",democraticParty),
+		new Candidate("Scott Brown","Brown",republicanParty)
 	]);
 
 var congress = new Race("Representative in Congress", [
-		new Candidate("Nicola S. Tsongas","Tsongas",democraticParty),
-		new Candidate("Jonathan A. Golnik","Golnik",republicanParty)
+		new Candidate("Nicola Tsongas","Tsongas",democraticParty),
+		new Candidate("Jonathan Golnik","Golnik",republicanParty)
 	]);
 
 var councillor = new Race("Councillor", [
-		new Candidate("Marilyn M. Petitto Devaney","Petitto Devaney",democraticParty),
+		new Candidate("Marilyn Devaney","Petitto",democraticParty),
 		new Candidate("Thomas Sheff","Sheff",unenrolledParty)
 	]);
 
 var senatorGeneralCourt = new Race("Senator in General Court", [
-		new Candidate("Michael J. Barrett","Barrett",democraticParty),
+		new Candidate("Michael Barrett","Barrett",democraticParty),
 		new Candidate("Sandi Martinez","Martinez",republicanParty)
 	]);
 
 var representativeGeneralCourt = new Race("Representative in General Court", [
 		new Candidate("Cory Atkins","Atkins",democraticParty),
-		new Candidate("Michael J. Benn","Benn",republicanParty)
+		new Candidate("Michael Benn","Benn",republicanParty)
 	]);
 
 var clerk = new Race("Clerk of Courts", [
-		new Candidate("Michael A. Sullivan","Sullivan",democraticParty)
+		new Candidate("Michael Sullivan","Sullivan",democraticParty)
 	]);
 
 var register = new Race("Register of Deeds", [
-		new Candidate("Maria C. Curtatone","Curtatone",democraticParty)
+		new Candidate("Maria Curtatone","Curtatone",democraticParty)
 	]);
-
-var sheriff = new Race("Sheriff", [
-		new Candidate("Peter J. Koutoujian","Koutoujian",democraticParty),
-		new Candidate("Ernesto M. Petrone","Petrone",unenrolledParty)
-	]);
-
 
 ///// AUDIT /////
 
-var audit = new Audit(5,[presidential,senate,congress,councillor,senatorGeneralCourt,representativeGeneralCourt,clerk,register,sheriff]);
+var audit = new Audit(5,[presidential,senate,congress,councillor,senatorGeneralCourt,representativeGeneralCourt,clerk,register]);
