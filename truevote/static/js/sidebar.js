@@ -141,29 +141,11 @@ var enterErrorMode = function() {
 
   $('.resetBallot').click(function(e) {
     var type = e.target.value;
-
-    if (type == "current") {
-      audit.getCurrentBallot().currentRace = 0;
-      updateButtons();
-      sidebarState = [];
-      exitErrorMode();
-    } else {
-      audit.currentBallot--;
-      audit.getCurrentBallot().currentRace = 0;
-      updateButtons();
-      sidebarState = [];
-      exitErrorMode();
-    }
-    audit.currentRaceNumber = (audit.currentBallot)*allRaces.length + audit.getCurrentBallot().currentRace;
-
-    if (audit.currentRaceNumber == 1) {
-      audit.currentRaceNumber = 0;
-    }
-
-    $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
-    $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
+    resetBallotModal(type);
   });
+
   $('#enteredInfo').css('margin-left','0em');
+
 }
 
 var displayHelp = function() {
@@ -240,10 +222,46 @@ var fixFromRace = function(raceNumber,isCurrent) {
 var restartAudit = function (){
     var confirmationDialog = $('#confirmationDialog');
     $("#errorTitle").text("Restart Entire Audit");
+    $('#errorBody').html("<div class=\"well\"><h3 style=\"font-family: 'Georgia'; font-weight:normal;\">You are about to restart the entire audit. Would you like to continue?</h3></div>");
 
     $("#continueButton").click(function(){
       location.reload();
     });
+    $("#cancelButton").click(function(){
+      confirmationDialog.modal('hide');
+    });
+    confirmationDialog.modal({show: true});
+}
+
+var resetBallotModal = function (type){
+    var confirmationDialog = $('#confirmationDialog');
+    $("#errorTitle").text("Reset Ballot");
+    $('#errorBody').html("<div class=\"well\"><h3 style=\"font-family: 'Georgia'; font-weight:normal;\">You are about to reset this ballot. Would you like to continue?</h3></div>");
+
+    $("#continueButton").click(function(){
+        if (type == "current") {
+          audit.getCurrentBallot().currentRace = 0;
+          updateButtons();
+          sidebarState = [];
+          exitErrorMode();
+        } else {
+          audit.currentBallot--;
+          audit.getCurrentBallot().currentRace = 0;
+          updateButtons();
+          sidebarState = [];
+          exitErrorMode();
+        }
+        audit.currentRaceNumber = (audit.currentBallot)*allRaces.length + audit.getCurrentBallot().currentRace;
+
+        if (audit.currentRaceNumber == 1) {
+          audit.currentRaceNumber = 0;
+        }
+
+        $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
+        $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
+        confirmationDialog.modal('hide');
+    });
+
     $("#cancelButton").click(function(){
       confirmationDialog.modal('hide');
     });
