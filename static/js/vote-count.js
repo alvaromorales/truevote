@@ -2,6 +2,7 @@ $(function() {
 	updateButtons();
 });
 
+<<<<<<< HEAD
 var updateButtons = function(isRestore) {
 	var buttonsDiv = $('.countButtons');
 	buttonsDiv.html(''); //clear buttons
@@ -12,11 +13,33 @@ var updateButtons = function(isRestore) {
 		var race = audit.getCurrentBallot().getCurrentRace();
 	}
 
+=======
+var updateButtons = function() {
+	var race = audit.getNextRace();
+	displayVoteCountButtons(race);
+};
+
+var restoreAuditTo = function(ballotNumber,raceNumber) {
+	audit.currentBallot = ballotNumber;
+	audit.getCurrentBallot().currentRace = raceNumber;
+	var race = audit.getCurrentBallot().getCurrentRace();
+	displayVoteCountButtons(race);
+}
+
+var displayVoteCountButtons = function(race) {
+	var buttonsDiv = $('.countButtons');
+	buttonsDiv.html(''); //clear buttons
+
+>>>>>>> feature/sidebar
 	if (race) {
 		var candidates = race.candidates;
 		var candidateName = $("<h1>" + race.name + "</h1>");
 		candidateName.css('font-family','\'Istok Web\', sans-serif');
+<<<<<<< HEAD
 		candidateName.css('color','#6F0000');
+=======
+		candidateName.css('color','#5F0000');
+>>>>>>> feature/sidebar
 		candidateName.css('font-weight','bold');
 		candidateName.css('position','absolute');
 		candidateName.css('top','42.5%');
@@ -91,5 +114,4 @@ var updateButtons = function(isRestore) {
 			updateButtons();
 		});
 	}
-
-};
+}

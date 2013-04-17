@@ -1,30 +1,65 @@
-html, body {
+/* General Layout */
+
+html, body, .container-fluid, .row-fluid {
+	position: relative;
 	height: 100%;
 }
 
 .container-fluid {
+	padding-left: 0px;
 	min-height: 100%;
 	overflow: hidden;
 }
 
-#fixMistakeButton {
+#voteCountDiv { 
+	margin-bottom: -9999px;
+	padding-bottom: 9999px;
+}
+
+/* Sidebar Layout */
+
+#sidebarDiv {
+	position: relative;
+	border-style: solid;
+	border:0px;
+	border-left: 1px;
+	background-color: #FFFFFF;
+	height: 100%;
+	z-index: 100;
+}
+
+#sidebarHeader{
 	position: absolute;
-	bottom: 2.5%;
+	top: 0;
+	margin-top: 5%;
+	width: 100%;
+}
+
+#enteredInfo{
+	width: 100%;
+	height: 75%;
+	position: absolute;
+	top: 17%;
+	margin-left: 2em;
+}
+
+.fixCurrent, .fixPrevious {
+	border-radius: 0px;
+}
+
+#fixMistakeDiv {
+	position: absolute;
+	bottom: 4%;
+	width: 100%;
+	text-align: center;
 }
 
 .scrollable {
 	position: absolute;
-	height: 30%;
-	width: 22%;
+	height: 35%;
+	width: 100%;
 	overflow-y: scroll;
 	overflow-x: hidden;
-}
-
-#sidebarHeader{
-/*	border-style: solid;
-*/	border-left: 0px;
-	border-right: 0px;
-	border-top: 0px;
 }
 
 .center { 
@@ -37,36 +72,56 @@ html, body {
 	width: 100%;
 }
 
-#sidebarDiv, #voteCountDiv { 
-	margin-bottom: -9999px;
-	padding-bottom: 9999px;
+.raceName {
+	font-family: 'Istok Web', sans-serif;
+	color: #5F0000;
+	font-weight: bold;
+	font-size: 1em;
+	line-height: 0.9em;
+	height: 0.9em;
+	overflow: hidden;
 }
 
-#sidebarDiv {
-	border-style: solid;
-	border-left: 1px;
-	border-top:0px;
-	background-color: #F2F2F2;
-	height: 100%;
+.candidateName {
+	font-family: "Georgia";
+	font-size: 1.2em;
+	height:1.3em;
+	margin-top: -1em;
+	width: 100%;
 }
+
+/* Vote Count Layout */
 
 #voteCountDiv {
-	background-color: #ECEDF2;
 	float:right;
 	width:10%;
 }
 
+/*Can remove this next set when formatting is figured out;
+This just makes the table visible while debugging*/
 #errorInstructions{
 	position: absolute;
-	left: 100px;
+	left: 450px;
 	top: 0px;
-	width: 100%;
+	width: 75%;
 	height: 100%;
 }
 
+#errorInstructions img{
+	height: 20%;
+}
+
+#errorInstructions h2{
+	font-family: 'Istok Web', sans-serif;
+	color: #5f0000;
+
+#accordion {
+	height: 70%;
+	position: absolute;
+	width: 100%;
+}
+
 #currentBallot {
-	margin-top: 10%;
-	table-layout: fixed;
 	white-space: nowrap;
 	overflow: hidden;
 }
@@ -92,6 +147,10 @@ html, body {
 	vertical-align:middle;
 }
 
+.resultsContainer{
+	margin-top: 20px;
+}
+
 
 .auditDone{
 	visibility:hidden;
@@ -105,23 +164,6 @@ html, body {
     word-wrap: break-word;
     text-overflow: ellipsis;
     width: 100%;
-}
-
-.raceName {
-	font-family: 'Istok Web', sans-serif;
-	font-weight: bold;
-	font-size: 1em;
-	line-height: 0.9em;
-	height: 0.9em;
-	overflow: hidden;
-}
-
-.candidateName {
-	font-family: "Georgia";
-	font-size: 1.2em;
-	height:1.3em;
-	margin-top: -1em;
-	width: 100%;
 }
 
 .raceSeparator {
@@ -153,33 +195,21 @@ html, body {
 
 }
 
-#enteredInfo{
-	clear: left;
-	border-style: solid;
-	border-left: 0;
-	border-right: 0;
-	border-bottom:0;
-/*	overflow: auto;
-*/
-/*	overflow: hidden;
-	word-break: break-all;
-	word-wrap: break-word;
-	text-overflow: ellipsis;*/
-}
-
-#container-fluid{
-	overflow: hidden;
-	height: 100%;
-}
-
-#ballotNumber{
-	text-align: left;
+#ballotNumber p{
+	font-family: 'Istok Web', sans-serif;
+	text-align: center;
+	font-weight: bolder;
+	color: #5F0000;
+	font-size: 4em;
+	text-align: center;
 	margin: 20px;
-	margin-top: 23px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	line-height: 40px;
-	float: left;
+}
+
+progress {
+	margin-left: 10%;
+	position: absolute;
+	width: 80%;
+	text-align: center;
 }
 
 #ballotNumber p{
@@ -210,8 +240,7 @@ html, body {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-#confirmationDialog p {
-	
+.confirmationDialogText {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
@@ -220,23 +249,23 @@ html, body {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-#continueButton{
+.continueButton{
 	border-color:black;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	line-height: 1em;
 }
 
-#cancelButton{
+.cancelButton{
 	border-color:black;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 
 }
 
-/*#sidebarHeader p{
-	font-size: 30px;
-	align: left;
-}*/
+#currentBallotAccordion, #previousBallotAccordion {
+	height: 100%;
+}
 
-.progress .bar{
-	background-color: #000000;
+.modal-body {
+	top:50%;    
+	left:0;
+	width:100%;
 }

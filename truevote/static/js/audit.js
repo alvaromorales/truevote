@@ -157,44 +157,37 @@ var presidential = new Race("President and Vice President", [
 	]);
 
 var senate = new Race("Senator in Congress", [
-		new Candidate("Elizabeth A. Warren","Warren",democraticParty),
-		new Candidate("Scott P. Brown","Brown",republicanParty)
+		new Candidate("Elizabeth Warren","Warren",democraticParty),
+		new Candidate("Scott Brown","Brown",republicanParty)
 	]);
 
 var congress = new Race("Representative in Congress", [
-		new Candidate("Nicola S. Tsongas","Tsongas",democraticParty),
-		new Candidate("Jonathan A. Golnik","Golnik",republicanParty)
+		new Candidate("Nicola Tsongas","Tsongas",democraticParty),
+		new Candidate("Jonathan Golnik","Golnik",republicanParty)
 	]);
 
 var councillor = new Race("Councillor", [
-		new Candidate("Marilyn M. Petitto","Petitto",democraticParty),
+		new Candidate("Marilyn Devaney","Petitto",democraticParty),
 		new Candidate("Thomas Sheff","Sheff",unenrolledParty)
 	]);
 
 var senatorGeneralCourt = new Race("Senator in General Court", [
-		new Candidate("Michael J. Barrett","Barrett",democraticParty),
+		new Candidate("Michael Barrett","Barrett",democraticParty),
 		new Candidate("Sandi Martinez","Martinez",republicanParty)
 	]);
 
 var representativeGeneralCourt = new Race("Representative in General Court", [
 		new Candidate("Cory Atkins","Atkins",democraticParty),
-		new Candidate("Michael J. Benn","Benn",republicanParty)
+		new Candidate("Michael Benn","Benn",republicanParty)
 	]);
 
 var clerk = new Race("Clerk of Courts", [
-		new Candidate("Michael A. Sullivan","Sullivan",democraticParty)
+		new Candidate("Michael Sullivan","Sullivan",democraticParty)
 	]);
 
 var register = new Race("Register of Deeds", [
-		new Candidate("Maria C. Curtatone","Curtatone",democraticParty)
+		new Candidate("Maria Curtatone","Curtatone",democraticParty)
 	]);
-
-var sheriff = new Race("Sheriff", [
-		new Candidate("Peter J. Koutoujian","Koutoujian",democraticParty),
-		new Candidate("Ernesto M. Petrone","Petrone",unenrolledParty)
-	]);
-
 
 ///// AUDIT /////
-//Sheriff was removed
 var audit = new Audit(5,[presidential,senate,congress,councillor,senatorGeneralCourt,representativeGeneralCourt,clerk,register]);

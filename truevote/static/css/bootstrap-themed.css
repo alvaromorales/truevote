@@ -122,13 +122,13 @@ input[type="color"],
 
 .btn-danger {
   color: #ffffff;
-  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
-  background-image: -ms-linear-gradient(top, #ee5f5b, #bd362f);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
-  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
-  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
-  background-image: linear-gradient(top, #ee5f5b, #bd362f);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'ee5f5b, endColorstr='#'bd362f, GradientType=0);
+  background-image: -moz-linear-gradient(top, #bf3529, #bd362f);
+  background-image: -ms-linear-gradient(top, #bf3529, #bd362f);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bf3529), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #bf3529, #bd362f);
+  background-image: -o-linear-gradient(top, #bf3529, #bd362f);
+  background-image: linear-gradient(top, #bf3529, #bd362f);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'bf3529, endColorstr='#'bd362f, GradientType=0);
 }
 
 .btn-danger:hover,
@@ -136,6 +136,7 @@ input[type="color"],
 .btn-danger.active,
 .btn-danger.disabled,
 .btn-danger[disabled] {
+  color: #FFFFFF;
   background-color: #bd362f}
 
 .btn-success {
