@@ -20,13 +20,15 @@
 <div id = "confirmationDialog" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="errorTitle">Error Header</h3>
+    <h1 id="errorTitle" style="font-family: 'Istok Web', sans-serif;color: #6F0000;">Error Header</h1>
   </div>
+  <div class="well">
   <div id="errorBody" class="modal-body">
-    <p>One fine body…</p>
+    <div class="well"><h3 style="font-family: 'Georgia'; font-weight:normal;">You are about to restart the entire audit. Would you like to continue?</h3></div>
+  </div>
   </div>
   <div class="modal-footer">
-    <a id= "continueButton" href="#" class="btn btn-success">Continue</a>
-    <a id= "cancelButton" href="#" class="btn btn-danger">Cancel</a>
+	<a id= "continueButton" href="#" class="btn btn-danger">Cancel</a>
+    <a id= "cancelButton" href="#" class="btn btn-info login-button">Continue</a>
   </div>
 </div>

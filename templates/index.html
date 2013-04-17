@@ -14,19 +14,29 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}js/vote-count.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/sidebar.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
+		
+		<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<style>
+		.login-button{
+			font-family: "Georgia";
+			font-size: 1.2em;
+			border-radius: 5px;
+		}
+		</style>
 	</head>
 	<body>
 		<div id="endAudit" class="modal hide fade" data-backdrop="static">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>Done!</h3>
+			<h1 style="font-family: 'Istok Web', sans-serif;color: #6F0000;">Audit Finished</h1>
 		  </div>
 		  <div class="modal-body">
-			<p>You have completed 5 ballots. Click "Submit" to submit the results of this audit and see the current totals for this election.</p>
+			<div class="well"><h3 style="font-family: 'Georgia'; font-weight:normal;">You have completed 5 ballots.</h3>
+			<h3 style="font-family: 'Georgia'; font-weight:normal;">Click "Submit" to submit the results of this audit and see the current totals for this election.</h3></div>
 		  </div>
 		  <div class="modal-footer">
-			<a id="auditSubmit" href="/audit/resultsauditor" class="btn btn-success">Submit</a>
 			<a id="auditCancel" href="/" class="btn btn-danger">Cancel</a>
+			<a id="auditSubmit" href="/audit/resultsauditor" class="btn btn-info login-button">Submit</a>
 		  </div>
 		</div> 
 		</div>
