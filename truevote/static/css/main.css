@@ -71,6 +71,11 @@ This just makes the table visible while debugging*/
 	height: 20%;
 }
 
+#errorInstructions h2{
+	font-family: 'Istok Web', sans-serif;
+	color: #5f0000;
+}
+
 #currentBallot {
 	margin-top: 10%;
 	table-layout: fixed;
@@ -97,6 +102,10 @@ This just makes the table visible while debugging*/
 
 #resultsContainer{
 	vertical-align:middle;
+}
+
+.resultsContainer{
+	margin-top: 20px;
 }
 
 
@@ -280,6 +289,10 @@ This just makes the table visible while debugging*/
 .eICell{
 	margin: 10px;
 	padding: 10px;
+}
+
+.eICell p{
+	font-family: "Georgia";
 }
 
 #errorInstructionTitle{
