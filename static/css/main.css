@@ -11,6 +11,16 @@ html, body, .container-fluid, .row-fluid {
 	overflow: hidden;
 }
 
+#helpMenu {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+}
+
+#textDiv {
+	margin-left: 0px;
+}
+
 #voteCountDiv { 
 	margin-bottom: -9999px;
 	padding-bottom: 9999px;
@@ -25,7 +35,6 @@ html, body, .container-fluid, .row-fluid {
 	border-left: 1px;
 	background-color: #FFFFFF;
 	height: 100%;
-	z-index: 100;
 }
 
 #sidebarHeader{
@@ -175,6 +184,14 @@ html, body, .container-fluid, .row-fluid {
 	margin: 5%;
 }
 
+.btn-danger { 
+	font-family: "Georgia", serif;
+}
+
+#cancelFixMistake, .btnCancelModal {
+	font-family: "Georgia", serif;
+}
+
 #confirmationDialog {
 	background-color: #F2F2F2;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -204,6 +221,7 @@ html, body, .container-fluid, .row-fluid {
 }
 
 .modal-body {
+	padding: 0px;
 	top:50%;    
 	left:0;
 	width:100%;

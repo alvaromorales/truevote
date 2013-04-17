@@ -10,6 +10,7 @@ var sidebarState = [];
 
 $(document).ready(function() {
 	  createSidebar();
+    $('#helpMenu').hide();
 });
 
 var createSidebar = function(){
@@ -30,6 +31,8 @@ var createSidebar = function(){
   }
 	
   $('#fixMistakeBtn').show();
+  $('#fixMistakeBtn').attr('disabled','disabled');
+
   $('#btnRestart').hide();
   $('#cancelFixMistake').hide();
 
@@ -48,6 +51,10 @@ var createSidebar = function(){
 }
 
 var restoreSidebar = function(){
+  if ((audit.currentBallot == 0 && audit.getCurrentBallot().currentRace == 1)) {
+    $('#fixMistakeBtn').attr('disabled','disabled');
+  }
+
   $('#enteredInfo').append("<table id='currentBallot'></table>");
   allRaces = audit.getCurrentBallot().races;  
   var currentBallot = $('#currentBallot');
@@ -67,6 +74,10 @@ var restoreSidebar = function(){
 
 //Candidate is entered and is added to sidebar
 var updateSidebar = function(raceObject){
+  if (!(audit.currentBallot == 0 && audit.getCurrentBallot().currentRace == 0)) {
+    $('#fixMistakeBtn').removeAttr('disabled');
+  }
+
   // update ballot number and progress bar
   $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
   $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
@@ -81,6 +92,7 @@ var updateSidebar = function(raceObject){
 }
 
 var exitErrorMode = function() {
+  $('#helpMenu').hide();
   $('#enteredInfo').html('');
   $('#fixMistakeBtn').show();
   $('#btnRestart').hide();
@@ -93,6 +105,7 @@ var exitErrorMode = function() {
 }
 
 var enterErrorMode = function() {
+  $('#helpMenu').show();
   displayHelp();
 
   // display buttons
@@ -111,12 +124,11 @@ var enterErrorMode = function() {
 
   // Show entered fields for current ballot
     $('#currentBallotAccordion').append("<table id='currentBallot'></table>");
-
   displayFixCurrentBallot();
 
   // Show entered fields for previous ballot
   var previousBallotObj = audit.getPreviousBallot();
-  if (previousBallotObj && !(audit.currentBallot == 1 && audit.getCurrentBallot.currentRace == 0)) {
+  if (previousBallotObj && !(audit.currentBallot == 1 && audit.getCurrentBallot().currentRace == 1)) {
     //Add previous ballot header
     accordion.append("<h3>Previous Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger pull-right' value='previous'>Reset</button></span></h3><div id='previousBallotAccordion'></div>");
     $('#previousBallotAccordion').html("<table id=previousBallot></table>");
@@ -143,11 +155,15 @@ var enterErrorMode = function() {
       exitErrorMode();
     }
     audit.currentRaceNumber = (audit.currentBallot)*allRaces.length + audit.getCurrentBallot().currentRace;
+
+    if (audit.currentRaceNumber == 1) {
+      audit.currentRaceNumber = 0;
+    }
+
     $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
     $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
   });
   $('#enteredInfo').css('margin-left','0em');
-  console.log(audit.currentBallot + " " + audit.getCurrentBallot.currentRace);
 }
 
 var displayHelp = function() {
@@ -195,21 +211,19 @@ var fixFromRace = function(raceNumber,isCurrent) {
       ballotName = "previous";
     }
 
-    bootbox.dialog("<p>You are about to restart from \"" + raceName + "\" on the " + ballotName + " ballot.</p><p>You will have to re-enter all information after that.</p>", [
+    //bootbox.dialog("<p>You are about to restart from \"" + raceName + "\" on the " + ballotName + " ballot.</p><p>You will have to re-enter all information after that.</p>", [
+    bootbox.dialog("<div class=\"well\"><h3 style=\"font-family: 'Georgia'; font-weight:bold; color: #5F0000;line-height:1.5em;\">You are about to restart from \"" + raceName + "\" on the " + ballotName + " ballot.</h3><h4 style=\"font-family:'Georgia', serif; font-weight:normal;\">You will have to re-enter all information after that. Would you like to continue?</h4></div>", [
       {
               "label" : "Cancel",
-              "class" : "btn-danger cancelButton",
+              "class" : "btn btnCancelModal",
               "callback": function() {
+
               }
       },
     {
         "label" : "Continue",
-        "class" : "btn-success continueButton",
+        "class" : "btn btn-danger",
         "callback": function() {
-          if (!isCurrent) {
-            audit.currentBallot--;
-          }
-
           audit.getCurrentBallot().currentRace = raceNumber;
           updateButtons();
 
@@ -225,28 +239,13 @@ var fixFromRace = function(raceNumber,isCurrent) {
 
 var restartAudit = function (){
     var confirmationDialog = $('#confirmationDialog');
-    $("#errorTitle").text("Reset Entire Audit");
-    $(continueButton).click(function(){
-    location.reload();
+    $("#errorTitle").text("Restart Entire Audit");
+
+    $("#continueButton").click(function(){
+      location.reload();
     });
-    $(cancelButton).click(function(){
-    confirmationDialog.modal('hide');
+    $("#cancelButton").click(function(){
+      confirmationDialog.modal('hide');
     });
     confirmationDialog.modal({show: true});
-
-  // bootbox.dialog("<p>You are about to restart the entire audit. Would you like to continue? <br /> </p>", [
-  // {
-  //       "label" : "Cancel",
-  //       "class" : "btn-danger cancelButton",
-  //       "callback": function() {
-  //       }
-  // },
-  // {
-  //     "label" : "Continue",
-  //     "class" : "btn-success continueButton",
-  //     "callback": function() {
-  //       location.reload();
-  //     }
-  // },
-  // ]);
 }

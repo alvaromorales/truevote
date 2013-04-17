@@ -11,6 +11,16 @@ html, body, .container-fluid, .row-fluid {
 	overflow: hidden;
 }
 
+#helpMenu {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+}
+
+#textDiv {
+	margin-left: 0px;
+}
+
 #voteCountDiv { 
 	margin-bottom: -9999px;
 	padding-bottom: 9999px;

@@ -10,6 +10,7 @@ var sidebarState = [];
 
 $(document).ready(function() {
 	  createSidebar();
+    $('#helpMenu').hide();
 });
 
 var createSidebar = function(){
@@ -91,6 +92,7 @@ var updateSidebar = function(raceObject){
 }
 
 var exitErrorMode = function() {
+  $('#helpMenu').hide();
   $('#enteredInfo').html('');
   $('#fixMistakeBtn').show();
   $('#btnRestart').hide();
@@ -103,6 +105,7 @@ var exitErrorMode = function() {
 }
 
 var enterErrorMode = function() {
+  $('#helpMenu').show();
   displayHelp();
 
   // display buttons

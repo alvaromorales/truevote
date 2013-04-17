@@ -1,10 +1,10 @@
+
 $(function() {
- console.log("login included");
- $('#passwordinput').keyup(function(event){
- console.log("keypressed:);
+ 
+ $('#password').keyup(function(event){
     if(event.keyCode == 13){
-    console.log("enter pressed");
-   $("#log-inButton").click();}
+    	window.location = "/audit";
+   	}
 });
 
-};
+});

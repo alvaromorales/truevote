@@ -45,6 +45,8 @@
 		</style>
 	</head>
 	<body>
+
+
 		<div id="endAudit" class="modal hide fade" data-backdrop="static">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -61,6 +63,72 @@
 		</div> 
 		</div>
 		<div class="container-fluid" style="overflow:hidden;">
+
+			<div id="helpMenu">
+				<h1 style="font-family: 'Istok Web', sans-serif;color: #6F0000; text-align:center;"> Instructions </h1>
+				<div class="container" style="overflow:hidden; text-align:center;">
+				<table class="table table-bordered table-condensed">
+					<tr>
+					<div class="row-fluid span6">
+					<td>
+				    <div id="imgDiv" class="span4">
+				      <img src="{{ STATIC_URL }}img/testImage.png" alt="ScreenShot" width="250px">
+				    </div>
+					</td>
+					<td style="padding:0;text-align:center;vertical-align:middle">
+				    <div id="textDiv" class="span8" style="word-wrap:break-word;">
+				      <div class="well well-large"><h4 style="font-family: 'Georgia'; font-weight:normal;">To fix a specific race, click on the candidate's name.</h4></div>
+				    </div> 
+					</td>
+					</div>
+					</tr>
+					<tr>
+					<div class="row-fluid span6">
+				    <td>
+					<div id="imgDiv" class="span4">
+				      <img src="{{ STATIC_URL }}img/testImage2.png" alt="ScreenShot" width="250px">
+				    </div>
+				    </td>
+					<td style="padding:0;text-align:center;vertical-align:middle">
+					<div id="textDiv" class="span8" style="word-wrap:break-word;">
+				      <div class="well well-large"><h4 style="font-family: 'Georgia'; font-weight:normal;">To reset a whole ballot, click the "Reset" button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</h4></div>
+				    </div>
+					</td>
+					</div>
+					</tr>
+					<tr>
+					<div class="row-fluid span6">
+				    <td>
+					<div id="imgDiv" class="span4">
+				      <img src="{{ STATIC_URL }}img/testImage3.png" alt="ScreenShot" width="250px">
+				    </div>
+				    </td>
+					<td style="padding:0;text-align:center;vertical-align:middle">
+					<div id="textDiv" class="span8" style="word-wrap:break-word;">
+				      <div class="well well-large"><h4 style="font-family: 'Georgia'; font-weight:normal;">To restart the entire audit, click the "Restart Audit button" at the bottom left of your screen.</h4></div>
+				    </div>
+					</td>
+					</div>
+					</tr>
+					<tr>
+					<div class="row-fluid span6">
+					<td>
+				    <div id="imgDiv" class="span4">
+				      <img src="{{ STATIC_URL }}img/testImage4.png" alt="ScreenShot" width="250px">
+				    </div>
+				    </td>
+					<td style="padding:0;text-align:center;vertical-align:middle">
+					<div id="textDiv" class="span8" style="word-wrap:break-word;">
+				      <div class="well well-large"><h4 style="font-family: 'Georgia'; font-weight:normal;">To continue entering ballots without making any changes, click the "Cancel" button at the bottom left of your screen.</h4></div>
+				    </div>
+					</td>
+					</div>
+					</tr>
+				 </table>
+				</div>
+			</div>
+
+
 		  <div class="row-fluid">
 		    <div id="sidebarDiv" class="span3">
 		      <!--Sidebar content-->
