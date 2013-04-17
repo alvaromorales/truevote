@@ -8,6 +8,26 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<style type="text/css">
+      	/* Override some defaults */
+      	.resultsContainer{
+       		margin-top: 20px;
+       		font-family: "Georgia";
+       		background-image:url('{{ STATIC_URL }}img/cream_dust.png');
+		}
+		
+		html, body {
+        background-color: #eee;
+        background-image:url('{{ STATIC_URL }}img/wavegrid.png');
+      }
+      #resultsTitle{
+      font-family: 'Istok Web', sans-serif;
+      }
+      #chartDiv{
+      axisTitlesPosition:in;
+      }
+		
+      	</style>
 		<script type="text/javascript">
 		  google.load("visualization", "1", {packages:["corechart"]});
 		  google.setOnLoadCallback(drawChart);
@@ -22,7 +42,8 @@
 
 			var options = {
 			  title: 'President and Vice President', 
-			  'legend': 'none'
+			  'legend': 'none','colors':['#7A8EA0']
+			  
 			};
 
 			var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
@@ -33,14 +54,15 @@
 		  function drawChart2() {
 			var data2 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
-			  ['Elizabeth A. Warren',  1150],
-			  ['Scott P. Brown',  700]
+			  ['   Elizabeth Warren',  1150],
+			  ['   Scott Brown',  700]
 			]);
 
 			var options2 = {'title':'Senator in Congress',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']
+			  };
 
 			var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
 			chart2.draw(data2, options2);
@@ -50,15 +72,15 @@
 		  function drawChart3() {
 			var data3 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
-			  ['Nicola S. Tsongas',  930],
-			  ['Jonathan A. Golnik',  700]
+			  ['Nicola Tsongas',  930],
+			  ['Jonathan Golnik',  700]
 			]);
 
 			var options3 = {
 			  title: 'Representative in Congress',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']};
 
 			var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
 			chart3.draw(data3, options3);
@@ -68,7 +90,7 @@
 		  function drawChart4() {
 			var data4 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
-			  ['Marilyn M. Petitto Devaney',  1930],
+			  ['Marilyn  Devaney',  1930],
 			  ['Thomas Sheff',  200]
 			]);
 
@@ -76,7 +98,7 @@
 			  title: 'Councillor',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']};
 
 			var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
 			chart4.draw(data4, options4);
@@ -86,15 +108,15 @@
 		  function drawChart5() {
 			var data5 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
-			  ['Michael J. Barrett',  1000],
-			  ['Sandi Martinez',  500]
+			  ['Michael Barrett',  1000],
+			  ['Sandi Martinez',  100]
 			]);
 
 			var options5 = {
 			  title: 'Senator in General Court',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']};
 
 			var chart5 = new google.visualization.BarChart(document.getElementById('chart_div5'));
 			chart5.draw(data5, options5);
@@ -105,14 +127,14 @@
 			var data6 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
 			  ['Cory Atkins',  1000],
-			  ['Michael J. Benn',  500]
+			  ['Michael Benn',  500]
 			]);
 
 			var options6 = {
 			  title: 'Representative in General Court',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']};
 
 			var chart6 = new google.visualization.BarChart(document.getElementById('chart_div6'));
 			chart6.draw(data6, options6);
@@ -122,14 +144,14 @@
 		  function drawChart7() {
 			var data7 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
-			  ['Michael A. Sullivan',  1000]
+			  ['Michael Sullivan',  1000]
 			]);
 
 			var options7 = {
 			  title: 'Clerk of Courts',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']};
 
 			var chart7 = new google.visualization.BarChart(document.getElementById('chart_div7'));
 			chart7.draw(data7, options7);
@@ -139,14 +161,14 @@
 		  function drawChart8() {
 			var data8 = google.visualization.arrayToDataTable([
 			  ['Candidate', 'Votes'],
-			  ['Maria C. Curtatone',  800]
+			  ['Maria Curtatone',  800]
 			]);
 
 			var options8 = {
 			  title: 'Register of Deeds',
                      'width':600,
                      'height':400, 
-					 'legend': 'none'};
+					 'legend': 'none','colors':['#7A8EA0']};
 
 			var chart8 = new google.visualization.BarChart(document.getElementById('chart_div8'));
 			chart8.draw(data8, options8);
@@ -188,19 +210,19 @@
 				<div class="center" id="chart_div" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab2">
-				<h3> Projected Winner: Elizabeth A. Warren </h3>
+				<h3> Projected Winner: Elizabeth Warren </h3>
 				<div class="center" id="chart_div2" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab3">
-				<h3> Projected Winner: Nicola S. Tsongas </h3>
+				<h3> Projected Winner: Nicola Tsongas </h3>
 				<div class="center" id="chart_div3" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab4">
-				<h3> Projected Winner: Marilyn M. Petitto Devaney </h3>
+				<h3> Projected Winner: Marilyn Devaney </h3>
 				<div class="center" id="chart_div4" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab5">
-				<h3> Projected Winner: Michael J. Barrett </h3>
+				<h3> Projected Winner: Michael Barrett </h3>
 				<div class="center" id="chart_div5" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab6">
@@ -208,11 +230,11 @@
 				<div class="center" id="chart_div6" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab7">
-				<h3> Projected Winner: Michael A. Sullivan </h3>
+				<h3> Projected Winner: Michael Sullivan </h3>
 				<div class="center" id="chart_div7" style="width: 600px; height: 400px;"></div>
 			</div>
 			<div class="tab-pane" id="tab8">
-				<h3> Projected Winner: Maria C. Curtatone </h3>
+				<h3> Projected Winner: Maria Curtatone </h3>
 				<div class="center" id="chart_div8" style="width: 600px; height: 400px;"></div>
 			</div>
 		  </div>
