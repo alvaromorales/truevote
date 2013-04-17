@@ -196,5 +196,5 @@ var sheriff = new Race("Sheriff", [
 
 
 ///// AUDIT /////
-
-var audit = new Audit(5,[presidential,senate,congress,councillor,senatorGeneralCourt,representativeGeneralCourt,clerk,register,sheriff]);
+//Sheriff was removed
+var audit = new Audit(5,[presidential,senate,congress,councillor,senatorGeneralCourt,representativeGeneralCourt,clerk,register]);
