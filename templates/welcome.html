@@ -6,11 +6,8 @@
 	<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-themed.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
-	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
-		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
-	<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -18,7 +15,6 @@
       /* Override some defaults */
       html, body {
         background-color: #eee;
-        background-image:url('{{ STATIC_URL }}img/wavegrid.png');
       }
       body {
 		position: relative;
@@ -63,32 +59,35 @@
 		margin-left: 20px;
 	  }
 	
+	
+	.btn-info-small {
+	  color: #ffffff;
+	  background-image: -moz-linear-gradient(top, #7a8ea0, #738696);
+	  background-image: -ms-linear-gradient(top, #7a8ea0, #738696);
+	  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7a8ea0), to(#738696));
+	  background-image: -webkit-linear-gradient(top, #7a8ea0, #738696);
+	  background-image: -o-linear-gradient(top, #7a8ea0, #738696);
+	  background-image: linear-gradient(top, #7a8ea0, #738696);
+	  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'7a8ea0, endColorstr='#'738696, GradientType=0);
+	}
+	.btn-info-small:hover,
+	.btn-info-small:active,
+	.btn-info-small.active,
+	.btn-info-small.disabled,
+	.btn-info-small[disabled] {
+	  color: #FFFFFF;
+	  background-color: #738696;
+	}
 	  legend {
 		margin-right: -50px;
 		font-weight: bold;
-	  	color: #5F0000;
-	  	font-family: 'Istok Web', sans-serif;
-		font-weight: bold;
-		font-size: 2em;
-		
+	  	color: #404040;
 	  }
 	  .center {
 		  width: 500px ;
 		  margin-left: auto ;
 		  margin-right: auto ;
 		}
-		
-		.login-label{
-			font-family: "Georgia";
-			font-size: 1.2em;
-		}
-		
-		.login-button{
-			font-family: "Georgia";
-			font-size: 1.2em;
-			border-radius: 0px;
-		}
-
 
     </style>
 
@@ -111,45 +110,11 @@
     <div class="content">
       <div class="row">
         <div class="login-form">
-          <form class="form-horizontal center">
-			<fieldset>
-			<legend>Sign in to TrueVote</legend>
-
-			<div class="control-group">
-			  <label class="control-label login-label">Username</label>
-			  <div class="controls">
-				<input id="username" name="username" type="text" placeholder="" class="input-xlarge">
-				
-			  </div>
-			</div>
-
-			<div class="control-group">
-			  <label class="control-label login-label">Password</label>
-			  <div class="controls">
-				<input id="password" name="password" type="password" placeholder="" class="input-xlarge">
-				
-			  </div>
-			</div>
-
-			<div class="control-group">
-			  <label class="control-label"></label>
-			  <div class="controls">
-				<label class="checkbox login-label">
-				  <input type="checkbox" name="checkboxes" value="Remember Me">
-				  Remember Me
-				</label>
-			  </div>
-			</div>
-
-			<div class="control-group">
-			  <label class="control-label"></label>
-			  <div class="controls">
-				<a href="/welcome/" class="btn btn-info login-button">Login</a></button>
-			  </div>
-			</div>
-
-			</fieldset>
-			</form>
+          <h1> Welcome, Amy Johnson! </h1>
+		  <h4 style="color: #6F0000"> You are auditing the 2012 Presidential Election. </h4>
+		  <div class="well"><h3>You have been assigned 5 ballots. </h3></div>
+		  
+		  <a href="/welcome/" class="btn btn-info-small" style="color:#7a8ea0">Continue</a></button>
         </div>
       </div>
 	</div>
