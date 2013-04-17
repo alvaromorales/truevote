@@ -30,6 +30,8 @@ var createSidebar = function(){
   }
 	
   $('#fixMistakeBtn').show();
+  $('#fixMistakeBtn').attr('disabled','disabled');
+
   $('#btnRestart').hide();
   $('#cancelFixMistake').hide();
 
@@ -48,6 +50,10 @@ var createSidebar = function(){
 }
 
 var restoreSidebar = function(){
+  if ((audit.currentBallot == 0 && audit.getCurrentBallot().currentRace == 1)) {
+    $('#fixMistakeBtn').attr('disabled','disabled');
+  }
+
   $('#enteredInfo').append("<table id='currentBallot'></table>");
   allRaces = audit.getCurrentBallot().races;  
   var currentBallot = $('#currentBallot');
@@ -67,10 +73,13 @@ var restoreSidebar = function(){
 
 //Candidate is entered and is added to sidebar
 var updateSidebar = function(raceObject){
+  if (!(audit.currentBallot == 0 && audit.getCurrentBallot().currentRace == 0)) {
+    $('#fixMistakeBtn').removeAttr('disabled');
+  }
+
   // update ballot number and progress bar
   $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
-  // $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
-  $('#counter').html("<div class=\"bar\" style=\"width: "+ (audit.currentRaceNumber*100/audit.totalNumRaces)+"%;\"></div>");
+  $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
 
   var raceNumber = audit.racesMap[raceObject.name];
   if (raceNumber==0 && audit.currentBallot != 0) {
@@ -112,12 +121,11 @@ var enterErrorMode = function() {
 
   // Show entered fields for current ballot
     $('#currentBallotAccordion').append("<table id='currentBallot'></table>");
-
   displayFixCurrentBallot();
 
   // Show entered fields for previous ballot
   var previousBallotObj = audit.getPreviousBallot();
-  if (previousBallotObj && !(audit.currentBallot == 1 && audit.getCurrentBallot.currentRace == 0)) {
+  if (previousBallotObj && !(audit.currentBallot == 1 && audit.getCurrentBallot().currentRace == 1)) {
     //Add previous ballot header
     accordion.append("<h3>Previous Ballot &nbsp;&nbsp;&nbsp;<span class='btn-group'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger pull-right' value='previous'>Reset</button></span></h3><div id='previousBallotAccordion'></div>");
     $('#previousBallotAccordion').html("<table id=previousBallot></table>");
@@ -144,27 +152,22 @@ var enterErrorMode = function() {
       exitErrorMode();
     }
     audit.currentRaceNumber = (audit.currentBallot)*allRaces.length + audit.getCurrentBallot().currentRace;
+
+    if (audit.currentRaceNumber == 1) {
+      audit.currentRaceNumber = 0;
+    }
+
     $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
-    $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
+    $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
   });
   $('#enteredInfo').css('margin-left','0em');
-
 }
 
 var displayHelp = function() {
   var buttonsDiv = $('.countButtons');
-  buttonsDiv.html('');
+  buttonsDiv.html(''); //clear buttons
 
-  buttonsDiv.append("<table id='errorInstructions' class='span9'></table>");
-  errorTable = $('#errorInstructions');
-
-  //Add each of the four instructions individually
-  errorTable.append('<h2 class="span12" id=\'errorInstructionTitle\'>Instructions</h2>');
-  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To fix a specific race, click on the candidate’s name.</p></td><td class=\"span3\"></td></tr>');
-  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To reset a whole ballot, click the \“Reset\” button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</p></td><td class=\"span3\"></td></tr>')
-  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To restart the entire audit, click the \“Restart Audit button\” at the bottom left of your screen.</p></td><td class=\"span3\"></td></tr>');
-  errorTable.append('<tr><td class=\"span2\"></td><td class=\"eICell span4\"><img src=\"/static/img/testImage.png\" alt=\"ScreenShot\"></td><td class=\"eICell span3\"><p>To continue entering ballots without making any changes, click the \“Cancel\” button at the bottom left of your screen.</p></td><td class=\"span3\"></td></tr>');
-
+  // SHOW STUFF
 }
 
 var displayFixCurrentBallot = function() {
@@ -205,21 +208,19 @@ var fixFromRace = function(raceNumber,isCurrent) {
       ballotName = "previous";
     }
 
-    bootbox.dialog("<p>You are about to restart from \"" + raceName + "\" on the " + ballotName + " ballot.</p><p>You will have to re-enter all information after that.</p>", [
+    //bootbox.dialog("<p>You are about to restart from \"" + raceName + "\" on the " + ballotName + " ballot.</p><p>You will have to re-enter all information after that.</p>", [
+    bootbox.dialog("<div class=\"well\"><h3 style=\"font-family: 'Georgia'; font-weight:bold; color: #5F0000;line-height:1.5em;\">You are about to restart from \"" + raceName + "\" on the " + ballotName + " ballot.</h3><h4 style=\"font-family:'Georgia', serif; font-weight:normal;\">You will have to re-enter all information after that. Would you like to continue?</h4></div>", [
       {
               "label" : "Cancel",
-              "class" : "btn-danger cancelButton",
+              "class" : "btn btnCancelModal",
               "callback": function() {
+
               }
       },
     {
         "label" : "Continue",
-        "class" : "btn-success continueButton",
+        "class" : "btn btn-danger",
         "callback": function() {
-          if (!isCurrent) {
-            audit.currentBallot--;
-          }
-
           audit.getCurrentBallot().currentRace = raceNumber;
           updateButtons();
 
@@ -228,35 +229,20 @@ var fixFromRace = function(raceNumber,isCurrent) {
 
           audit.currentRaceNumber = (audit.currentBallot)*allRaces.length + raceNumber;
           $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
-          $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
+          $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
         }
     }, ]);
 }
 
 var restartAudit = function (){
-	var confirmationDialog = $('#confirmationDialog');
-	$("#errorTitle").text("Reset Entire Audit");
-	$(continueButton).click(function(){
-	location.reload();
-	});
-	$(cancelButton).click(function(){
-	confirmationDialog.modal('hide');
-	});
-	confirmationDialog.modal({show: true});
-	
-  bootbox.dialog("<p>You are about to restart the entire audit. Would you like to continue? <br /> </p>", [
-  {
-        "label" : "Cancel",
-        "class" : "btn-danger cancelButton",
-        "callback": function() {
-        }
-  },
-  {
-      "label" : "Continue",
-      "class" : "btn-success continueButton",
-      "callback": function() {
-        location.reload();
-      }
-  },
-  ]);
+    var confirmationDialog = $('#confirmationDialog');
+    $("#errorTitle").text("Restart Entire Audit");
+
+    $("#continueButton").click(function(){
+      location.reload();
+    });
+    $("#cancelButton").click(function(){
+      confirmationDialog.modal('hide');
+    });
+    confirmationDialog.modal({show: true});
 }
