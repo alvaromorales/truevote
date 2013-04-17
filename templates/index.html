@@ -9,6 +9,7 @@
 
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootbox.min.js"></script>
 
 		<script type="text/javascript" src="{{ STATIC_URL }}js/audit.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/vote-count.js"></script>
@@ -25,12 +26,6 @@
 		    <div id="voteCountDiv" class="span9">
 		      <!--Body content-->
 		      {% include "vote_count.html" %}
-			  <div class="alert alert-info">  
-			  <a class="close" data-dismiss="alert"></a>  
-			   <h1> You're done with this audit! </h1>
-			   <a href="/audit/resultsauditor/"><button class="btn btn-primary">Submit</button></a>
-			   <a href="/audit/"><button class="btn btn-primary">Cancel</button></a>
-			   </div> 
 		    </div> 
 		  </div>
 		</div>
