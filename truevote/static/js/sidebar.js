@@ -41,7 +41,8 @@ var createSidebar = function(){
 var updateSidebar = function(raceObject){
   // update ballot number and progress bar
   $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
-  $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
+  // $('#counter').html("<progress value=\""+audit.currentRaceNumber+"\" max=\""+audit.totalNumRaces+"\"><\/progress>");
+  $('#counter').html("<div class=\"bar\" style=\"width: "+ (audit.currentRaceNumber*100/audit.totalNumRaces)+"%;\"></div>");
 
   var raceNumber = audit.racesMap[raceObject.name];
   if (raceNumber==0 && audit.currentBallot != 0) {
@@ -106,7 +107,34 @@ var enterErrorMode = function() {
 
 var displayHelp = function() {
   var buttonsDiv = $('.countButtons');
-  buttonsDiv.html(''); //clear buttons
+  buttonsDiv.html('');
+
+  t = document.createElement('table');
+  r = t.insertRow(0);
+  c = r.insertCell(0);
+  c.innerHTML = '<p>IMAGE HERE<\/p>';
+  c = r.insertCell(1);
+  c.innerHTML = '<p>To fix a specific race, click on the candidate’s name.<\/p>';
+  buttonsDiv.appendChild(t);
+
+    // <table>
+    //   <tr>
+    //     <td><p> IMAGE HERE YO</p></td>
+    //     <td><p>To fix a specific race, click on the candidate’s name.</p></td>
+    //   </tr>
+    //   <tr>
+    //     <td><p> IMAGE HERE YO</p></td>
+    //     <td><p>To reset a whole ballot, click the \“Reset\” button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</p></td>
+    //   </tr>
+    //   <tr>
+    //     <td><p> IMAGE HERE YO</p></td>
+    //     <td><p>To restart the entire audit, click the \“Restart Audit button\” at the bottom left of your screen.</p></td>
+    //   </tr>
+    //   <tr>
+    //     <td><p> IMAGE HERE YO</p></td>
+    //     <td><p>To continue entering ballots without making any changes, click the \“Cancel\” button at the bottom left of your screen.</p></td>
+    //   </tr>
+    // </table>'); //clear buttons
 
   // SHOW STUFF
 }

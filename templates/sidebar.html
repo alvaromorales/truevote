@@ -1,9 +1,14 @@
 <div id="sidebarHeader">
-      <div id="ballotNumber">
+      <div id="ballotNumber" class="span5">
             <p>Ballot 1</p>
       </div>
-	<div id="counter">
-		<progress value="0" max="50">
+     <!--  <div class="span1"></div> -->
+      <div id="logo" class='span5'>
+        <img src="{{ STATIC_URL }}img/logo.png" alt="TrueVote Logo"></img>
+      </div>
+	<div id="counter" class="span5 progress">
+		<!-- <progress value="0" max="50"> -->
+    <div class="bar" style="width: 0%;"></div>
     </div>
 </div>
 <div id="enteredInfo">
