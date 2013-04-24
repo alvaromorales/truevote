@@ -1,0 +1,22 @@
+.resultsContainer{
+	margin-top: 20px;
+	font-family: "Georgia", serif;
+	background-image:url('{{ STATIC_URL }}img/cream_dust.png');
+}
+
+html, body {
+	background-color: #eee;
+	background-image:url('{{ STATIC_URL }}img/wavegrid.png');
+}
+
+#resultsTitle{
+	font-family: 'Istok Web', sans-serif;
+}
+#chartDiv{
+	axisTitlesPosition:in;
+}
+
+.chart{
+	width: 600px; 
+	height: 400px;
+}
