@@ -1,5 +1,3 @@
-from django.utils import simplejson as json
-
 # An election is defined here
 
 class Election:
@@ -98,9 +96,14 @@ class Election:
         }
     
     @classmethod
-    def get_candidates(self,counter,ballots):
+    def get_race_name(self,counter):
         race_number = counter%self.get_num_races()
-        return json.dumps(self.CANDIDATES[self.RACES[race_number]])
+        return self.RACES[race_number]
+
+    @classmethod
+    def get_candidates(self,counter):
+        race_number = counter%self.get_num_races()
+        return self.CANDIDATES[self.RACES[race_number]]
 
     @classmethod
     def get_num_races(self):
