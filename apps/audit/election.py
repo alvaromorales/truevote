@@ -1,3 +1,5 @@
+from django.utils import simplejson as json
+
 # An election is defined here
 
 class Election:
@@ -13,39 +15,93 @@ class Election:
         ]
 
     CANDIDATES = {
-        "President and Vice President": {
-                "Obama and Biden" : "Democratic Party",
-                "Romney and Ryan" : "Republican Party",
-                "Johnson and Gray" : "Libertarian Party",
-                "Stein and Honkala" : "Green-Rainbow Party"
+        "President and Vice President": [
+            {
+                "name": "Obama and Biden" ,
+                "party" : "Democratic Party"
                 },
-        "Senator in Congress": {
-            "Elizabeth Warren" : "Democratic Party",
-            "Scott Brown" : "Republican Party",
-            },
-        "Representative in Congress": {
-            "Nicola Tsongas" : "Democratic Party",
-            "Jonathan Golnik" : "Republican Party"
-            },
-        "Councillor": {
-            "Marilyn Devaney" : "Democratic Party",
-            "Thomas Sheff" : "Unenrolled Party"
-            },
-        "Senator in General Court": {
-            "Michael Barrett" : "Democratic Party",
-            "Sandi Martinez" : "Republican Party"
-            },
-        "Representative in General Court": {
-            "Cory Atkins" : "Democratic Party",
-            "Michael Benn" : "Republican Party"
-            },
-        "Clerk of Courts": {
-            "Michael Sullivan" : "Democratic Party"
-            },
-        "Register of Deeds": {
-            "Maria Curtatone" : "Democratic Party"
-            }
+            {
+                "name": "Romney and Ryan" ,
+                "party" : "Republican Party"
+                },
+            {
+                "name": "Johnson and Gray" ,
+                "party" : "Libertarian Party"
+                },
+            {
+                "name": "Stein and Honkala" ,
+                "party" : "Green-Rainbow Party"
+                }
+            ],
+        "Senator in Congress": [
+            {
+                "name": "Elizabeth Warren" ,
+                "party" : "Democratic Party"
+                },
+            {
+                "name": "Scott Brown" ,
+                "party" : "Republican Party"
+                }
+            ],
+        "Representative in Congress": [
+            {
+                "name": "Nicola Tsongas" ,
+                "party" : "Democratic Party"
+                },
+            {
+                "name": "Jonathan Golnik" ,
+                "party" : "Republican Party"
+                }
+            ],
+        "Councillor": [
+            {
+                "name": "Marilyn Devaney" ,
+                "party" : "Democratic Party"
+                },
+            {
+                "name": "Thomas Sheff" ,
+                "party" : "Unenrolled Party"
+                }
+            ],
+        "Senator in General Court": [
+            {
+                "name": "Michael Barrett" ,
+                "party" : "Democratic Party"
+                },
+            {
+                "name": "Sandi Martinez" ,
+                "party" : "Republican Party"
+                }
+            ],
+        "Representative in General Court": [
+            {
+                "name": "Cory Atkins" ,
+                "party" : "Democratic Party"
+                },
+            {
+                "name": "Michael Benn" ,
+                "party" : "Republican Party"
+                }
+            ],
+        "Clerk of Courts": [
+            {
+                "name": "Michael Sullivan" ,
+                "party" : "Democratic Party"
+                }
+            ],
+        "Register of Deeds": [
+            {
+                "name": "Maria Curtatone" ,
+                "party" : "Democratic Party"
+                }
+            ]
         }
     
-    def getCandidates(counter):
-        pass
+    @classmethod
+    def get_candidates(self,counter,ballots):
+        race_number = counter%self.get_num_races()
+        return json.dumps(self.CANDIDATES[self.RACES[race_number]])
+
+    @classmethod
+    def get_num_races(self):
+        return len(self.RACES)

@@ -10,6 +10,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Race(models.Model):
+    number = models.PositiveIntegerField()
     auditor = models.ForeignKey(UserProfile)
     race_name = models.CharField(max_length=100)
     winner = models.CharField(max_length=100)

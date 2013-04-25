@@ -33,9 +33,17 @@
           <h1> Welcome, {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</h1>
 		  <h4> You are auditing the 2012 Presidential Election. </h4>
 		  <div class="well">
-			<h3>You have been assigned {{ userprofile.ballots }} ballots. </h3>
+		  	{% if userprofile.counter == 0 %}
+		  		<h3>You have been assigned {{ userprofile.ballots }} ballots. </h3>
+		  	{% else %}
+		  		<h3>You have {{ remaining_ballots }} ballots left to audit. </h3>
+		  	{% endif %}
 		  </div>
-		  <a href="/audit/" class="btn btn-info login-button pull-right">Continue</a></button>
+		  {% if userprofile.counter == 0 %}
+		  	<a href="/audit/" class="btn btn-info login-button pull-right">Start</a></button>
+		  {% else %}
+		  	<a href="/audit/" class="btn btn-info login-button pull-right">Continue</a></button>
+		  {% endif %}
         </div>
       </div>
 	</div>

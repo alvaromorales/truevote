@@ -10,7 +10,7 @@ urlpatterns = patterns('',
                        url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
                        url(r'^logout/$', 'django.contrib.auth.views.logout_then_login'),
                        url(r'^$', welcome),
-                       url(r'^audit/$', TemplateView.as_view(template_name='index.html')),
+                       url(r'^audit/$', audit),
                        url(r'^help/$', TemplateView.as_view(template_name='helpmenu.html')),
                        url(r'^audit/results', TemplateView.as_view(template_name='resultsauditor.html')),
 )
