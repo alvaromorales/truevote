@@ -103,6 +103,10 @@ INSTALLED_APPS = (
     'apps.audit',
 )
 
+AUTH_PROFILE_MODULE = "apps.audit.UserProfile"
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

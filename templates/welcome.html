@@ -30,10 +30,10 @@
     <div class="content">
       <div class="row">
         <div class="login-form">
-          <h1> Welcome, Amy Johnson </h1>
+          <h1> Welcome, {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</h1>
 		  <h4> You are auditing the 2012 Presidential Election. </h4>
 		  <div class="well">
-			<h3>You have been assigned 5 ballots. </h3>
+			<h3>You have been assigned {{ userprofile.ballots }} ballots. </h3>
 		  </div>
 		  <a href="/audit/" class="btn btn-info login-button pull-right">Continue</a></button>
         </div>
