@@ -1,0 +1,78 @@
+html, body {
+background-color: #eee;
+background-image:url('{{ STATIC_URL }}img/wavegrid.png');
+}
+body {
+position: relative;
+padding-top: 40px; 
+}
+
+.containerParent{
+position: relative;
+}
+
+.container-outer {
+position: absolute;
+padding-top: 8%;
+padding-left: 33%;		
+z-index: 10;
+}
+
+.background {
+position: absolute;
+left: 6%;
+}
+
+/* The white background content wrapper */
+.container-outer > .content {
+position: relative;
+width: 500px ;
+margin-left: auto ;
+margin-right: auto ;
+background-color: #fff;
+padding: 20px;
+margin: 0px; 
+-webkit-border-radius: 10px 10px 10px 10px;
+   -moz-border-radius: 10px 10px 10px 10px;
+		border-radius: 10px 10px 10px 10px;
+-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+		box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.login-form {
+position: relative;
+margin-left: 20px;
+text-align: center;
+}
+
+legend {
+margin-right: -50px;
+font-weight: bold;
+color: #404040;
+}
+.center {
+  width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+		
+.login-button{
+	font-family: 'Georgia', serif;
+	font-size: 1.2em;
+	border-radius: 0px;
+}
+
+h1{
+	font-family: 'Istok Web', sans-serif;
+}
+
+h4{
+	color: #5F0000; 
+	font-family: 'Georgia', serif;
+}
+
+h3{
+	font-family: 'Georgia', serif; 
+	font-weight:normal;
+}

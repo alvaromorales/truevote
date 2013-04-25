@@ -1,88 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
 	<title>TrueVote</title>
 	<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href="{{ STATIC_URL }}css/welcome.css" rel="stylesheet" media="screen">
+	
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-themed.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
-	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
-	<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-	
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <style type="text/css">
-      /* Override some defaults */
-      html, body {
-        background-color: #eee;
-		background-image:url('{{ STATIC_URL }}img/wavegrid.png');
-      }
-      body {
-		position: relative;
-        padding-top: 40px; 
-      }
-	  
-	  .containerParent{
-		position: relative;
-	  }
-	  
-      .container-outer {
-		position: absolute;
-		padding-top: 8%;
-		padding-left: 33%;		
-		z-index: 10;
-      }
-	  
-	  .background {
-		position: absolute;
-		left: 6%;
-      }
-
-      /* The white background content wrapper */
-      .container-outer > .content {
-		position: relative;
-		width: 500px ;
-		margin-left: auto ;
-		margin-right: auto ;
-        background-color: #fff;
-        padding: 20px;
-        margin: 0px; 
-        -webkit-border-radius: 10px 10px 10px 10px;
-           -moz-border-radius: 10px 10px 10px 10px;
-                border-radius: 10px 10px 10px 10px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                box-shadow: 0 1px 2px rgba(0,0,0,.15);
-      }
-
-	  .login-form {
-		position: relative;
-		margin-left: 20px;
-		text-align: center;
-	  }
-	
-	  legend {
-		margin-right: -50px;
-		font-weight: bold;
-	  	color: #404040;
-	  }
-	  .center {
-		  width: 500px ;
-		  margin-left: auto ;
-		  margin-right: auto ;
-		}
-				
-		.login-button{
-			font-family: "Georgia";
-			font-size: 1.2em;
-			border-radius: 0px;
-		}
-
-    </style>
-
 </head>
 <body>
 	<div class="navbar">
@@ -102,9 +30,11 @@
     <div class="content">
       <div class="row">
         <div class="login-form">
-          <h1 style="font-family: 'Istok Web', sans-serif;"> Welcome, Amy Johnson </h1>
-		  <h4 style="color: #6F0000; font-family: 'Georgia'"> You are auditing the 2012 Presidential Election. </h4>
-		  <div class="well"><h3 style="font-family: 'Georgia'; font-weight:normal;">You have been assigned 5 ballots. </h3></div>
+          <h1> Welcome, Amy Johnson </h1>
+		  <h4> You are auditing the 2012 Presidential Election. </h4>
+		  <div class="well">
+			<h3>You have been assigned 5 ballots. </h3>
+		  </div>
 		  <a href="/audit/" class="btn btn-info login-button pull-right">Continue</a></button>
         </div>
       </div>
