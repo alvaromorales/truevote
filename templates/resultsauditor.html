@@ -30,53 +30,42 @@
 					</div>
 				</div>
 			</div>
-			<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+
+			<div class="tabbable">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab"><div class="raceTitle">President and Vice President</div></a></li>
-					<li><a href="#tab2" data-toggle="tab"><div class="raceTitle">Senator in Congress</div></a></li>
-					<li><a href="#tab3" data-toggle="tab"><div class="raceTitle">Representative in Congress</div></a></li>
-					<li><a href="#tab4" data-toggle="tab"><div class="raceTitle">Councillor</div></a></li>
-					<li><a href="#tab5" data-toggle="tab"><div class="raceTitle">Senator in General Court</div></a></li>
-					<li><a href="#tab6" data-toggle="tab"><div class="raceTitle">Representative in General Court</div></a></li>
-					<li><a href="#tab7" data-toggle="tab"><div class="raceTitle">Clerk of Courts</div></a></li>
-					<li><a href="#tab8" data-toggle="tab"><div class="raceTitle">Register of Deeds</div></a></li>
+					<li class="active"><a href="#oResults" data-toggle="tab">Overall Results</a></li>
+					<li><a href="#aResults" data-toggle="tab">Current Audit Results</a></li>
 				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="tab1">
-						<h3> Projected Winner: Obama and Biden </h3>
-						<div class="center chart" id="chart_div"></div>
-					</div>
-					<div class="tab-pane" id="tab2">
-						<h3> Projected Winner: Elizabeth Warren </h3>
-						<div class="center chart" id="chart_div2"></div>
-					</div>
-					<div class="tab-pane" id="tab3">
-						<h3> Projected Winner: Nicola Tsongas </h3>
-						<div class="center chart" id="chart_div3"></div>
-					</div>
-					<div class="tab-pane" id="tab4">
-						<h3> Projected Winner: Marilyn Devaney </h3>
-						<div class="center chart" id="chart_div4"></div>
-					</div>
-					<div class="tab-pane" id="tab5">
-						<h3> Projected Winner: Michael Barrett </h3>
-						<div class="center chart" id="chart_div5"></div>
-					</div>
-					<div class="tab-pane" id="tab6">
-						<h3> Projected Winner: Cory Atkins </h3>
-						<div class="center chart" id="chart_div6"></div>
-					</div>
-					<div class="tab-pane" id="tab7">
-						<h3> Projected Winner: Michael Sullivan </h3>
-						<div class="center chart" id="chart_div7"></div>
-					</div>
-					<div class="tab-pane" id="tab8">
-						<h3> Projected Winner: Maria Curtatone </h3>
-						<div class="center chart" id="chart_div8"></div>
+			</div>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="oResults">
+					<div class="tabbable tabs-left"> 
+						<ul class="nav nav-tabs" id="oNavTable">
+						</ul>
+						<!-- There needs to be some filler first tab content; this is overwritten by results.js -->
+						<div class="tab-content" id="oTabTable">
+							<div class="tab-pane active" id="oTab0">
+								<h3> President and Vice President</h3>
+								<div class="center chart" id="o_chart_div0"></div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			</div>
+
+				<div class="tab-pane" id="aResults">
+					<div class="tabbable tabs-left"> 
+						<ul class="nav nav-tabs" id="auditNavTable">
+						</ul>
+						<!-- There needs to be some filler first tab content; this is overwritten by results.js -->
+						<div class="tab-content" id="auditTabTable">
+							<div class="tab-pane active" id="aTab0">
+								<h3> President and Vice President</h3>
+								<div class="center chart" id="a_chart_div0"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

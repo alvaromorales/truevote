@@ -1,144 +1,126 @@
 google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
-function drawChart() {
-var data = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Obama and Biden',  1170],
-  ['Romney and Ryan',  990],
-  ['Johnson and Gray',  660],
-  ['Stein and Honkala',  330]
-]);
 
-var options = {
-  title: 'President and Vice President', 
-  'legend': 'none','colors':['#7A8EA0']
-  
-};
+function getData(){
 
-var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-chart.draw(data, options);
+    raceData = {
+    "President and Vice President": [
+      {
+        "Obama and Biden": 15,
+        "Romney and Ryan" : 10,
+        "Johnson and Gray" : 2,
+        "Stein and Honkala" : 0,
+        "Blank" : 0,
+        "Write-In" : 0
+      },
+      {
+        "Obama and Biden": 150,
+        "Romney and Ryan" : 100,
+        "Johnson and Gray" : 24,
+        "Stein and Honkala" : 0,
+        "Blank" : 0,
+        "Write-In" : 0
+      }
+    ],
+    "Senator in Congress": [
+      {
+        "Elizabeth Warren" : 30,
+        "Scott Brown" : 15,
+        "Blank" : 10,
+        "Write-In" : 0
+      },
+      {
+        "Elizabeth Warren" : 300,
+        "Scott Brown" : 153,
+        "Blank" : 100,
+        "Write-In" : 0
+      }
+    ]
+  }
 }
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart2);
-function drawChart2() {
-var data2 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['   Elizabeth Warren',  1150],
-  ['   Scott Brown',  700]
-]);
 
-var options2 = {'title':'Senator in Congress',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']
-  };
+function createNavTables(){
 
-var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
-chart2.draw(data2, options2);
+  var count = 0
+
+  for (var race in raceData){
+    if (count ==0){ //The first element should be the active one
+      $('#auditNavTable').append("<li class=\"active\"><a href=\"#aTab"+count.toString()+"\" data-toggle=\"tab\"><div class=\"raceTitle\">"+race+"</div></a></li>");
+      $('#oNavTable').append("<li class=\"active\"><a href=\"#oTab"+count.toString()+"\" data-toggle=\"tab\"><div class=\"raceTitle\">"+race+"</div></a></li>");
+    }
+    else{ //Otherwise, the element is not active
+      $('#auditNavTable').append("<li><a href=\"#aTab"+count.toString()+"\" data-toggle=\"tab\"><div class=\"raceTitle\">"+race+"</div></a></li>");
+      $('#oNavTable').append("<li><a href=\"#oTab"+count.toString()+"\" data-toggle=\"tab\"><div class=\"raceTitle\">"+race+"</div></a></li>");
+    }
+    count++;
+  }
+
+  totalRaces = count;
 }
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart3);
-function drawChart3() {
-var data3 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Nicola Tsongas',  930],
-  ['Jonathan Golnik',  700]
-]);
 
-var options3 = {
-  title: 'Representative in Congress',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']};
+function createTabContents(){
 
-var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
-chart3.draw(data3, options3);
+
+  var count=0
+
+  for (var race in raceData){
+    if (count ==0){
+      $('#auditTabTable').innerHTML = ("<div class=\"tab-pane active\" id=\"aTab"+count.toString()+"\"><h3>"+race+"</h3><div class=\"center chart\" id=\"a_chart_div"+count.toString()+"\"></div></div>");
+      $('#oTabTable').innerHTML = ("<div class=\"tab-pane active\" id=\"oTab"+count.toString()+"\"><h3>"+race+"</h3><div class=\"center chart\" id=\"o_chart_div"+count.toString()+"\"></div></div>");
+      //$('#overallTabContent').append("<div class=\"tab-pane active\" id=\"oTab");
+    }
+    else{
+      $('#auditTabTable').append("<div class=\"tab-pane\" id=\"aTab"+count.toString()+"\"><h3>"+race+"</h3><div class=\"center chart\" id=\"a_chart_div"+count.toString()+"\"></div></div>");
+      $('#oTabTable').append("<div class=\"tab-pane\" id=\"oTab"+count.toString()+"\"><h3>"+race+"</h3><div class=\"center chart\" id=\"o_chart_div"+count.toString()+"\"></div></div>");
+    }
+
+    count++;
+  }
 }
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart4);
-function drawChart4() {
-var data4 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Marilyn  Devaney',  1930],
-  ['Thomas Sheff',  200]
-]);
 
-var options4 = {
-  title: 'Councillor',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']};
+function objectToArray(objectDict){
 
-var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
-chart4.draw(data4, options4);
+  info = [['Candidate', 'Votes']];
+  for (var candidateData in objectDict){
+    info.push([candidateData, objectDict[candidateData]]);
+  }
+
+  return info; 
 }
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart5);
-function drawChart5() {
-var data5 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Michael Barrett',  1000],
-  ['Sandi Martinez',  100]
-]);
 
-var options5 = {
-  title: 'Senator in General Court',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']};
+function getGraphs(){
 
-var chart5 = new google.visualization.BarChart(document.getElementById('chart_div5'));
-chart5.draw(data5, options5);
+  count=0;
+
+  for (race in raceData){
+    
+      var a_data = google.visualization.arrayToDataTable(objectToArray(raceData[race][0]));
+
+      var a_options = {title: race, 
+                    'width':600,
+                    'height':400,
+                  'legend': 'none','colors':['#7A8EA0']};
+
+      var a_chart = new google.visualization.BarChart(document.getElementById('a_chart_div'+count.toString()));
+      a_chart.draw(a_data, a_options);
+
+
+      var o_data = google.visualization.arrayToDataTable(objectToArray(raceData[race][1]));
+
+      var o_options = {title: race, 
+                    'width':600,
+                    'height':400,
+                  'legend': 'none','colors':['#7A8EA0']};
+
+      var o_chart = new google.visualization.BarChart(document.getElementById('o_chart_div'+count.toString()));
+      o_chart.draw(o_data, o_options);
+
+      count++;
+    } 
 }
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart6);
-function drawChart6() {
-var data6 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Cory Atkins',  1000],
-  ['Michael Benn',  500]
-]);
 
-var options6 = {
-  title: 'Representative in General Court',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']};
-
-var chart6 = new google.visualization.BarChart(document.getElementById('chart_div6'));
-chart6.draw(data6, options6);
-}
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart7);
-function drawChart7() {
-var data7 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Michael Sullivan',  1000]
-]);
-
-var options7 = {
-  title: 'Clerk of Courts',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']};
-
-var chart7 = new google.visualization.BarChart(document.getElementById('chart_div7'));
-chart7.draw(data7, options7);
-}
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart8);
-function drawChart8() {
-var data8 = google.visualization.arrayToDataTable([
-  ['Candidate', 'Votes'],
-  ['Maria Curtatone',  800]
-]);
-
-var options8 = {
-  title: 'Register of Deeds',
-		 'width':600,
-		 'height':400, 
-		 'legend': 'none','colors':['#7A8EA0']};
-
-var chart8 = new google.visualization.BarChart(document.getElementById('chart_div8'));
-chart8.draw(data8, options8);
-}
+$(document).ready(function() {
+  getData();
+  createTabContents();
+  createNavTables();
+  getGraphs();
+});
