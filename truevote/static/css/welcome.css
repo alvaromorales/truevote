@@ -1,6 +1,8 @@
 html, body {
 background-color: #eee;
 background-image:url('{{ STATIC_URL }}img/wavegrid.png');
+margin: 0;
+	padding: 0;
 }
 body {
 position: relative;
@@ -9,18 +11,26 @@ padding-top: 40px;
 
 .containerParent{
 position: relative;
+width: 100%;
 }
 
 .container-outer {
-position: absolute;
-padding-top: 8%;
-padding-left: 33%;		
+width: 500px;
+padding-top: 10%;
+margin-right: auto;
+margin-left: auto;		
 z-index: 10;
 }
 
 .background {
 position: absolute;
-left: 6%;
+min-width: 100%;
+min-height: 100%;
+}
+
+.background-img {
+	width: 100%;
+	height: auto;
 }
 
 /* The white background content wrapper */

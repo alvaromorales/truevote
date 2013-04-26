@@ -14,6 +14,12 @@ $(document).ready(function() {
 });
 
 var createSidebar = function(){
+  var height = $(window).height();
+  $("#enteredInfo").css("height", height-160);
+  $(window).resize(function(){
+    var height = $(window).height();
+  $("#enteredInfo").css("height", height-160);
+  });
   $('#enteredInfo').html('');
   $('#enteredInfo').append("<table id='currentBallot'></table>");
   currentBallot = $('#currentBallot');
@@ -51,6 +57,7 @@ var createSidebar = function(){
 }
 
 var restoreSidebar = function(){
+
   if ((audit.currentBallot == 0 && audit.getCurrentBallot().currentRace == 1)) {
     $('#fixMistakeBtn').attr('disabled','disabled');
   }

@@ -16,6 +16,9 @@ var restoreAuditTo = function(ballotNumber,raceNumber) {
 
 var displayVoteCountButtons = function(race) {
 	var buttonsDiv = $('.countButtons');
+	var width = $(window).width();
+	buttonsDiv.css("width", width-300);
+	console.log(width-300);
 	buttonsDiv.html(''); //clear buttons
 
 	if (race) {
