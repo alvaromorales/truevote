@@ -1,16 +1,22 @@
 var race;
 
 $(function() {
-	getCandidates();
+	getData();
 });
 
-var getCandidates = function() {
-	$.getJSON('/candidates/', loadCandidates);
+var getData = function() {
+	$.getJSON('/candidates/', loadData);
+}
+
+var loadData = function(data) {
+	loadCandidates(data);
 }
 
 var loadCandidates = function(data) {
-	var raceName = data[0];
-	var candidatesArray = data[1];
+	var currentRace = data.currentRace;
+
+	var raceName = currentRace.name;
+	var candidatesArray = currentRace.candidates;
 	var candidates = [];
 
 	for (var i=0;i<candidatesArray.length;i++) {
@@ -20,19 +26,45 @@ var loadCandidates = function(data) {
 
 	race = new Race(raceName,candidates);
 
-	displayVoteCountButtons();
+	if (data.currentRaceNum == 0 && data.currentBallotNum != 0) {
+		displayTransition();
+	} else {
+		displayVoteCountButtons();
+	}
 }
 
-// var updateButtons = function(race) {
-// 	displayVoteCountButtons(race);
-// };
+var displayTransition = function() {
+	var buttonsDiv = $('.countButtons');
+	buttonsDiv.html(''); //clear buttons
 
-// var restoreAuditTo = function(ballotNumber,raceNumber) {
-// 	audit.currentBallot = ballotNumber;
-// 	audit.getCurrentBallot().currentRace = raceNumber;
-// 	var race = audit.getCurrentBallot().getCurrentRace();
-// 	displayVoteCountButtons(race);
-// }
+	var transitionText = $("<h2>You are done with this ballot. Please get the next ballot ready.</h2>");
+	transitionText.css('font-family','\'Istok Web\', sans-serif');
+	transitionText.css('color','#5F0000');
+	transitionText.css('font-weight','bold');
+	transitionText.css('position','absolute');
+	transitionText.css('top','42.5%');
+	transitionText.css('right','22.75%');
+	transitionText.css('word-wrap','break-word');
+	transitionText.css('width','40%');
+	transitionText.css('text-align','center');
+
+	buttonsDiv.append(transitionText);
+
+	var nextBtn = $("<input type='button' class='raceBtn btn btn-info' value='Next'></input>");
+	nextBtn.css('position','absolute');
+	nextBtn.css('height','20%');
+	nextBtn.css('width','32.5%');
+	nextBtn.css('left','47.5%');
+	nextBtn.css('bottom','20%');
+	nextBtn.addClass('btn-info-top');
+
+	nextBtn.click(function(e) {
+		displayVoteCountButtons();
+	});
+
+	buttonsDiv.append(nextBtn);
+
+}
 
 var displayVoteCountButtons = function() {
 	var buttonsDiv = $('.countButtons');
@@ -40,18 +72,18 @@ var displayVoteCountButtons = function() {
 
 	if (race) {
 		var candidates = race.candidates;
-		var candidateName = $("<h1>" + race.name + "</h1>");
-		candidateName.css('font-family','\'Istok Web\', sans-serif');
-		candidateName.css('color','#5F0000');
-		candidateName.css('font-weight','bold');
-		candidateName.css('position','absolute');
-		candidateName.css('top','42.5%');
-		candidateName.css('right','22.75%');
-		candidateName.css('word-wrap','break-word');
-		candidateName.css('width','28%');
-		candidateName.css('text-align','center');
+		var raceName = $("<h1>" + race.name + "</h1>");
+		raceName.css('font-family','\'Istok Web\', sans-serif');
+		raceName.css('color','#5F0000');
+		raceName.css('font-weight','bold');
+		raceName.css('position','absolute');
+		raceName.css('top','42.5%');
+		raceName.css('right','22.75%');
+		raceName.css('word-wrap','break-word');
+		raceName.css('width','28%');
+		raceName.css('text-align','center');
 
-		buttonsDiv.append(candidateName);
+		buttonsDiv.append(raceName);
 
 		var numOther = 0;
 		for (var i = 0;i<candidates.length;i++) {
@@ -109,7 +141,7 @@ var displayVoteCountButtons = function() {
 			var buttonsDiv = $('.countButtons');
 			var winner = e.target.value;
 
-			$.getJSON('vote', {"race_name": race.name,"winner": winner},loadCandidates);
+			$.getJSON('vote', {"race_name": race.name,"winner": winner},loadData);
 		});
 	}
 }

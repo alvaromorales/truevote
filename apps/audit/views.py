@@ -27,7 +27,24 @@ def audit(request):
 @login_required()
 def get_candidates(request):
     up = request.user.profile
-    data = (Election.get_race_name(up.counter),Election.get_candidates(up.counter))
+    counter = up.counter
+    
+    data = {
+        'currentRace': {
+            'name': Election.get_race_name(counter),
+            'candidates': Election.get_candidates(counter)
+            },
+        'currentRaceNum': Election.get_race_index(counter),
+        'currentBallotNum': Election.get_ballot_index(counter),
+        'numRaces': Election.get_num_races(),
+        'numBallots':up.ballots
+        }
+
+    if data['currentRaceNum'] !=0 and data['currentBallotNum'] == 0:
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-Election.get_num_races()))))
+    else:
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-3))))
+        
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
 

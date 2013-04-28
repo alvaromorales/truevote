@@ -94,7 +94,26 @@ class Election:
                 }
             ]
         }
-    
+
+    @classmethod
+    def get_previous_winners(self,race_list):
+        result = []
+        for race in race_list:
+            r = {}
+            r['name'] = race.race_name
+            r['winner'] = race.winner
+            result.append(r)
+
+        return result
+
+    @classmethod
+    def get_race_index(self,counter):
+        return counter%self.get_num_races()
+
+    @classmethod
+    def get_ballot_index(self,counter):
+        return counter/self.get_num_races()
+
     @classmethod
     def get_race_name(self,counter):
         race_number = counter%self.get_num_races()
@@ -102,7 +121,7 @@ class Election:
 
     @classmethod
     def get_candidates(self,counter):
-        race_number = counter%self.get_num_races()
+        race_number = self.get_race_index(counter)
         return self.CANDIDATES[self.RACES[race_number]]
 
     @classmethod

@@ -17,5 +17,8 @@ class Race(models.Model):
 
     def __unicode__(self):
         return self.race_name
+
+    class Meta:
+        ordering = ['number']
     
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
