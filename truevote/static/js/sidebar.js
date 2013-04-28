@@ -15,10 +15,10 @@ $(document).ready(function() {
 
 var createSidebar = function(){
   var height = $(window).height();
-  $("#enteredInfo").css("height", height-160);
+  $("#enteredInfo").css("height", height-170);
   $(window).resize(function(){
     var height = $(window).height();
-  $("#enteredInfo").css("height", height-160);
+  $("#enteredInfo").css("height", height-170);
   });
   $('#enteredInfo').html('');
   $('#enteredInfo').append("<table id='currentBallot'></table>");
