@@ -33,19 +33,20 @@
 			<div class="content">
 				<div class="row">
 					<div class="login-form">
-						<form class="form-horizontal center">
+						<form class="form-horizontal center" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+						{% csrf_token %}
 							<fieldset>
 								<legend>Sign in to TrueVote</legend>
 								<div class="control-group">
 									<label class="control-label login-label">Username</label>
 									<div class="controls">
-										<input id="username" name="username" autofocus="autofocus" type="text" placeholder="" class="input-xlarge">
+										{{ form.username }}
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label login-label">Password</label>
 									<div class="controls">
-										<input id="password" name="password" type="password" placeholder="" class="input-xlarge">
+										{{ form.password }}
 									</div>
 								</div>
 								<div class="control-group">
@@ -54,10 +55,18 @@
 										<label class="checkbox login-label"><input type="checkbox" name="checkboxes" value="Remember Me">Remember Me</label>
 									</div>
 								</div>
+
+								{% if form.errors %}
+								<div class="alert alert-error">
+								  <p>Your username and password didn't match. Please try again.</p>
+								</div>
+								{% endif %}
+
 								<div class="control-group">
 									<label class="control-label"></label>
 									<div class="controls">
-										<a href="/welcome/" class="btn btn-info login-button">Login</a></button>
+										<input type="submit" class="btn btn-info login-button" value="Login" />
+										<input type="hidden" name="next" value="{{ next }}" />
 									</div>
 								</div>
 							</fieldset>
