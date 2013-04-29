@@ -61,3 +61,9 @@ def cast_vote(request):
     up.save()
     
     return get_candidates(request)
+
+@login_required()
+def get_fix_mistake_data(request):
+    pass
+    
+    

@@ -63,7 +63,6 @@ var displayTransition = function() {
 	});
 
 	buttonsDiv.append(nextBtn);
-
 }
 
 var displayVoteCountButtons = function() {
