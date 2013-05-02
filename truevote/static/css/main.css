@@ -232,3 +232,8 @@ html, body, .container-fluid, .row-fluid {
 	left:0;
 	width:100%;
 }
+
+.invisible {
+	display: none;
+    visibility: hidden;
+}

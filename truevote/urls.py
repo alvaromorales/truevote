@@ -13,6 +13,7 @@ urlpatterns = patterns('',
                        url(r'^audit/$', audit),
                        url(r'^audit/vote$', cast_vote),
                        url(r'^candidates/$',get_candidates),
+                       url(r'^fix_mistake/$',get_fix_mistake_data),
                        url(r'^help/$', TemplateView.as_view(template_name='helpmenu.html')),
                        url(r'^audit/results', TemplateView.as_view(template_name='resultsauditor.html')),
 )
