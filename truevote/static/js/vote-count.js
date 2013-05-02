@@ -2,6 +2,11 @@ var race;
 
 $(function() {
 	getData();
+
+	$("#fixMistakeBtn").click(function(e) {
+		$.getJSON('/fix_mistake/', enterFixMistake);
+	});
+
 });
 
 var getData = function() {
@@ -10,6 +15,23 @@ var getData = function() {
 
 var loadData = function(data) {
 	loadCandidates(data);
+}
+
+var enterFixMistake = function(data) {
+	$("#sidebarDiv").removeClass("span3");
+	$("#sidebarDiv").addClass("span9");
+
+	var ballotTableHTML = $('#displayFixMistake').html();
+	$("#sidebarDiv").html('');
+
+
+	$("#voteCountDiv").removeClass("span9");
+	$("#voteCountDiv").addClass("span3");
+	$("#voteCountDiv").html("");
+
+	$("#sidebarDiv").html(ballotTableHTML);
+	$("#ballotTable").removeClass("invisible");
+
 }
 
 var loadCandidates = function(data) {

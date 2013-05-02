@@ -102,6 +102,7 @@ class Election:
             r = {}
             r['name'] = race.race_name
             r['winner'] = race.winner
+            r['number'] = race.number
             result.append(r)
 
         return result

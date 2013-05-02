@@ -40,10 +40,12 @@ def get_candidates(request):
         'numBallots':up.ballots
         }
 
+    current_ballot = Election.get_ballot_index(counter)
+
     if data['currentRaceNum'] ==0 and data['currentBallotNum'] != 0:
         data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-Election.get_num_races()))))[:Election.get_num_races()]
     else:
-        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-3))))[:3]
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(max(counter-3,current_ballot*Election.get_num_races())))))[:3]
         
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
@@ -68,22 +70,14 @@ def get_fix_mistake_data(request):
     counter = up.counter
     current_ballot = Election.get_ballot_index(counter)
 
-    if current_ballot > 0:
-        # current ballot candidates: ballot_index*num races <= number < ((ballot_index+1)*num races)        
-        # previous ballot candidates: (ballot_index-1)*num_races <= number < ballot_index*num_races
-        
-        """
-        data:
-        - currentBallotNum: int
-        - currentBallot: races[]
-        - previousBallot: races[]
-        - previousBallotNum: int
-        """
-        
-        pass
-    else:
-        pass
+    data = {}
+    previous_ballot = current_ballot -1
+    data['previousBallot'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(previous_ballot*Election.get_num_races()),number__lt=(current_ballot*Election.get_num_races()))))
+    data['currentBallot'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(current_ballot*Election.get_num_races()),number__lt=((current_ballot+1)*Election.get_num_races()))))
+    
+    data['previousBallotNum'] = previous_ballot
+    data['currentBallotNum'] = current_ballot
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
-    pass
     
     
