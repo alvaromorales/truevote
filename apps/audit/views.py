@@ -40,10 +40,10 @@ def get_candidates(request):
         'numBallots':up.ballots
         }
 
-    if data['currentRaceNum'] !=0 and data['currentBallotNum'] == 0:
-        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-Election.get_num_races()))))
+    if data['currentRaceNum'] ==0 and data['currentBallotNum'] != 0:
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-Election.get_num_races()))))[:Election.get_num_races()]
     else:
-        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-3))))
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-3))))[:3]
         
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
@@ -64,6 +64,26 @@ def cast_vote(request):
 
 @login_required()
 def get_fix_mistake_data(request):
+    up = request.user.profile
+    counter = up.counter
+    current_ballot = Election.get_ballot_index(counter)
+
+    if current_ballot > 0:
+        # current ballot candidates: ballot_index*num races <= number < ((ballot_index+1)*num races)        
+        # previous ballot candidates: (ballot_index-1)*num_races <= number < ballot_index*num_races
+        
+        """
+        data:
+        - currentBallotNum: int
+        - currentBallot: races[]
+        - previousBallot: races[]
+        - previousBallotNum: int
+        """
+        
+        pass
+    else:
+        pass
+
     pass
     
     
