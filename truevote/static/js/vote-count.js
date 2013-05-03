@@ -24,14 +24,41 @@ var enterFixMistake = function(data) {
 	var ballotTableHTML = $('#displayFixMistake').html();
 	$("#sidebarDiv").html('');
 
-
 	$("#voteCountDiv").removeClass("span9");
 	$("#voteCountDiv").addClass("span3");
 	$("#voteCountDiv").html("");
 
 	$("#sidebarDiv").html(ballotTableHTML);
-	$("#ballotTable").removeClass("invisible");
+	$(".invisible").removeClass("invisible");
 
+	$("#currentBallotTab").append("<table id='currentBallotTable' class='table'></table>");
+
+	if (data.currentBallot.length == 0) {
+		$("#currentBallotTable").append("<tr><td>" + "No selections yet." + "</td></tr>");
+	} else {
+		for (var i=0;i<data.currentBallot.length;i++) {
+			var r = data.currentBallot[i];
+			$("#currentBallotTable").append("<tr><td class='raceName'>" + r.name + "</td><td>" 
+				+ "<button class='fixMistakeBtn btn btn-info' value='" + r.number + " '>" + r.winner + "</button>"
+				+ "</td></tr>");
+		}
+	}
+
+	if (data.previousBallot.length == 0) {
+		$('#previousBallotTab').attr('disabled','disabled');
+	} else {
+		$("#previousBallotTab").append("<table id='previousBallotTable' class='table'></table>");
+		for (var j=0;j<data.previousBallot.length;j++) {
+			var r = data.previousBallot[j];
+			$("#previousBallotTable").append("<tr><td class='raceName'>" + r.name + "</td><td>" 
+				+ "<button class='fixMistakeBtn btn btn-info' value='" + r.number + " '>" + r.winner + "</button>"
+				+ "</td></tr>");
+		}
+	}
+
+	$('#cancelFixMistake').click(function(e) {
+		location.reload();
+	});
 }
 
 var loadCandidates = function(data) {
