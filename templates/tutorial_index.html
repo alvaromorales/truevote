@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TrueVote - Audit</title>
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/index.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/jquery-ui-1.10.2.custom.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/introjs.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/bootstro.css" rel="stylesheet" media="screen">
+		<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
+
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/intro.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstro.js "></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootbox.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.2.custom.js"></script>
+
+		<script type="text/javascript" src="{{ STATIC_URL }}js/tutorial_audit.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/tutorial_vote-count.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/tutorial_sidebar.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/tutorial_login.js"></script>
+		
+	</head>
+	
+	<body>
+	
+	<!--End modal-->
+	<div id="endAudit" class="modal hide fade" data-backdrop="static">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h1>Audit Finished</h1>
+		</div>
+		<div class="modal-body">
+			<div class="well">
+				<h3>You have completed 5 ballots.</h3>
+				<h3>Click "Submit" to submit the results of this audit and see the current totals for this election.</h3>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a id="auditCancel" href="/" class="btn btn-danger">Cancel</a>
+			<a id="auditSubmit" href="/audit/results" class="btn btn-info login-button">Submit</a>
+		</div>
+	</div> 
+	
+	<!--Help Menu-->
+	<div class="container-fluid cont">
+		<div id="helpMenu">
+			<div id="helpTitle">
+				<h1> Instructions </h1>
+			</div>
+			<div class="container cont">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<div class="row-fluid span6">
+							<td>
+								<div id="imgDiv" class="span4">
+									<img src="{{ STATIC_URL }}img/changeCandidateShort.png" alt="ScreenShot" width="250px">
+								</div>
+							</td>
+							<td>
+								<div class="textDiv span8">
+									<div class="well well-large">
+										<h4>To fix a specific race, click on the candidate's name.</h4>
+									</div>
+								</div> 
+							</td>
+						</div>
+					</tr>
+					<tr>
+						<div class="row-fluid span6">
+							<td>
+								<div id="imgDiv" class="span4">
+									<img src="{{ STATIC_URL }}img/changeBallotShort.png" alt="ScreenShot" width="250px">
+								</div>
+							</td>
+							<td>
+								<div class="textDiv span8">
+									<div class="well well-large">
+										<h4>To reset a whole ballot, click the "Reset" button at the top of the ballot. You can only reset your current ballot and the one immediately preceding it.</h4>
+									</div>
+								</div>
+							</td>
+						</div>
+					</tr>
+					<tr>
+						<div class="row-fluid span6">
+							<td>
+								<div id="imgDiv" class="span4">
+									<img src="{{ STATIC_URL }}img/restartShort.png" alt="ScreenShot" width="250px">
+								</div>
+							</td>
+							<td>
+								<div class="textDiv span8">
+									<div class="well well-large">
+										<h4>To restart the entire audit, click the "Restart Audit button" at the bottom left of your screen.</h4>
+									</div>
+								</div>
+							</td>
+						</div>
+					</tr>
+					<tr>
+						<div class="row-fluid span6">
+							<td>
+								<div id="imgDiv" class="span4">
+									<img src="{{ STATIC_URL }}img/cancelShort.png" alt="ScreenShot" width="250px">
+								</div>
+							</td>
+							<td>
+								<div class="textDiv span8">
+									<div class="well well-large">
+										<h4>To continue entering ballots without making any changes, click the "Cancel" button at the bottom left of your screen.</h4>
+									</div>
+								</div>
+							</td>
+						</div>
+					</tr>
+				 </table>
+			</div>
+		</div>
+
+
+	  <div class="row-fluid" >
+		<div id="sidebarDiv" class="span3 bootstro initialTutorial" data-bootstro-step="1"  data-bootstro-placement="right" data-bootstro-title="Welcome to TrueVote!" data-bootstro-content="Your entered data will be displayed on this sidebar." data-bootstro-width : "400px">
+			<!--Sidebar content-->
+			{% include "tutorial_sidebar.html" %}
+		</div>
+		<div id="voteCountDiv" class="span9 bootstro initialTutorial" data-bootstro-step="0" data-bootstro-placement="left" data-bootstro-title="Welcome to TrueVote!" data-bootstro-content="Click the appropriate button for the correct candidate. Democrats always appear at the top and Republicans at the bottom. This is a tutorial" data-bootstro-width : "500px">
+			<!--Body content-->
+			{% include "tutorial_vote_count.html" %}
+		</div> 
+	  </div>
+	</div>
+	</body>
+</html>

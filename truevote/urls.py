@@ -11,4 +11,5 @@ urlpatterns = patterns('',
                        url(r'^audit/$', TemplateView.as_view(template_name='index.html')),
                        url(r'^help/$', TemplateView.as_view(template_name='helpmenu.html')),
                        url(r'^audit/results', TemplateView.as_view(template_name='resultsauditor.html')),
+                       url(r'^tutorial', TemplateView.as_view(template_name='tutorial_index.html')),
 )

@@ -1,0 +1,37 @@
+<div id="sidebarHeader">
+	<div id="ballotNumber" class="bootstro initialTutorial" data-bootstro-step="2"  data-bootstro-placement="bottom" data-bootstro-title="Welcome to TrueVote!" data-bootstro-content="You can see the current ballot number here." data-bootstro-width : "500px">
+		<p>Ballot 1</p>
+	</div>      
+  <div class="progress">
+    <div class="bar bar-danger ballotbar"></div>
+  </div>
+</div>
+
+<div id="enteredInfo">
+	<table id="currentBallot">
+
+	</table>
+</div>
+
+<div id = "confirmationDialog" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h1 id="errorTitle">Error Header</h1>
+  </div>
+  <div class="well">
+  <div id="errorBody" class="modal-body">
+    <div class="well"><h3>You are about to restart the entire audit. Would you like to continue?</h3></div>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <a id= "cancelButton" href="#" class="btn btnCancelModal">Cancel</a>
+    <a id="continueButton" href="#" class="btn btn-danger">Continue</a>
+  </div>
+</div>
+
+<div id="fixMistakeDiv">
+  <button id="fixMistakeBtn" name="" class="btn btn-danger input-medium">Fix Mistake</button>
+  <button id='btnRestart' class='btn btn-danger'>Restart Audit</button>
+  <button id='cancelFixMistake' class='btn'>Cancel</button>
+</div>
+
