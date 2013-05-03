@@ -1,20 +1,120 @@
+var race;
+
 $(function() {
-	updateButtons();
+	getData();
+
+	$("#fixMistakeBtn").click(function(e) {
+		$.getJSON('/fix_mistake/', enterFixMistake);
+	});
+
 });
 
-var updateButtons = function() {
-	var race = audit.getNextRace();
-	displayVoteCountButtons(race);
-};
-
-var restoreAuditTo = function(ballotNumber,raceNumber) {
-	audit.currentBallot = ballotNumber;
-	audit.getCurrentBallot().currentRace = raceNumber;
-	var race = audit.getCurrentBallot().getCurrentRace();
-	displayVoteCountButtons(race);
+var getData = function() {
+	$.getJSON('/candidates/', loadData);
 }
 
-var displayVoteCountButtons = function(race) {
+var loadData = function(data) {
+	loadCandidates(data);
+}
+
+var enterFixMistake = function(data) {
+	$("#sidebarDiv").removeClass("span3");
+	$("#sidebarDiv").addClass("span9");
+
+	var ballotTableHTML = $('#displayFixMistake').html();
+	$("#sidebarDiv").html('');
+
+	$("#voteCountDiv").removeClass("span9");
+	$("#voteCountDiv").addClass("span3");
+	$("#voteCountDiv").html("");
+
+	$("#sidebarDiv").html(ballotTableHTML);
+	$(".invisible").removeClass("invisible");
+
+	$("#currentBallotTab").append("<table id='currentBallotTable' class='table'></table>");
+
+	if (data.currentBallot.length == 0) {
+		$("#currentBallotTable").append("<tr><td>" + "No selections yet." + "</td></tr>");
+	} else {
+		for (var i=0;i<data.currentBallot.length;i++) {
+			var r = data.currentBallot[i];
+			$("#currentBallotTable").append("<tr><td class='raceName'>" + r.name + "</td><td>" 
+				+ "<button class='fixMistakeBtn btn btn-info' value='" + r.number + " '>" + r.winner + "</button>"
+				+ "</td></tr>");
+		}
+	}
+
+	if (data.previousBallot.length == 0) {
+		$('#previousBallotTab').attr('disabled','disabled');
+	} else {
+		$("#previousBallotTab").append("<table id='previousBallotTable' class='table'></table>");
+		for (var j=0;j<data.previousBallot.length;j++) {
+			var r = data.previousBallot[j];
+			$("#previousBallotTable").append("<tr><td class='raceName'>" + r.name + "</td><td>" 
+				+ "<button class='fixMistakeBtn btn btn-info' value='" + r.number + " '>" + r.winner + "</button>"
+				+ "</td></tr>");
+		}
+	}
+
+	$('#cancelFixMistake').click(function(e) {
+		location.reload();
+	});
+}
+
+var loadCandidates = function(data) {
+	var currentRace = data.currentRace;
+
+	var raceName = currentRace.name;
+	var candidatesArray = currentRace.candidates;
+	var candidates = [];
+
+	for (var i=0;i<candidatesArray.length;i++) {
+		c = candidatesArray[i];
+		candidates.push(new Candidate(c.name,c.party));
+	}
+
+	race = new Race(raceName,candidates);
+
+	if (data.currentRaceNum == 0 && data.currentBallotNum != 0) {
+		displayTransition();
+	} else {
+		displayVoteCountButtons();
+	}
+}
+
+var displayTransition = function() {
+	var buttonsDiv = $('.countButtons');
+	buttonsDiv.html(''); //clear buttons
+
+	var transitionText = $("<h2>You are done with this ballot. Please get the next ballot ready.</h2>");
+	transitionText.css('font-family','\'Istok Web\', sans-serif');
+	transitionText.css('color','#5F0000');
+	transitionText.css('font-weight','bold');
+	transitionText.css('position','absolute');
+	transitionText.css('top','42.5%');
+	transitionText.css('right','22.75%');
+	transitionText.css('word-wrap','break-word');
+	transitionText.css('width','40%');
+	transitionText.css('text-align','center');
+
+	buttonsDiv.append(transitionText);
+
+	var nextBtn = $("<input type='button' class='raceBtn btn btn-info' value='Next'></input>");
+	nextBtn.css('position','absolute');
+	nextBtn.css('height','20%');
+	nextBtn.css('width','32.5%');
+	nextBtn.css('left','47.5%');
+	nextBtn.css('bottom','20%');
+	nextBtn.addClass('btn-info-top');
+
+	nextBtn.click(function(e) {
+		displayVoteCountButtons();
+	});
+
+	buttonsDiv.append(nextBtn);
+}
+
+var displayVoteCountButtons = function() {
 	var buttonsDiv = $('.countButtons');
 	var width = $(window).width();
 	buttonsDiv.css("width", width-300);
@@ -23,22 +123,22 @@ var displayVoteCountButtons = function(race) {
 
 	if (race) {
 		var candidates = race.candidates;
-		var candidateName = $("<h1>" + race.name + "</h1>");
-		candidateName.css('font-family','\'Istok Web\', sans-serif');
-		candidateName.css('color','#5F0000');
-		candidateName.css('font-weight','bold');
-		candidateName.css('position','absolute');
-		candidateName.css('top','42.5%');
-		candidateName.css('right','22.75%');
-		candidateName.css('word-wrap','break-word');
-		candidateName.css('width','28%');
-		candidateName.css('text-align','center');
+		var raceName = $("<h1>" + race.name + "</h1>");
+		raceName.css('font-family','\'Istok Web\', sans-serif');
+		raceName.css('color','#5F0000');
+		raceName.css('font-weight','bold');
+		raceName.css('position','absolute');
+		raceName.css('top','42.5%');
+		raceName.css('right','22.75%');
+		raceName.css('word-wrap','break-word');
+		raceName.css('width','28%');
+		raceName.css('text-align','center');
 
-		buttonsDiv.append(candidateName);
+		buttonsDiv.append(raceName);
 
 		var numOther = 0;
 		for (var i = 0;i<candidates.length;i++) {
-			if (candidates[i].party != republicanParty && candidates[i].party != democraticParty) {
+			if (candidates[i].party != "Republican Party" && candidates[i].party != "Democratic Party") {
 				numOther++;
 			}
 		}
@@ -49,13 +149,13 @@ var displayVoteCountButtons = function(race) {
 			var c = candidates[i];
 			var candidate = $("<input type='button' class='raceBtn btn btn-info' value='" + c.name + "'></input>");
 			candidate.css('position','absolute');
-			if (c.party == republicanParty) {
+			if (c.party == "Republican Party") {
 				candidate.css('height','20%');
 				candidate.css('width','32.5%');
 				candidate.css('left','47.5%');
 				candidate.css('bottom','5%');
 				candidate.addClass('btn-info-top');
-			} else if (c.party == democraticParty) {
+			} else if (c.party == "Democratic Party") {
 				candidate.css('top','5%');
 				candidate.css('height','20%');
 				candidate.css('width','32.5%');
@@ -89,15 +189,10 @@ var displayVoteCountButtons = function(race) {
 		buttonsDiv.append(writeIn);
 
 		$('.raceBtn').click(function(e) {
+			var buttonsDiv = $('.countButtons');
 			var winner = e.target.value;
-			
-			// SET RESULTS OF PREVIOUS RACE
-			if (winner) {
-				var previousRace = audit.getCurrentBallot().getPreviousRace();
-				previousRace.setWinner(winner);
-				updateSidebar(previousRace);
-			}
-			updateButtons();
+
+			$.getJSON('vote', {"race_name": race.name,"winner": winner},loadData);
 		});
 	}
 }

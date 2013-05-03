@@ -1,9 +1,9 @@
 body {
-	background-image:url('{{ STATIC_URL }}img/wavegrid.png');
+	background-image:url('/static/img/wavegrid.png');
 }
 
 #sidebarDiv {
-	background-image:url('{{ STATIC_URL }}img/cream_dust.png');
+	background-image:url('/static/img/cream_dust.png');
 }
 
 .login-button {
