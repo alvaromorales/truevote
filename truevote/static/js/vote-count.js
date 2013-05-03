@@ -132,7 +132,7 @@ var loadSidebar = function(data) {
 
 
 	$('#fixMistakeBtn').show();
-	$('#fixMistakeBtn').attr('disabled','disabled');
+	//$('#fixMistakeBtn').attr('disabled','disabled');
 
 	$('#btnRestart').hide();
 	$('#cancelFixMistake').hide();
