@@ -27,10 +27,15 @@ h4{
 	font-weight:normal;
 }
 
-#helpTitle{
+#ballotNumber{
 	font-family: 'Istok Web', sans-serif;
 	color: #5F0000; 
 	text-align:center;
+	padding-top: 10px;
+}
+
+#ballotHelper{
+	margin-left: 2.5em;
 }
 
 .cont{
@@ -46,4 +51,9 @@ h4{
 
 .ballotbar{
 	width: 0%;
+}
+
+#logo{
+	text-align:center;
+	margin-left:1.5em;
 }
