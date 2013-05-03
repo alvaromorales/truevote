@@ -42,7 +42,7 @@ html, body, .container-fluid, .row-fluid {
 #sidebarHeader{
 	position: absolute;
 	top: 0;
-	margin-top: 5%;
+	margin-top: 0%
 	width: 100%;
 }
 
@@ -50,7 +50,7 @@ html, body, .container-fluid, .row-fluid {
 	width: 100%;
 	height: 75%;
 	position: absolute;
-	top: 110px;
+	top: 225px;
 	bottom: 60px;
 	margin-left: 2em;
 	overflow-y: scroll;
@@ -169,6 +169,7 @@ html, body, .container-fluid, .row-fluid {
 	font-size: 4em;
 	text-align: center;
 	margin: 20px;
+	margin-top: 10px;
 }
 
 .progress {

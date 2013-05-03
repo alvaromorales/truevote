@@ -2,11 +2,6 @@ var race;
 
 $(function() {
 	getData();
-
-	$("#fixMistakeBtn").click(function(e) {
-		$.getJSON('/fix_mistake/', enterFixMistake);
-	});
-
 });
 
 var getData = function() {
@@ -14,24 +9,9 @@ var getData = function() {
 }
 
 var loadData = function(data) {
+	console.log(data);
 	loadCandidates(data);
-}
-
-var enterFixMistake = function(data) {
-	$("#sidebarDiv").removeClass("span3");
-	$("#sidebarDiv").addClass("span9");
-
-	var ballotTableHTML = $('#displayFixMistake').html();
-	$("#sidebarDiv").html('');
-
-
-	$("#voteCountDiv").removeClass("span9");
-	$("#voteCountDiv").addClass("span3");
-	$("#voteCountDiv").html("");
-
-	$("#sidebarDiv").html(ballotTableHTML);
-	$("#ballotTable").removeClass("invisible");
-
+	loadSidebar(data);
 }
 
 var loadCandidates = function(data) {
@@ -53,6 +33,65 @@ var loadCandidates = function(data) {
 	} else {
 		displayVoteCountButtons();
 	}
+}
+
+var loadSidebar = function(data) {
+	var previousRaces = data.previousRaces;
+	var currentRace = data.currentRace;
+	
+	var currentBallotNum = data.currentBallotNum;
+	var numBallots = data.numBallots;
+	var currentRaceNum = data.currentRaceNum;
+	var numRaces = data.numRaces;
+	
+	var height = $(window).height();
+	$("#enteredInfo").css("height", height-120);
+	$(window).resize(function(){
+	var height = $(window).height();
+	$("#enteredInfo").css("height", height-120);
+	});
+	// update ballot number and progress bar
+	$('#ballotNumber').html('<p>Ballot ' + (currentBallotNum + 1) + '/' + (numBallots) + '</p>');
+	$('#ballotHelper').html('<p>Audit ' + (((currentBallotNum + 1)*(currentRaceNum))/(numBallots*numRaces))*100 + '% completed. </p>');
+	$('.bar').css('width', (((currentBallotNum + 1)*(currentRaceNum))/(numBallots*numRaces))*100+ '%');
+	
+	$('#enteredInfo').html('');
+	$('#enteredInfo').append("<table id='currentBallot'></table>");
+	var currentBallot = $('#currentBallot');
+
+	for (var i = 0; i < 3; i++){
+		if (data.currentRaceNum == 0 && data.currentBallotNum != 0){
+			currentBallot.append('<tr><td class=\'raceName\'>' + '</td></tr>');
+			currentBallot.append('<tr><td id=\'race' + 'winner\' class=\'candidateName\'></td></tr>');
+			currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+		}
+		else if (previousRaces[i] != null){
+			var name = previousRaces[i].name;
+			var winner = previousRaces[i].winner;
+			currentBallot.append('<tr><td class=\'raceName\'>' + name + '</td></tr>');
+			currentBallot.append('<tr><td id=\'race' + winner + 'winner\' class=\'candidateName\'>' + winner + '</td></tr>');
+			currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+		}
+	}
+	if (data.currentRaceNum == 0 && data.currentBallotNum != 0){
+		currentBallot.append('<tr><td class=\'raceName\'>' + '</td></tr>');
+		currentBallot.append('<tr><td id=\'race' + 'winner\' class=\'candidateName\'></td></tr>');
+		currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+	}
+	else{
+		currentBallot.append('<tr><td class=\'raceName\'>' + currentRace.name + '</td></tr>');
+		currentBallot.append('<tr><td id=\'race' + '' + 'winner\' class=\'candidateName\'></td></tr>');
+		currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+	}
+
+
+	$('#fixMistakeBtn').show();
+	$('#fixMistakeBtn').attr('disabled','disabled');
+
+	$('#btnRestart').hide();
+	$('#cancelFixMistake').hide();
+	
+	
 }
 
 var displayTransition = function() {
