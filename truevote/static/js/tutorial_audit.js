@@ -149,11 +149,11 @@ var unenrolledParty = new Party("Unenrolled Party", "Unenrolled");
 
 ///// RACES /////
 
-var presidential = new Race("President and Vice President", [
-		new Candidate("Obama and Biden","Obama/Biden",democraticParty),
-		new Candidate("Romney and Ryan","Romney/Ryan",republicanParty),
-		new Candidate("Johnson and Gray","Johnson/Gray",libertarianParty),
-		new Candidate("Stein and Honkala","Stein/Honkala",greenParty)
+var presidential = new Race("Race Name", [
+		new Candidate("Candidate A","CandidateA",democraticParty),
+		new Candidate("Candidate B","CandidateB",republicanParty),
+		new Candidate("Candidate C","CandidateC",libertarianParty),
+		new Candidate("Candidate D","CandidateD",greenParty)
 	]);
 
 var senate = new Race("Senator in Congress", [

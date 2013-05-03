@@ -10,7 +10,7 @@ var sidebarState = [];
 
 $(document).ready(function() {
     //introJs().start();
-    console.log("started");
+    //console.log("started");
     $('#startTutorial').modal('show');
 
     var options = {
@@ -18,7 +18,7 @@ $(document).ready(function() {
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
             finishButton : '<button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button" href="/audit"><i class="icon-ok"></i> Finish Tutorial </button>'};
     $("#tutorialSubmit").click(function(){
-      console.log("turtorial started");
+      //console.log("turtorial started");
       bootstro.start($(".initialTutorial"), options);
       $('#startTutorial').modal('hide');
     });

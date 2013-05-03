@@ -11,6 +11,12 @@ var sidebarState = [];
 $(document).ready(function() {
 	  createSidebar();
     $('#helpMenu').hide();
+    $('#startAuditModal').modal('show');
+    $("#startAuditButton").click(function(){
+      //console.log("turtorial started");
+      
+      $('#startAuditModal').modal('hide');
+    });
 });
 
 var createSidebar = function(){
