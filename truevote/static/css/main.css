@@ -32,7 +32,7 @@ html, body, .container-fluid, .row-fluid {
 
 #sidebarDiv {
 	position: relative;
-	width: 300px;
+	/*width: 300px;*/
 	border-style: solid;
 	border:0px;
 	border-left: 1px;
