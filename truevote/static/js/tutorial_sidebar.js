@@ -11,12 +11,18 @@ var sidebarState = [];
 $(document).ready(function() {
     //introJs().start();
     console.log("started");
+    $('#startTutorial').modal('show');
 
     var options = {
             nextButton : '<button class="btn btn-primary btn-mini btn-info bootstro-next-btn">Next &raquo;</button>',
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
-            finishButton : '<button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button"><i class="icon-ok"></i> Finish Tutorial </button>'};
-    bootstro.start($(".initialTutorial"), options);
+            finishButton : '<button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button" href="/audit"><i class="icon-ok"></i> Finish Tutorial </button>'};
+    $("#tutorialSubmit").click(function(){
+      console.log("turtorial started");
+      bootstro.start($(".initialTutorial"), options);
+      $('#startTutorial').modal('hide');
+    });
+    
 	  createSidebar();
     $('#helpMenu').hide();
     //introJs().start();
