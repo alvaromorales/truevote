@@ -2,6 +2,9 @@ var race;
 
 $(function() {
 	getData();
+	$("#fixMistakeBtn").click(function(e) {
+		$.getJSON('/fix_mistake/', enterFixMistake);
+	});
 });
 
 var getData = function() {
@@ -9,7 +12,6 @@ var getData = function() {
 }
 
 var loadData = function(data) {
-	console.log(data);
 	loadCandidates(data);
 	loadSidebar(data);
 }
