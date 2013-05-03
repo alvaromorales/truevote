@@ -16,7 +16,23 @@ html, body {
 	axisTitlesPosition:in;
 }
 
+#tabbablePills{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
 .chart{
-	width: 600px; 
-	height: 400px;
+	width: 640px; 
+	height: 410px;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    background-color: #7A8EA0;
+    size: 40px;
+}
+
+/*Why doesn't this do anything?*/
+.nav-pills > (not).active > a {
+	size: 40px;
+	background-color: #FFFFFF;
 }
