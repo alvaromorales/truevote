@@ -3,7 +3,7 @@ var race;
 $(function() {
 	getData();
 	$("#fixMistakeBtn").click(function(e) {
-		$.getJSON('/fix_mistake/', enterFixMistake);
+		parent.location='/audit/fix/';
 	});
 });
 
@@ -14,50 +14,6 @@ var getData = function() {
 var loadData = function(data) {
 	loadCandidates(data);
 	loadSidebar(data);
-}
-
-var enterFixMistake = function(data) {
-	$("#sidebarDiv").removeClass("span3");
-	$("#sidebarDiv").addClass("span9");
-
-	var ballotTableHTML = $('#displayFixMistake').html();
-	$("#sidebarDiv").html('');
-
-	$("#voteCountDiv").removeClass("span9");
-	$("#voteCountDiv").addClass("span3");
-	$("#voteCountDiv").html("");
-
-	$("#sidebarDiv").html(ballotTableHTML);
-	$(".invisible").removeClass("invisible");
-
-	$("#currentBallotTab").append("<table id='currentBallotTable' class='table'></table>");
-
-	if (data.currentBallot.length == 0) {
-		$("#currentBallotTable").append("<tr><td>" + "No selections yet." + "</td></tr>");
-	} else {
-		for (var i=0;i<data.currentBallot.length;i++) {
-			var r = data.currentBallot[i];
-			$("#currentBallotTable").append("<tr><td class='raceName'>" + r.name + "</td><td>" 
-				+ "<button class='fixMistakeBtn btn btn-info' value='" + r.number + " '>" + r.winner + "</button>"
-				+ "</td></tr>");
-		}
-	}
-
-	if (data.previousBallot.length == 0) {
-		$('#previousBallotTab').attr('disabled','disabled');
-	} else {
-		$("#previousBallotTab").append("<table id='previousBallotTable' class='table'></table>");
-		for (var j=0;j<data.previousBallot.length;j++) {
-			var r = data.previousBallot[j];
-			$("#previousBallotTable").append("<tr><td class='raceName'>" + r.name + "</td><td>" 
-				+ "<button class='fixMistakeBtn btn btn-info' value='" + r.number + " '>" + r.winner + "</button>"
-				+ "</td></tr>");
-		}
-	}
-
-	$('#cancelFixMistake').click(function(e) {
-		location.reload();
-	});
 }
 
 var loadCandidates = function(data) {
@@ -130,14 +86,6 @@ var loadSidebar = function(data) {
 		currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
 	}
 
-
-	$('#fixMistakeBtn').show();
-	//$('#fixMistakeBtn').attr('disabled','disabled');
-
-	$('#btnRestart').hide();
-	$('#cancelFixMistake').hide();
-	
-	
 }
 
 var displayTransition = function() {
@@ -176,7 +124,6 @@ var displayVoteCountButtons = function() {
 	var buttonsDiv = $('.countButtons');
 	var width = $(window).width();
 	buttonsDiv.css("width", width-300);
-	console.log(width-300);
 	buttonsDiv.html(''); //clear buttons
 
 	if (race) {
@@ -247,6 +194,7 @@ var displayVoteCountButtons = function() {
 		buttonsDiv.append(writeIn);
 
 		$('.raceBtn').click(function(e) {
+			$('.raceBtn').attr('disabled','disabled');
 			var buttonsDiv = $('.countButtons');
 			var winner = e.target.value;
 

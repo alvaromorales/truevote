@@ -65,19 +65,35 @@ def cast_vote(request):
     return get_candidates(request)
 
 @login_required()
-def get_fix_mistake_data(request):
+def fix_mistake(request):
     up = request.user.profile
     counter = up.counter
     current_ballot = Election.get_ballot_index(counter)
-
-    data = {}
     previous_ballot = current_ballot -1
-    data['previousBallot'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(previous_ballot*Election.get_num_races()),number__lt=(current_ballot*Election.get_num_races()))))
-    data['currentBallot'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(current_ballot*Election.get_num_races()),number__lt=((current_ballot+1)*Election.get_num_races()))))
-    
-    data['previousBallotNum'] = previous_ballot
-    data['currentBallotNum'] = current_ballot
-    return HttpResponse(json.dumps(data), mimetype='application/json')
 
-    
-    
+    return render_to_response('fix_mistake.html', 
+                              {
+            'userprofile':up,
+            'current_ballot_num': current_ballot + 1,
+            'previous_ballot_num': previous_ballot + 1,
+            'previous_ballot': Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(previous_ballot*Election.get_num_races()),number__lt=(current_ballot*Election.get_num_races())))),
+            'current_ballot': Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(current_ballot*Election.get_num_races()),number__lt=((current_ballot+1)*Election.get_num_races())))),
+            }, 
+                              context_instance=RequestContext(request))
+
+@login_required()
+def fix_race(request):
+    up = request.user.profile
+    n = request.GET['number']
+    Race.objects.filter(auditor=up, number__gte=n).delete()
+    up.counter = n
+    up.save()
+    return HttpResponse('')
+
+@login_required()
+def restart(request):
+    up = request.user.profile
+    Race.objects.filter(auditor=up).delete()
+    up.counter = 0
+    up.save()
+    return welcome(request)
