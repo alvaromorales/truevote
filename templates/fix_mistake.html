@@ -6,7 +6,7 @@
  	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
  	<link href="{{ STATIC_URL }}css/fix_mistake.css" rel="stylesheet" media="screen">
  	<link href="{{ STATIC_URL }}css/jquery-ui-1.10.2.custom.css" rel="stylesheet" media="screen">
- 	<link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700,400italic,700italic' rel='stylesheet' type='text/css'>		
+ 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300' rel='stylesheet' type='text/css'>
 
  	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
  	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
@@ -45,26 +45,43 @@
  	</div>
 
  	<div id="mainFixMistake" class="row-fluid">
+ 		<div id="helpFixMistake" class="span3">
+ 			<img src="{{ STATIC_URL }}img/logo.png">
+ 			<h1>Fix Mistake</h1>
+ 			<p class="helpText"><br/><br />Click on a candidate's name to change your selection.</p>
+ 			<div id="fixButtons" class="row-fluid">
+ 			  <button id='btnRestart' class='fixBtn btn btn-danger'>&nbsp;&nbsp;Restart Audit&nbsp;&nbsp;</button>
+ 			  &nbsp;&nbsp;&nbsp;&nbsp;
+ 			  <button id='cancelFixMistake' class='fixBtn btn input-small'>Cancel</button>
+ 			</div>
+ 		</div>
  		<div class="span9">
  			<div class="row-fluid">
  			  <div id="ballotTable" class='tabbable tabs-left'>
  			    <ul class='nav nav-tabs'>
- 			      <li class='active'><a href='#currentBallotTab' data-toggle='tab'>Current Ballot</a></li>
+ 			      <li class='active tableTab'><a href='#currentBallotTab' data-toggle='tab'>Current Ballot</a></li>
  			      {% if previous_ballot|length != 0 %}
-	 			      <li><a href='#previousBallotTab' data-toggle='tab'>Previous Ballot</a></li>
+	 			      <li><a href='#previousBallotTab' class='tableTab' data-toggle='tab'>Previous Ballot</a></li>
  			      {% endif %}
  			    </ul>
  			    <div class='tab-content'>
 
  			      <div class='tab-pane active' id='currentBallotTab'>
- 			      	<p class="ballotHeader">Ballot {{ current_ballot_num }}</p>
+
  			      	{% if current_ballot|length == 0 %}
+	 			      	<p class="ballotHeader">Ballot {{ current_ballot_num }}</p>
  			      	    <p class="noSelection">No selections yet.</p>
  			      	{% else %}
- 			      		{% with current_ballot|first as first_race %}
- 			      			<button class='reset fixMistakeBtn btn btn-danger' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
- 			      		{% endwith %}
-
+ 			      		<div class="row-fluid">
+ 			      			<div class="span3">
+ 			      				<p class="ballotHeader">Ballot {{ current_ballot_num }}</p>
+ 			      			</div>
+ 			      			<div class="span9">
+ 			      				{% with current_ballot|first as first_race %}
+ 			      					<button class='reset fixMistakeBtn btn btn-danger input-large' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
+ 			      				{% endwith %}
+ 			      			</div>
+ 			      		</div>
 	 			      	<table id='currentBallotTable' class='table'>
 	 			      			{% for r in current_ballot %}
 	 			      				<tr>
@@ -72,7 +89,7 @@
 	 			      						{{ r.name }}
 	 			      					</td>
 	 			      					<td> 
-	 			      						<button class='fixMistakeBtn btn btn-info' value='{{ r.number }}|{{ r.name }}|current'>{{ r.winner }}</button>
+	 			      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|current'>{{ r.winner }}</button>
 	 			      					</td>
 	 			      				</tr>
 	 			      			{% endfor %}
@@ -82,10 +99,16 @@
  			      </div>
  			      {% if previous_ballot|length != 0 %}
  			      <div class='tab-pane' id='previousBallotTab'>
- 			      	<p class="ballotHeader">Ballot {{ previous_ballot_num }}</p>
- 			      	{% with previous_ballot|first as first_race %}
- 			      		<button class='reset fixMistakeBtn btn btn-danger' value='{{ first_race.number }}|reset|previous'>Reset Ballot</button>
- 			      	{% endwith %}
+ 			      	<div class="row-fluid">
+ 			      		<div class="span3">
+ 			      			<p class="ballotHeader">Ballot {{ previous_ballot_num }}</p>
+ 			      		</div>
+ 			      		<div class="span9">
+ 			      			{% with previous_ballot|first as first_race %}
+ 			      				<button class='reset fixMistakeBtn btn btn-danger input-large' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
+ 			      			{% endwith %}
+ 			      		</div>
+ 			      	</div>
 
  			      	<table id='previousBallotTable' class='table'>
 		      			{% for r in previous_ballot %}
@@ -94,7 +117,7 @@
 		      						{{ r.name }}
 		      					</td>
 		      					<td> 
-		      						<button class='fixMistakeBtn btn btn-info' value='{{ r.number }}|{{ r.name }}|previous'>{{ r.winner }}</button>
+		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>{{ r.winner }}</button>
 		      					</td>
 		      				</tr>
 		      			{% endfor %}
@@ -105,14 +128,6 @@
  			    </div>
  			  </div>
 	 		</div>
-
-	 		<div id="fixButtons" class="row-fluid">
-	 		  <button id='btnRestart' class='btn btn-danger'>Restart Audit</button>
-	 		  <button id='cancelFixMistake' class='btn'>Cancel</button>
-	 		</div>
 	 	</div>
- 		<div id="helpFixMistake" class="span3">
- 			<p class="helpText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam.</p>
- 		</div>
 </body>
 </html>
