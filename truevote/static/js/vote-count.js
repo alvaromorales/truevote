@@ -17,22 +17,21 @@ var loadData = function(data) {
 }
 
 var loadCandidates = function(data) {
-	var currentRace = data.currentRace;
-
-	var raceName = currentRace.name;
-	var candidatesArray = currentRace.candidates;
-	var candidates = [];
-
-	for (var i=0;i<candidatesArray.length;i++) {
-		c = candidatesArray[i];
-		candidates.push(new Candidate(c.name,c.party));
-	}
-
-	race = new Race(raceName,candidates);
-
-	if (data.currentRaceNum == 0 && data.currentBallotNum != 0) {
+	if (data.transition) {
 		displayTransition();
 	} else {
+		var currentRace = data.currentRace;
+
+		var raceName = currentRace.name;
+		var candidatesArray = currentRace.candidates;
+		var candidates = [];
+
+		for (var i=0;i<candidatesArray.length;i++) {
+			c = candidatesArray[i];
+			candidates.push(new Candidate(c.name,c.party));
+		}
+
+		race = new Race(raceName,candidates);
 		displayVoteCountButtons();
 	}
 }
@@ -114,7 +113,7 @@ var displayTransition = function() {
 	nextBtn.addClass('btn-info-top');
 
 	nextBtn.click(function(e) {
-		displayVoteCountButtons();
+		$.getJSON('vote/nextballot', loadData);
 	});
 
 	buttonsDiv.append(nextBtn);

@@ -28,8 +28,19 @@ def audit(request):
 def get_candidates(request):
     up = request.user.profile
     counter = up.counter
+
+    if Race.objects.filter(auditor=up,number=counter):
+        data = {
+            'currentRaceNum': Election.get_race_index(up.counter),
+            'currentBallotNum': Election.get_ballot_index(up.counter),
+            'numRaces': Election.get_num_races(),
+            'numBallots':up.ballots
+            }
+        data['transition'] = True
+        return HttpResponse(json.dumps(data), mimetype='application/json')
     
     data = {
+        'transition': False,
         'currentRace': {
             'name': Election.get_race_name(counter),
             'candidates': Election.get_candidates(counter)
@@ -59,9 +70,26 @@ def cast_vote(request):
     r = Race(number=up.counter, auditor=up, race_name=race_name,winner=winner)
     r.save()
 
+    if up.counter%Election.get_num_races() != Election.get_num_races()-1:
+        up.counter = F('counter')+1
+        up.save()
+    
+        return get_candidates(request)
+    else:
+        data = {
+            'currentRaceNum': Election.get_race_index(up.counter),
+            'currentBallotNum': Election.get_ballot_index(up.counter),
+            'numRaces': Election.get_num_races(),
+            'numBallots':up.ballots
+            }
+        data['transition'] = True
+        return HttpResponse(json.dumps(data), mimetype='application/json')
+
+@login_required()
+def next_ballot(request):
+    up = request.user.profile
     up.counter = F('counter')+1
     up.save()
-    
     return get_candidates(request)
 
 @login_required()
