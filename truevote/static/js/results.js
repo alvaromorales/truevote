@@ -1,42 +1,6 @@
 google.load("visualization", "1", {packages:["corechart"]});
 
-function getData(){
-
-    raceData = {
-    "President and Vice President": [
-      {
-        "Obama and Biden": 15,
-        "Romney and Ryan" : 10,
-        "Johnson and Gray" : 2,
-        "Stein and Honkala" : 0,
-        "Blank" : 0,
-        "Write-In" : 0
-      },
-      {
-        "Obama and Biden": 150,
-        "Romney and Ryan" : 100,
-        "Johnson and Gray" : 24,
-        "Stein and Honkala" : 0,
-        "Blank" : 0,
-        "Write-In" : 0
-      }
-    ],
-    "Senator in Congress": [
-      {
-        "Elizabeth Warren" : 30,
-        "Scott Brown" : 15,
-        "Blank" : 10,
-        "Write-In" : 0
-      },
-      {
-        "Elizabeth Warren" : 300,
-        "Scott Brown" : 153,
-        "Blank" : 100,
-        "Write-In" : 0
-      }
-    ]
-  }
-}
+var raceData;
 
 function createNavTables(){
 
@@ -86,12 +50,8 @@ function createTabContents(){
       }
     }
 
-    console.log(winner_c);
-    console.log(winner_o);
-  
     //Now that projected winners are established, we can fill in the graph titles
     if (count ==0){
-      console.log("Here");
       //$('#auditTabTable').innerHTML = ("<div class=\"tab-pane active\" id=\"aTab"+count.toString()+"\"><h3>Projected Winner: "+winner_c+"</h3><div class=\"center chart\" id=\"a_chart_div"+count.toString()+"\"></div></div>");
       $('#oTabTable').append("<div class=\"tab-pane active\" id=\"oTab"+count.toString()+"\"><h3>Projected Winner: "+winner_o+"</h3><div class=\"center chart\" id=\"o_chart_div"+count.toString()+"\"></div></div>");
       //$('#overallTabContent').append("<div class=\"tab-pane active\" id=\"oTab");
@@ -156,8 +116,11 @@ function getGraphs(){
 }
 
 $(document).ready(function() {
-  getData();
-  createTabContents();
-  createNavTables();
-  getGraphs();
+  $.getJSON('/results/', function(data) {
+    raceData = data;
+    createTabContents();
+    createNavTables();
+    getGraphs();
+  });
+  
 });

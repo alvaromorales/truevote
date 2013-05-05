@@ -97,3 +97,21 @@ def restart(request):
     up.counter = 0
     up.save()
     return welcome(request)
+
+@login_required()
+def results(request):
+    up = request.user.profile
+    data = {}
+    
+    for r in Election.RACES:
+        user = {}
+        for c in Election.CANDIDATES[r]:
+            user[c['name']] = Race.objects.filter(auditor=up,race_name=r,winner=c['name']).count()
+
+        overall = {}
+        for c in Election.CANDIDATES[r]:
+            overall[c['name']] = Race.objects.filter(race_name=r,winner=c['name']).count()
+        
+        data[r] = (user,overall)
+    
+    return HttpResponse(json.dumps(data), mimetype='application/json')
