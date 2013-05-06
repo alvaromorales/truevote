@@ -57,7 +57,7 @@
  		</div>
  		<div class="span9">
  			<div class="row-fluid">
- 			  <div id="ballotTable" class='tabbable tabs-left'>
+ 			  <div id="ballotTable" class='tabbable'>
  			    <ul class='nav nav-tabs'>
  			      <li class='active tableTab'><a href='#currentBallotTab' data-toggle='tab'>Current Ballot</a></li>
  			      {% if previous_ballot|length != 0 %}
@@ -82,7 +82,7 @@
  			      				{% endwith %}
  			      			</div>
  			      		</div>
-	 			      	<table id='currentBallotTable' class='table'>
+	 			      	<table id='currentBallotTable' class='table table-hover'>
 	 			      			{% for r in current_ballot %}
 	 			      				<tr>
 	 			      					<td class='raceName'>
@@ -110,7 +110,7 @@
  			      		</div>
  			      	</div>
 
- 			      	<table id='previousBallotTable' class='table'>
+ 			      	<table id='previousBallotTable' class='table table-hover'>
 		      			{% for r in previous_ballot %}
 		      				<tr>
 		      					<td class='raceName'>
