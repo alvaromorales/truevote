@@ -1,37 +1,29 @@
+<div class="row">
 <div id="sidebarHeader">
+  <div id="logo" class="span12"><img src="{{ STATIC_URL }}img/logo.png" width="450"></div>
 	<div id="ballotNumber" class="bootstro initialTutorial" data-bootstro-step="1"  data-bootstro-placement="bottom" data-bootstro-title="Welcome to TrueVote!" data-bootstro-content="The current ballot number is visible here." data-bootstro-width : "500px">
-		<p>Ballot 1</p>
+		<h1>Ballot 1</h1>
 	</div>      
+ <div id="ballotHelper">
+    <h1>Audit 0% completed</h1>
+  </div>
+  <div class="row">
   <div class="progress">
     <div class="bar bar-danger ballotbar"></div>
   </div>
+  </div>
+</div>
 </div>
 
+<div class="row">
 <div id="enteredInfo" class="bootstro initialTutorial" data-bootstro-step="2"  data-bootstro-placement="right" data-bootstro-title="Welcome to TrueVote!" data-bootstro-width='500px' data-bootstro-content="The data you entered in the last three races will be available here. The current race will be highlighted." >
 	<table id="currentBallot">
 
 	</table>
 </div>
 
-<div id = "confirmationDialog" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h1 id="errorTitle">Error Header</h1>
-  </div>
-  <div class="well">
-  <div id="errorBody" class="modal-body">
-    <div class="well"><h3>You are about to restart the entire audit. Would you like to continue?</h3></div>
-  </div>
-  </div>
-  <div class="modal-footer">
-    <a id= "cancelButton" href="#" class="btn btnCancelModal">Cancel</a>
-    <a id="continueButton" href="#" class="btn btn-danger">Continue</a>
-  </div>
-</div>
 
 <div id="fixMistakeDiv">
   <button id="fixMistakeBtn" name="" class="btn btn-danger input-medium bootstro initialTutorial" data-bootstro-step="3"  data-bootstro-placement="top" data-bootstro-title="Welcome to TrueVote!" data-bootstro-content="If you make a mistake, click this button to fix it." data-bootstro-width : "500px">Fix Mistake</button>
-  <button id='btnRestart' class='btn btn-danger'>Restart Audit</button>
-  <button id='cancelFixMistake' class='btn'>Cancel</button>
 </div>
 
