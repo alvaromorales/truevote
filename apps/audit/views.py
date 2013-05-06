@@ -37,6 +37,7 @@ def get_candidates(request):
             'numBallots':up.ballots
             }
         data['transition'] = True
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up, number__gte=(data['currentBallotNum']*Election.get_num_races()))))
         return HttpResponse(json.dumps(data), mimetype='application/json')
     
     data = {
@@ -53,11 +54,8 @@ def get_candidates(request):
 
     current_ballot = Election.get_ballot_index(counter)
 
-    if data['currentRaceNum'] ==0 and data['currentBallotNum'] != 0:
-        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(counter-Election.get_num_races()))))[:Election.get_num_races()]
-    else:
-        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up,number__gte=(max(counter-3,current_ballot*Election.get_num_races())))))[:3]
-        
+    data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up, number__gte=(data['currentBallotNum']*Election.get_num_races()))))
+
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
@@ -83,6 +81,8 @@ def cast_vote(request):
             'numBallots':up.ballots
             }
         data['transition'] = True
+        data['previousRaces'] = Election.get_previous_winners(list(Race.objects.filter(auditor=up, number__gte=(data['currentBallotNum']*Election.get_num_races()))))
+        
         return HttpResponse(json.dumps(data), mimetype='application/json')
 
 @login_required()
