@@ -40,7 +40,9 @@
 		  </div>
 		  <!--<a href="/tutorial/" class="btn btn-info login-button pull-right">Continue</a></button>-->
 		  {% if userprofile.counter == 0 %}
-		  	<a href="/tutorial/" class="btn btn-info login-button pull-right">Start</a></button>
+		  	<a href="/audit/" class="btn btn-info login-button pull-right">Start</a></button>
+		  {% elif remaining_ballots == 0 %}
+		  	<a href="/audit/results/" class="btn btn-info login-button pull-right">View Results</a></button>
 		  {% else %}
 		  	<a href="/tutorial/" class="btn btn-info login-button pull-right">Continue</a></button>
 		  {% endif %}
