@@ -135,17 +135,26 @@ def restart(request):
 @login_required()
 def results(request):
     up = request.user.profile
-    data = {}
+    data = []
     
     for r in Election.RACES:
-        user = {}
+        user = []
         for c in Election.CANDIDATES[r]:
-            user[c['name']] = Race.objects.filter(auditor=up,race_name=r,winner=c['name']).count()
+            candidate_result = {}
+            candidate_result['name'] = c['name']
+            candidate_result['votes'] = Race.objects.filter(auditor=up,race_name=r,winner=c['name']).count()
+            user.append(candidate_result)
 
-        overall = {}
+        overall = []
         for c in Election.CANDIDATES[r]:
-            overall[c['name']] = Race.objects.filter(race_name=r,winner=c['name']).count()
+            candidate_result = {}
+            candidate_result['name'] = c['name']
+            candidate_result['votes'] = Race.objects.filter(race_name=r,winner=c['name']).count()
+            overall.append(candidate_result)
         
-        data[r] = (user,overall)
+        race_result = {}
+        race_result['raceName'] = r
+        race_result['results'] = [user,overall]
+        data.append(race_result)
     
     return HttpResponse(json.dumps(data), mimetype='application/json')
