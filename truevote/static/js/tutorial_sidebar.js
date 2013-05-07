@@ -18,7 +18,7 @@ $(document).ready(function() {
           stopOnEsc: false,
             nextButton : '<button id="nextButton" class="btn btn-primary btn-mini btn-info bootstro-next-btn">Next &raquo;</button>',
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
-            finishButton : '<a href="/audit/"><button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button" ><i class="icon-ok"></i> Finish Tutorial </button></a>'};
+            finishButton : '<a href="/audit/"><button class="btn btn-danger btn-mini btn-info bootstro-finish-btn" type="button" ><i class="icon-ok"></i> Finish Tutorial </button></a>'};
     $("#tutorialSubmit").click(function(){
       //console.log("turtorial started");
       bootstro.start($(".initialTutorial"), options);
@@ -62,7 +62,7 @@ var createSidebar = function(){
 
 	// Click functionality for fix mistake button
   $("#fixMistakeBtn").click(function(e) {
-    parent.location='/audit/tutorialfix/';
+    parent.location='fix/';
   });
 
   
