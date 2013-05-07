@@ -136,7 +136,7 @@ var displayEnd = function() {
 
 	var nextBtn = $("<input type='button' class='transitionBtn raceBtn btn btn-info' value='&nbsp;&nbsp;&nbsp;&nbsp;Submit Results&nbsp;&nbsp;&nbsp;&nbsp;'></input>");
 	nextBtn.click(function(e) {
-		parent.location='/audit/results/';
+		parent.location='/audit/submit/';
 	});
 
 	transitionDiv.append(nextBtn);
