@@ -4,65 +4,57 @@
  	<title>TrueVote - Audit</title>
  	<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
  	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
+
  	<link href="{{ STATIC_URL }}css/fix_mistake.css" rel="stylesheet" media="screen">
  	<link href="{{ STATIC_URL }}css/jquery-ui-1.10.2.custom.css" rel="stylesheet" media="screen">
+ 	<link href="{{ STATIC_URL }}css/introjs.css" rel="stylesheet" media="screen">
+		<link href="{{ STATIC_URL }}css/bootstro.css" rel="stylesheet" media="screen">
  	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300' rel='stylesheet' type='text/css'>
 
  	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
  	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstro.js "></script>
  	<script type="text/javascript" src="{{ STATIC_URL }}js/bootbox.min.js"></script>
  	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.2.custom.js"></script>
 
- 	<script type="text/javascript" src="{{ STATIC_URL }}js/fix_mistake.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/tutorial_fix_mistake.js"></script>
  </head>
 
- <body>
- 	<div id="confirmRestart" class="modal hide fade">
+<div id="startAudit" class="modal hide fade">
  	  <div class="modal-header">
  	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
- 	    <h1 id="errorTitle">Restart Audit</h1>
+ 	    <h1 id="errorTitle" class="modal-text">Tutorial has finished.</h1>
  	  </div>
  	  <div id="errorBody" class="modal-body">
- 	    <h3>You are about to restart the entire audit. Would you like to continue?</h3>
+ 	    <h4 class="modal-text">You are about to begin the actual audit.</h4>
  	  </div>
  	  <div class="modal-footer">
- 	    <a id="cancelButton" href="#" class="btn btnCancelModal">Cancel</a>
- 	    <a id="continueButton" href="#" class="btn btn-danger">Continue</a>
+	   	<a id="continueButton" href="/audit/" class="btn btn-info">Continue</a>
+		
+		
  	  </div>
  	</div>
-
- 	<div id="confirmFixRace" class="modal hide fade">
- 	  <div class="modal-header">
- 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
- 	    <h1 id="fixRaceTitle"></h1>
- 	  </div>
- 	  <div id="fixRaceBody" class="modal-body">
- 	  </div>
- 	  <div class="modal-footer">
- 	    <a id="cancelButtonFix" href="#" class="btn btnCancelModal">Cancel</a>
- 	    <a id="continueButtonFix" href="#" class="btn btn-danger">Continue</a>
- 	  </div>
- 	</div>
-
+ <body>
+ 	
  	<div id="mainFixMistake" class="row-fluid">
  		<div id="helpFixMistake" class="span3">
  			<img src="{{ STATIC_URL }}img/logo.png">
  			<h1>Fix Mistake</h1>
  			<p class="helpText"><br/><br />Click on a candidate's name to change your selection.</p>
  			<div id="fixButtons" class="row-fluid">
- 			  <button id='btnRestart' class='fixBtn btn btn-danger'>&nbsp;&nbsp;Restart Audit&nbsp;&nbsp;</button>
+ 			  <button id='btnRestart' class='fixBtn btn btn-danger bootstro tutorial' data-bootstro-step="4"  data-bootstro-placement="right" data-bootstro-width='500px' data-bootstro-content="You can also easily restart the entire audit if you made significant mistakes.">&nbsp;&nbsp;Restart Audit&nbsp;&nbsp;</button>
  			  &nbsp;&nbsp;&nbsp;&nbsp;
  			  <button id='cancelFixMistake' class='fixBtn btn input-small'>Cancel</button>
  			</div>
  		</div>
- 		<div class="span9">
+ 		<div class="span9 bootstro tutorial" data-bootstro-step="0"  data-bootstro-placement="left" data-bootstro-width='500px' data-bootstro-content="On this screen, you can edit any mistakes that you may have made.">
  			<div class="row-fluid">
- 			  <div id="ballotTable" class='tabbable'>
- 			    <ul class='nav nav-tabs'>
+ 			  <div id="ballotTable" class='tabbable '>
+ 			    <ul class='nav nav-tabs bootstro tutorial' data-bootstro-step="3"  data-bootstro-placement="bottom" data-bootstro-width='500px' data-bootstro-content="You can edit information on the current and previous ballot.">
  			      <li class='active tableTab'><a href='#currentBallotTab' data-toggle='tab'>Current Ballot</a></li>
- 			      {% if previous_ballot|length != 0 %}
+ 			      
 	 			      <li><a href='#previousBallotTab' class='tableTab' data-toggle='tab'>Previous Ballot</a></li>
- 			      {% endif %}
+ 			      
  			    </ul>
  			    <div class='tab-content'>
 
@@ -74,25 +66,41 @@
  			      	{% else %}
  			      		<div class="row-fluid">
  			      			<div class="span3">
- 			      				<p class="ballotHeader">Ballot {{ current_ballot_num }}</p>
+ 			      				<p class="ballotHeader">Ballot 4</p>
  			      			</div>
  			      			<div class="span9">
  			      				{% with current_ballot|first as first_race %}
- 			      					<button class='reset fixMistakeBtn btn btn-danger input-large' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
+ 			      					<button class='reset fixMistakeBtn btn btn-danger input-large bootstro tutorial' data-bootstro-step="2"  data-bootstro-placement="bottom" data-bootstro-width='500px' data-bootstro-content="You can restart the entire current ballot." value='{{ first_race.number }}|reset|current' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
  			      				{% endwith %}
  			      			</div>
  			      		</div>
-	 			      	<table id='currentBallotTable' class='table table-hover'>
-	 			      			{% for r in current_ballot %}
+	 			      	<table id='currentBallotTable' class='table table-hover bootstro tutorial' data-bootstro-step="1"  data-bootstro-placement="left" data-bootstro-width='500px' data-bootstro-content="You can start over and fix a specific race by clicking here.">
+	 			      			
 	 			      				<tr>
 	 			      					<td class='raceName'>
-	 			      						{{ r.name }}
+	 			      						Race 1
 	 			      					</td>
 	 			      					<td> 
-	 			      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|current'>{{ r.winner }}</button>
+	 			      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|current'>Candidate A</button>
 	 			      					</td>
 	 			      				</tr>
-	 			      			{% endfor %}
+	 			      				<tr>
+	 			      					<td class='raceName'>
+	 			      						Race 2
+	 			      					</td>
+	 			      					<td> 
+	 			      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|current'>Candidate B</button>
+	 			      					</td>
+	 			      				</tr>
+	 			      				<tr>
+	 			      					<td class='raceName'>
+	 			      						Race 3
+	 			      					</td>
+	 			      					<td> 
+	 			      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|current'>Blank</button>
+	 			      					</td>
+	 			      				</tr>
+	 			      			
 	 			      	</table>
  			      	{% endif %}
 
@@ -101,26 +109,61 @@
  			      <div class='tab-pane' id='previousBallotTab'>
  			      	<div class="row-fluid">
  			      		<div class="span3">
- 			      			<p class="ballotHeader">Ballot {{ previous_ballot_num }}</p>
+ 			      			<p class="ballotHeader">Ballot 3</p>
  			      		</div>
  			      		<div class="span9">
  			      			{% with previous_ballot|first as first_race %}
- 			      				<button class='reset fixMistakeBtn btn btn-danger input-large' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
+ 			      				<button class='reset fixMistakeBtn btn btn-danger input-large'>Reset Ballot</button>
  			      			{% endwith %}
  			      		</div>
  			      	</div>
 
  			      	<table id='previousBallotTable' class='table table-hover'>
-		      			{% for r in previous_ballot %}
+		      			
 		      				<tr>
 		      					<td class='raceName'>
-		      						{{ r.name }}
+		      						Race 1
 		      					</td>
 		      					<td> 
-		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>{{ r.winner }}</button>
+		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>Candidate C</button>
 		      					</td>
 		      				</tr>
-		      			{% endfor %}
+
+		      				<tr>
+		      					<td class='raceName'>
+		      						Race 2
+		      					</td>
+		      					<td> 
+		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>Blank</button>
+		      					</td>
+		      				</tr>
+
+		      				<tr>
+		      					<td class='raceName'>
+		      						Race 3
+		      					</td>
+		      					<td> 
+		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>Candidate C</button>
+		      					</td>
+		      				</tr>
+		      				<tr>
+		      					<td class='raceName'>
+		      						Race 4
+		      					</td>
+		      					<td> 
+		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>Candidate B</button>
+		      					</td>
+		      				</tr>
+		      				<tr>
+		      					<td class='raceName'>
+		      						Race 5
+		      					</td>
+		      					<td> 
+		      						<button class='fixMistakeBtn btn btn-info input-xlarge' value='{{ r.number }}|{{ r.name }}|previous'>Candidate A</button>
+		      					</td>
+		      				</tr>
+
+		      			
  			      	</table>
  			      </div>
  			      {% endif %}
