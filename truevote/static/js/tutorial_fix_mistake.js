@@ -9,7 +9,8 @@ $(function() {
           stopOnEsc: false,
             nextButton : '<button id="nextButton" class="btn btn-primary btn-mini btn-info bootstro-next-btn">Next &raquo;</button>',
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
-            finishButton : '<a href="/audit/"><button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button" ><i class="icon-ok"></i> Finish Tutorial </button></a>'};
+            finishButton : '<a href="/audit/">Finish Tutorial </a>'};
+            //finishButton : '<a href="/audit/"><button class="btn btn-danger btn-mini btn-info bootstro-finish-btn" type="button" >Finish Tutorial </button></a>'};
     
       //console.log("turtorial started");
       bootstro.start($(".tutorial"), options);
@@ -20,6 +21,9 @@ $(function() {
             // close slide show automatically. no more annoying alert.
             bootstro.stop();
             $('#startAudit').modal('show');
+            $('#startAudit').on('hidden', function () {
+  				parent.location="../../audit/"
+			});
 
           }
         );
