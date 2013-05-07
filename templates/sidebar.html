@@ -1,28 +1,26 @@
-<div class="row">
-<div id="sidebarHeader">
-	<div id="logo" class="span12"><img src="{{ STATIC_URL }}img/logo.png" width="450"></div>
-	<div id="ballotNumber">
-		<h1>Ballot 1</h1> 
-	</div>
-	<div id="ballotHelper">
-		<h1>Audit 0% completed</h1>
-	</div>
-	<div class="row">
-	<div class="progress">
-    <div class="bar bar-danger ballotbar"></div>
-	</div>
-	</div>
-</div>
+<img src="{{ STATIC_URL }}img/logo.png">
+
+<div id="ballotNumber">
+	<h1>Ballot 1</h1> 
 </div>
 
-<div class="row">
+<div id="ballotHelper">
+
+	<!--<div class="progress">
+	    <div class="bar bar-danger ballotbar">
+	    </div>
+	</div>-->
+</div>
+
+<div class='previousSelections'>
+	<h2>Previous Selections</h2>
+</div>
+
 <div id="enteredInfo">
 	<table id="currentBallot">
-
 	</table>
-</div> 
 </div>
 
 <div id="fixMistakeDiv">
-  <button id="fixMistakeBtn" name="" class="btn btn-danger input-medium">Fix Mistake</button>
+  <button id="fixMistakeBtn" name="" class="fixBtn btn btn-danger input-medium">Fix Mistake</button>
 </div>

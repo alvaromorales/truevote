@@ -1,3 +1,31 @@
+/*
+ * Represents a candidate
+ * @param name: the candidate's name
+ * @param party: the name of the candidate's party
+ */
+var Candidate = function(name,party) {
+	this.name = name;
+	this.party = party;
+};
+
+/* 
+ * Represents a race
+ * @param name: the race name
+ * @param candidates: an array of Candidate objects
+ */
+var Race = function(name,candidates) {
+	this.name = name;
+	this.candidates = candidates;
+
+	this.candidatesMap = {};
+
+	for (var i=0;i<candidates.length;i++) {
+		c = candidates[i];
+		this.candidatesMap[c.name] = c;
+	}
+
+};
+
 var race;
 
 $(function() {
@@ -12,8 +40,8 @@ var getData = function() {
 }
 
 var loadData = function(data) {
-	loadCandidates(data);
 	loadSidebar(data);
+	loadCandidates(data);
 }
 
 var loadCandidates = function(data) {
@@ -45,63 +73,41 @@ var loadSidebar = function(data) {
 	var currentRaceNum = data.currentRaceNum;
 	var numRaces = data.numRaces;
 	
+	/*
 	var height = $(window).height();
 	$("#enteredInfo").css("height", height-120);
 	$(window).resize(function(){
-	var height = $(window).height();
-	$("#enteredInfo").css("height", height-120);
+		var height = $(window).height();
+		$("#enteredInfo").css("height", height-120);
 	});
+*/
 	// update ballot number and progress bar
-	$('#ballotNumber').html('<p>Ballot ' + (currentBallotNum + 1) + '/' + (numBallots) + '</p>');
-	$('#ballotHelper').html('<p>Audit ' + (((currentBallotNum + 1)*(currentRaceNum))/(numBallots*numRaces))*100 + '% completed. </p>');
-	$('.bar').css('width', (((currentBallotNum + 1)*(currentRaceNum))/(numBallots*numRaces))*100+ '%');
+	$('#ballotNumber').html('<h1>Ballot ' + (currentBallotNum + 1) + '/' + (numBallots) + '</h1>');
+	$('.bar').css('width', ((currentRaceNum)/(numRaces))*100+ '%');
 	
-	$('#enteredInfo').html('');
-	$('#enteredInfo').append("<table id='currentBallot'></table>");
+	$('#currentBallot').html('');
 	var currentBallot = $('#currentBallot');
 
-	for (var i = 0; i < 3; i++){
-		if (data.currentRaceNum == 0 && data.currentBallotNum != 0){
-			currentBallot.append('<tr><td class=\'raceName\'>' + '</td></tr>');
-			currentBallot.append('<tr><td id=\'race' + 'winner\' class=\'candidateName\'></td></tr>');
-			currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
-		}
-		else if (previousRaces[i] != null){
-			var name = previousRaces[i].name;
-			var winner = previousRaces[i].winner;
-			currentBallot.append('<tr><td class=\'raceName\'>' + name + '</td></tr>');
-			currentBallot.append('<tr><td id=\'race' + winner + 'winner\' class=\'candidateName\'>' + winner + '</td></tr>');
-			currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
-		}
-	}
-	if (data.currentRaceNum == 0 && data.currentBallotNum != 0){
-		currentBallot.append('<tr><td class=\'raceName\'>' + '</td></tr>');
-		currentBallot.append('<tr><td id=\'race' + 'winner\' class=\'candidateName\'></td></tr>');
-		currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
-	}
-	else{
-		currentBallot.append('<tr><td class=\'raceName\'>' + currentRace.name + '</td></tr>');
-		currentBallot.append('<tr><td id=\'race' + '' + 'winner\' class=\'candidateName\'></td></tr>');
-		currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+	if (previousRaces.length == 0) {
+		currentBallot.append('<tr><td class=\'raceName\'>No selections yet</td></tr>');
 	}
 
+	for (var i = 0; i < previousRaces.length; i++){
+		var name = previousRaces[i].name;
+		var winner = previousRaces[i].winner;
+		currentBallot.append('<tr><td class=\'raceName\'>' + name + '</td></tr>');
+		currentBallot.append('<tr><td id=\'race' + winner + 'winner\' class=\'candidateName\'>' + winner + '</td></tr>');
+		currentBallot.append('<tr><td class=\'raceSeparator\'>&nbsp;</td></tr>');
+	}
+	$('#enteredInfo').animate({scrollTop:$('#enteredInfo')[0].scrollHeight},500);
 }
 
 var displayTransition = function() {
 	var buttonsDiv = $('.countButtons');
 	buttonsDiv.html(''); //clear buttons
+	$('.bar').css('width', '100%');
 
-	var transitionText = $("<h2>You are done with this ballot. Please get the next ballot ready.</h2>");
-	transitionText.css('font-family','\'Istok Web\', sans-serif');
-	transitionText.css('color','#5F0000');
-	transitionText.css('font-weight','bold');
-	transitionText.css('position','absolute');
-	transitionText.css('top','42.5%');
-	transitionText.css('right','22.75%');
-	transitionText.css('word-wrap','break-word');
-	transitionText.css('width','40%');
-	transitionText.css('text-align','center');
-
+	var transitionText = $("<h2 class='transition'>You are done with this ballot. Please get the next ballot ready.</h2>");
 	buttonsDiv.append(transitionText);
 
 	var nextBtn = $("<input type='button' class='raceBtn btn btn-info' value='Next'></input>");
@@ -128,14 +134,11 @@ var displayVoteCountButtons = function() {
 	if (race) {
 		var candidates = race.candidates;
 		var raceName = $("<h1>" + race.name + "</h1>");
-		raceName.css('font-family','\'Istok Web\', sans-serif');
-		raceName.css('color','#5F0000');
-		raceName.css('font-weight','bold');
 		raceName.css('position','absolute');
 		raceName.css('top','42.5%');
-		raceName.css('right','22.75%');
+		raceName.css('right','25%');
 		raceName.css('word-wrap','break-word');
-		raceName.css('width','28%');
+		raceName.css('width','45%');
 		raceName.css('text-align','center');
 
 		buttonsDiv.append(raceName);
@@ -155,20 +158,20 @@ var displayVoteCountButtons = function() {
 			candidate.css('position','absolute');
 			if (c.party == "Republican Party") {
 				candidate.css('height','20%');
-				candidate.css('width','32.5%');
-				candidate.css('left','47.5%');
+				candidate.css('width','45%');
+				candidate.css('left','28%');
 				candidate.css('bottom','5%');
 				candidate.addClass('btn-info-top');
 			} else if (c.party == "Democratic Party") {
 				candidate.css('top','5%');
 				candidate.css('height','20%');
-				candidate.css('width','32.5%');
-				candidate.css('left','47.5%');
+				candidate.css('width','45%');
+				candidate.css('left','28%');
 				candidate.addClass('btn-info-top');
 			} else {
 				candidate.css('top',(15 + currentOther*(70.0/numOther + 2.5*(numOther-1))) +'%');
-				candidate.css('width','15%');
-				candidate.css('right','55%');
+				candidate.css('width','20%');
+				candidate.css('left','5%');
 
 				var height = Math.min((70.0/numOther - 2.5*(numOther-1)),32.5);
 				candidate.css('height', height + '%');
@@ -178,17 +181,17 @@ var displayVoteCountButtons = function() {
 		}
 		var blank = $("<input type='button' class='raceBtn btn btn-info' value='Blank'></input>");
 		blank.css('position','absolute');
-		blank.css('right','2.5%');
+		blank.css('right','5%');
 		blank.css('top', '15%');
-		blank.css('width', '15%');
+		blank.css('width', '20%');
 		blank.css('height', '32.5%');
 		buttonsDiv.append(blank);
 
 		var writeIn = $("<input type='button' class='raceBtn btn btn-info' value='Write-In'></input>");
 		writeIn.css('position','absolute');
-		writeIn.css('right','2.5%');
+		writeIn.css('right','5%');
 		writeIn.css('top', '52.5%');
-		writeIn.css('width', '15%');
+		writeIn.css('width', '20%');
 		writeIn.css('height', '32.5%');
 		buttonsDiv.append(writeIn);
 

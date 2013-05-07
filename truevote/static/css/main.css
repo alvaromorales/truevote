@@ -5,6 +5,10 @@ html, body, .container-fluid, .row-fluid {
 	height: 100%;
 }
 
+#mainScreen {
+	
+}
+
 .container-fluid {
 	padding-left: 0px;
 	min-height: 100%;
@@ -32,13 +36,11 @@ html, body, .container-fluid, .row-fluid {
 
 #sidebarDiv {
 	position: relative;
-	/*width: 300px;*/
 	border-style: solid;
 	border:0px;
 	border-left: 1px;
 	background-color: #FFFFFF;
 	height: 100%;
-	
 }
 
 #sidebarHeader{
@@ -170,7 +172,7 @@ html, body, .container-fluid, .row-fluid {
 	font-size: 4em;
 	text-align: center;
 	margin: 20px;
-	margin-top: 10px;
+	margin-top: 30px;
 }
 
 .progress {
