@@ -20,6 +20,10 @@ def welcome(request):
 
 @login_required()
 def audit(request):
+    up = request.user.profile
+    if up.finished_audit():
+        return welcome(request)
+
     return render_to_response('index.html', 
                               {}, 
                               context_instance=RequestContext(request))
@@ -99,9 +103,19 @@ def next_ballot(request):
     return get_candidates(request)
 
 @login_required()
+def submit_audit(request):
+    up = request.user.profile
+    up.counter = F('counter')+1
+    up.save()
+    return render_to_response('resultsauditor.html', 
+                              {}, 
+                              context_instance=RequestContext(request))
+
+@login_required()
 def fix_mistake(request):
     up = request.user.profile
     counter = up.counter
+
     current_ballot = Election.get_ballot_index(counter)
     previous_ballot = current_ballot -1
 
@@ -135,17 +149,26 @@ def restart(request):
 @login_required()
 def results(request):
     up = request.user.profile
-    data = {}
+    data = []
     
     for r in Election.RACES:
-        user = {}
+        user = []
         for c in Election.CANDIDATES[r]:
-            user[c['name']] = Race.objects.filter(auditor=up,race_name=r,winner=c['name']).count()
+            candidate_result = {}
+            candidate_result['name'] = c['name']
+            candidate_result['votes'] = Race.objects.filter(auditor=up,race_name=r,winner=c['name']).count()
+            user.append(candidate_result)
 
-        overall = {}
+        overall = []
         for c in Election.CANDIDATES[r]:
-            overall[c['name']] = Race.objects.filter(race_name=r,winner=c['name']).count()
+            candidate_result = {}
+            candidate_result['name'] = c['name']
+            candidate_result['votes'] = Race.objects.filter(race_name=r,winner=c['name']).count()
+            overall.append(candidate_result)
         
-        data[r] = (user,overall)
+        race_result = {}
+        race_result['raceName'] = r
+        race_result['results'] = [user,overall]
+        data.append(race_result)
     
     return HttpResponse(json.dumps(data), mimetype='application/json')
