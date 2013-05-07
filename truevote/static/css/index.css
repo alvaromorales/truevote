@@ -134,6 +134,10 @@ h2 {
 	word-wrap: break-word;
 }
 
+.modal-text{
+	font-weight: normal;
+}
+
 /*body {
 	background-image:url('/static/img/wavegrid.png');
 }

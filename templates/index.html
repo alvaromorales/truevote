@@ -20,14 +20,15 @@
 	<div id="logout" class="modal hide fade">
  	  <div class="modal-header">
  	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
- 	    <h1 id="errorTitle">You are about to logout.</h1>
+ 	    <h1 id="errorTitle" class="modal-text">You are about to logout.</h1>
  	  </div>
  	  <div id="errorBody" class="modal-body">
- 	    <h3>When you log back in, you can resume the audit.</h3>
+ 	    <h4 class="modal-text">When you log back in, you can resume the audit.</h4>
  	  </div>
  	  <div class="modal-footer">
- 	    <a id="cancelButton" href="/audit/" class="btn btnCancelModal">Cancel</a>
- 	    <a id="continueButton" href="/logout/" class="btn btn-danger">Logout</a>
+	   	<a id="continueButton" href="/logout/" class="btn btn-danger">Logout</a>
+		&nbsp;
+		<a id="cancelButton" href="/audit/" class="btn btnCancelModal">Cancel</a>
  	  </div>
  	</div>
 	
