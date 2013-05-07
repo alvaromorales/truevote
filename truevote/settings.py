@@ -15,11 +15,13 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',                      # Or path to database file if using sqlite3.
-        'USER': 'postgres',                      # Not used with sqlite3.
-        'PASSWORD': 'default',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'truevote.db'
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': 'postgres',                      # Or path to database file if using sqlite3.
+        #'USER': 'postgres',                      # Not used with sqlite3.
+        #'PASSWORD': 'default',                  # Not used with sqlite3.
+        #'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
     }
 }
 
