@@ -20,7 +20,6 @@ function createNavTables(){
 
   $('.pillBtn').click(function (e){
     var m = e.target.id;
-    console.log(e.target);
     makeGraphs(parseInt(m));
   });
 
@@ -97,7 +96,6 @@ function makeGraphs(i){
 
 
 function createButtonListeners(){
-
   $('.rbutton').click(function (e) {
     var i = e.target.value;
     makeGraphs(i);
@@ -107,16 +105,11 @@ function createButtonListeners(){
 
 
 $(document).ready(function() {
-  // $.getJSON('/results/', function(data) {
-  //   raceData = data;
-  //   createButtons());
-  //   getGraphs();
-  // });
-
-  raceData = [{"raceName": "President and Vice President", "results": [[{"votes": 1, "name": "Obama and Biden"}, {"votes": 0, "name": "Romney and Ryan"}, {"votes": 0, "name": "Johnson and Gray"}, {"votes": 0, "name": "Stein and Honkala"}], [{"votes": 36, "name": "Obama and Biden"}, {"votes": 0, "name": "Romney and Ryan"}, {"votes": 0, "name": "Johnson and Gray"}, {"votes": 0, "name": "Stein and Honkala"}]]}, {"raceName": "Senator in Congress", "results": [[{"votes": 1, "name": "Elizabeth Warren"}, {"votes": 0, "name": "Scott Brown"}], [{"votes": 20, "name": "Elizabeth Warren"}, {"votes": 0, "name": "Scott Brown"}]]}, {"raceName": "Representative in Congress", "results": [[{"votes": 1, "name": "Nicola Tsongas"}, {"votes": 0, "name": "Jonathan Golnik"}], [{"votes": 16, "name": "Nicola Tsongas"}, {"votes": 2, "name": "Jonathan Golnik"}]]}, {"raceName": "Councillor", "results": [[{"votes": 0, "name": "Marilyn Devaney"}, {"votes": 0, "name": "Thomas Sheff"}], [{"votes": 20, "name": "Marilyn Devaney"}, {"votes": 1, "name": "Thomas Sheff"}]]}, {"raceName": "Senator in General Court", "results": [[{"votes": 0, "name": "Michael Barrett"}, {"votes": 0, "name": "Sandi Martinez"}], [{"votes": 19, "name": "Michael Barrett"}, {"votes": 0, "name": "Sandi Martinez"}]]}, {"raceName": "Representative in General Court", "results": [[{"votes": 0, "name": "Cory Atkins"}, {"votes": 0, "name": "Michael Benn"}], [{"votes": 18, "name": "Cory Atkins"}, {"votes": 1, "name": "Michael Benn"}]]}, {"raceName": "Clerk of Courts", "results": [[{"votes": 0, "name": "Michael Sullivan"}], [{"votes": 19, "name": "Michael Sullivan"}]]}, {"raceName": "Register of Deeds", "results": [[{"votes": 0, "name": "Maria Curtatone"}], [{"votes": 18, "name": "Maria Curtatone"}]]}];
-  raceDataLength = raceData.length;
-  createNavTables();
-  createButtonListeners();
-   makeGraphs(0);
-  
+  $.getJSON('/results/', function(data) {
+    raceData = data;
+    raceDataLength = raceData.length;
+    createNavTables();
+    createButtonListeners();
+    makeGraphs(0);
+  });
 });
