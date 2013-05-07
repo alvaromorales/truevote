@@ -198,6 +198,7 @@ input[type="color"],
 .alert-danger .alert-heading,
 .alert-error .alert-heading {
   color: #b94a48;
+  font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 }
 .alert-info {
   background-color: #d9edf7;

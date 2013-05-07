@@ -16,29 +16,19 @@
 	</head>
 	
 	<body>
-		<div class="navbar">
-			<div class="navbar-inner navbar-fixed-top">
-				<div class="row">
-					<div class="span3">
-						<a class="brand" href="#"><img src="{{ STATIC_URL }}img/logo.png" width="500" height="120"></a>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="containerParent">
-		<div class="background">
-			<img src="{{ STATIC_URL }}img/login.png" class="background-img">
-		</div>
+		
 		<center>
 		<div class="container-outer">
-			
 			<div class="content">
 				<div class="row">
 					<div class="login-form">
 						<form name="loginform" class="form-horizontal center" method="post" action="{% url 'django.contrib.auth.views.login' %}">
 						{% csrf_token %}
 							<fieldset>
-								<legend>Sign in to TrueVote</legend>
+								<legend>
+								<a class="brand" href="#"><img src="{{ STATIC_URL }}img/logo.png" width="350" ></a>
+								</legend>
 								<div class="control-group">
 									<label class="control-label login-label" autofocus="autofocus">Username</label>
 									<div class="controls">
@@ -62,7 +52,7 @@
 								<div class="control-group">
 									<label class="control-label"></label>
 									<div class="controls">
-										<input type="submit" class="btn btn-info login-button" value="Login" />
+										<div id="loginbtn"><input type="submit" class="btn login-button input-large" value="&nbsp;Login&nbsp;" /></div>
 										<input type="hidden" name="next" value="{{ next }}" />
 									</div>
 								</div>
@@ -74,13 +64,5 @@
 			
 			</div></center>
 		</div> 
-		<div class="navbar">
-			<div class="navbar-inner navbar-fixed-bottom">
-				<div class="row">
-					<div class="span12">
-					</div>
-				</div>
-			</div>
-		</div>
 	</body>
 </html>
