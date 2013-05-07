@@ -64,8 +64,8 @@ function makeGraphs(i){
       }
     }
 
-    document.getElementById("cTitle").innerHTML = "<h3>Projected Winner: "+winner_c+"</h3>";
-    document.getElementById("oTitle").innerHTML = "<h3>Projected Winner: "+winner_o+"</h3>";
+    document.getElementById("cTitle").innerHTML = "<p class=\"wName\">"+winner_c+"</p>";
+    document.getElementById("oTitle").innerHTML = "<p class=\"wName\">"+winner_o+"</p>";
 
 
     var a_data = google.visualization.arrayToDataTable(objectToArray(raceData[i]["results"][0]));
