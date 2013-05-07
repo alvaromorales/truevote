@@ -96,3 +96,7 @@ h1 {
 	font-size: 1.4em;
 	height: 2em;
 }
+
+.modal-text{
+	font-weight: normal;
+}

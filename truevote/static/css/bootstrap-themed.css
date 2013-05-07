@@ -281,3 +281,19 @@ input[type="color"],
   background-image: linear-gradient(top, #7a8ea0, #738696);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'ee5f5b, endColorstr='#'bd362f, GradientType=0);
 }
+
+
+.modal-header{
+	background-image:url('/static/img/wavegrid.png');
+}
+
+.modal-body{
+	font-style: italic;
+	text-align: center;
+}
+
+.modal-footer{
+	background-color:#ffffff;
+	border-top: 0px solid #ffffff;
+	text-align:center;
+}

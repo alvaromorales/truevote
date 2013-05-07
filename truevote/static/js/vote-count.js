@@ -33,6 +33,9 @@ $(function() {
 	$("#fixMistakeBtn").click(function(e) {
 		parent.location='/audit/fix/';
 	});
+	$('#takeBreakBtn').click(function (e) {
+		$('#logout').modal({show: true});
+	});
 });
 
 var getData = function() {

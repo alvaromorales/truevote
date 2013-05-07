@@ -15,26 +15,22 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/vote-count.js"></script>
 </head>
 
-<body>
-	
-	
+<body>	
 
-	<div id="endAudit" class="modal hide fade" data-backdrop="static">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h1>Audit Finished</h1>
-		</div>
-		<div class="modal-body">
-			<div class="well">
-				<h3>You have completed 5 ballots.</h3>
-				<h3>Click "Submit" to submit the results of this audit and see the current totals for this election.</h3>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<a id="auditCancel" href="/" class="btn btn-danger">Cancel</a>
-			<a id="auditSubmit" href="/audit/results" class="btn btn-info login-button">Submit</a>
-		</div>
-	</div> 
+	<div id="logout" class="modal hide fade">
+ 	  <div class="modal-header">
+ 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+ 	    <h1 id="errorTitle" class="modal-text">You are about to logout.</h1>
+ 	  </div>
+ 	  <div id="errorBody" class="modal-body">
+ 	    <h4 class="modal-text">When you log back in, you can resume the audit.</h4>
+ 	  </div>
+ 	  <div class="modal-footer">
+	   	<a id="continueButton" href="/logout/" class="btn btn-danger">Logout</a>
+		&nbsp;
+		<a id="cancelButton" href="/audit/" class="btn btnCancelModal">Cancel</a>
+ 	  </div>
+ 	</div>
 	
 	<div id="mainScreen" class="row-fluid">
 		<div id="sidebarDiv" class="span3">
