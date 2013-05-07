@@ -1,6 +1,6 @@
 html, body {
 	background-color: #eee;
-	background-image:url('/static/img/wavegrid.png');
+	background-image:url('/static/img/grey_wash_wall.png');
 	margin: 0;
 	padding: 0;
 	height: 90%;
@@ -23,7 +23,7 @@ body {
 	width: 500 px;
 	margin-right: auto; 
 	margin-left: auto;
-	padding-top: 10%;
+	padding-top: 8%;
 	z-index: 10;
 
 }
@@ -48,6 +48,7 @@ body {
 	margin-left: auto ;
 	margin-right: auto ;
 	background-color: #fff;
+	background-image:url('/static/img/wavegrid.png');
 	padding: 20px;
 	margin: 0px; 
 	-webkit-border-radius: 10px 10px 10px 10px;
@@ -61,15 +62,17 @@ body {
 .login-form {
 	position: relative;
 	margin-left: 20px;
+	margin-top: -10px;
 }
 
 legend {
 	margin-right: -50px;
 	font-weight: bold;
 	color: #5F0000;
-	font-family: 'Istok Web', sans-serif;
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 2em;
+	text-align: center;
 }
 
 .center {
@@ -79,12 +82,22 @@ legend {
 }
 
 .login-label{
-	font-family: "Georgia", serif;
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 	font-size: 1.2em;
 }
 
 .login-button{
-	font-family: "Georgia", serif;
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 	font-size: 1.2em;
-	border-radius: 0px;
+}
+
+
+fieldset {
+padding-top: -10%;
+margin: 0;
+border: 0;
+}
+
+p{
+	font-size:0.95em;
 }
