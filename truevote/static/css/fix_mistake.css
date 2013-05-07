@@ -52,6 +52,7 @@ html, body{
 .tableTab {
 	font-size: 1.6em;
 	line-height: 1.6em;
+	font-style: italic;
 }
 
 .ballotHeader {
@@ -65,10 +66,6 @@ html, body{
 	font-size: 1.6em;
 	font-style: italic;
 	line-height: 1.6em;
-}
-
-a {
-	font-style: italic;
 }
 
 td {
