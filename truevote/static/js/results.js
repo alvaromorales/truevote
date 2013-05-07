@@ -100,7 +100,6 @@ function createButtonListeners(){
     var i = e.target.value;
     makeGraphs(i);
   });
-
 }
 
 
