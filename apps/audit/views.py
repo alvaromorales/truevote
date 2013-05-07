@@ -107,7 +107,7 @@ def submit_audit(request):
     up = request.user.profile
     up.counter = F('counter')+1
     up.save()
-    return render_to_response('resultsauditor.html', 
+    return render_to_response('results.html', 
                               {}, 
                               context_instance=RequestContext(request))
 

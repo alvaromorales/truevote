@@ -19,7 +19,7 @@ urlpatterns = patterns('',
                        url(r'^audit/restart/$',restart),
                        url(r'^results/$',results),
                        url(r'^audit/submit/', submit_audit),
-                       url(r'^audit/results/', TemplateView.as_view(template_name='resultsauditor.html')),
+                       url(r'^audit/results/', TemplateView.as_view(template_name='results.html')),
                        url(r'^help/$', TemplateView.as_view(template_name='helpmenu.html')),
                        url(r'^tutorial/', TemplateView.as_view(template_name='tutorial_index.html')),
 )
