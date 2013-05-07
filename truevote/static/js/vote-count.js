@@ -136,9 +136,9 @@ var displayVoteCountButtons = function() {
 		var raceName = $("<h1>" + race.name + "</h1>");
 		raceName.css('position','absolute');
 		raceName.css('top','42.5%');
-		raceName.css('right','22.75%');
+		raceName.css('right','25%');
 		raceName.css('word-wrap','break-word');
-		raceName.css('width','30%');
+		raceName.css('width','45%');
 		raceName.css('text-align','center');
 
 		buttonsDiv.append(raceName);
@@ -158,20 +158,20 @@ var displayVoteCountButtons = function() {
 			candidate.css('position','absolute');
 			if (c.party == "Republican Party") {
 				candidate.css('height','20%');
-				candidate.css('width',(32.5*4/3) + '%');
-				candidate.css('left',(47.5*3/4)+ '%');
+				candidate.css('width','45%');
+				candidate.css('left','28%');
 				candidate.css('bottom','5%');
 				candidate.addClass('btn-info-top');
 			} else if (c.party == "Democratic Party") {
 				candidate.css('top','5%');
 				candidate.css('height','20%');
-				candidate.css('width','32.5%');
-				candidate.css('left','47.5%');
+				candidate.css('width','45%');
+				candidate.css('left','28%');
 				candidate.addClass('btn-info-top');
 			} else {
 				candidate.css('top',(15 + currentOther*(70.0/numOther + 2.5*(numOther-1))) +'%');
-				candidate.css('width','15%');
-				candidate.css('right','55%');
+				candidate.css('width','20%');
+				candidate.css('left','5%');
 
 				var height = Math.min((70.0/numOther - 2.5*(numOther-1)),32.5);
 				candidate.css('height', height + '%');
@@ -181,17 +181,17 @@ var displayVoteCountButtons = function() {
 		}
 		var blank = $("<input type='button' class='raceBtn btn btn-info' value='Blank'></input>");
 		blank.css('position','absolute');
-		blank.css('right','2.5%');
+		blank.css('right','5%');
 		blank.css('top', '15%');
-		blank.css('width', '15%');
+		blank.css('width', '20%');
 		blank.css('height', '32.5%');
 		buttonsDiv.append(blank);
 
 		var writeIn = $("<input type='button' class='raceBtn btn btn-info' value='Write-In'></input>");
 		writeIn.css('position','absolute');
-		writeIn.css('right','2.5%');
+		writeIn.css('right','5%');
 		writeIn.css('top', '52.5%');
-		writeIn.css('width', '15%');
+		writeIn.css('width', '20%');
 		writeIn.css('height', '32.5%');
 		buttonsDiv.append(writeIn);
 
