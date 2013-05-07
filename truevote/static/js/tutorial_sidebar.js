@@ -12,13 +12,16 @@ $(document).ready(function() {
     //introJs().start();
     //console.log("started");
     $('#startTutorial').modal('show');
+    $('.close').click(function () {
+          parent.location="../audit/"
+      });
 
     var options = {
           stopOnBackdropClick:false,
           stopOnEsc: false,
             nextButton : '<button id="nextButton" class="btn btn-primary btn-mini btn-info bootstro-next-btn">Next &raquo;</button>',
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
-            finishButton : '<a href="/audit/"><button class="btn btn-danger btn-mini btn-info bootstro-finish-btn" type="button" ><i class="icon-ok"></i> Finish Tutorial </button></a>'};
+            finishButton : '<a href="/audit/">Finish Tutorial</a>'};
     $("#tutorialSubmit").click(function(){
       //console.log("turtorial started");
       bootstro.start($(".initialTutorial"), options);

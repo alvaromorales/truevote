@@ -30,7 +30,7 @@
 {
 	/*border-top:1px solid #eee;*/
 	padding-top:10px;
-    text-align:center;
+    text-align:right;
     clear:both;
 }
 .bootstro-nav-wrapper
@@ -40,7 +40,12 @@
 
 .bootstro-nav-wrapper button, .bootstro-finish-btn-wrapper button 
 {
-	font-size:12px !important;	
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+    font-size:12px !important;	
 	padding : 3px 5px 3px 5px !important;
 	font-weight:bold;
 }
+.bootstro-nav-wrapper td{
+    width: auto;
+}
+
