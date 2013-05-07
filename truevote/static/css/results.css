@@ -1,38 +1,131 @@
-.resultsContainer{
-	margin-top: 20px;
-	font-family: "Georgia", serif;
+html, body{
+	position: relative;
+	height: 100%;
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+}
+
+#mainFixMistake {
+	position: relative;
+	height: 100%;
 	background-image:url('/static/img/cream_dust.png');
 }
 
-html, body {
-	background-color: #eee;
+#ballotTable {
+	padding: 3em;
+}
+
+#helpFixMistake {
+	position: relative;
+	text-align: center;
+	height: 100%;
 	background-image:url('/static/img/wavegrid.png');
 }
 
-#resultsTitle{
-	font-family: 'Istok Web', sans-serif;
-}
-#chartDiv{
-	axisTitlesPosition:in;
-}
-
-#tabbablePills{
-	margin-top: 40px;
-	margin-bottom: 40px;
+#fixButtons {
+	position: absolute;
+	height: 10%;
+	bottom: 0;
 }
 
-.chart{
-	width: 640px; 
-	height: 410px;
+#currentBallotTab, #previousBallotTab {
+	padding: 10px;
+}
+
+.raceName {
+	font-size: 1.2em;
+
+}
+
+.fixMistakeBtn {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+	font-size: 1.2em;
+	border-radius: 3px;
+	border-color: black;
+}
+
+.reset {
+	margin-top: 6px;
+	font-size: 1.6em;
+	border-color: transparent;
+}
+
+.tableTab {
+	font-size: 1.6em;
+	line-height: 1.6em;
+}
+
+.ballotHeader {
+	font-size: 3em;
+	line-height: 1em;
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+
+.noSelection {
+	font-size: 1.6em;
+	font-style: italic;
+	line-height: 1.6em;
+}
+
+a {
+	font-style: italic;
+}
+
+td {
+	width: 45%;
+}
+
+.helpText {
+	color: gray;
+	padding: 20px;
+	bottom: 40%;
+	font-size: 1.8em;
+	line-height: 1em;
+	text-align: center;
+}
+
+h1 {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+	color: #5F0000;
+	text-align: center;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+.info {
+	text-align: center;
+}
+
+.fixBtn {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+	font-size: 1.4em;
+	height: 2em;
+}
+
+#RaceButtons{
+	margin-top: 50px;
+}
+
+.raceTitle{
+	font-style: normal;
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+	font-size: 14pt;
+	color: black;
+	line-height: 120%;
 }
 
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
-    background-color: #7A8EA0;
-    size: 40px;
+    background-color: #ccc;
 }
 
-/*Why doesn't this do anything?*/
-.nav-pills > (not).active > a {
-	size: 40px;
-	background-color: #FFFFFF;
+#rightScreen {
+	position: relative;
+	text-align: center;
+	height: 100%;
+}
+
+#ballotTable{
+	height: 100%;
 }
