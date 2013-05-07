@@ -14,9 +14,11 @@ $(document).ready(function() {
     $('#startTutorial').modal('show');
 
     var options = {
-            nextButton : '<button class="btn btn-primary btn-mini btn-info bootstro-next-btn">Next &raquo;</button>',
+          stopOnBackdropClick:false,
+          stopOnEsc: false,
+            nextButton : '<button id="nextButton" class="btn btn-primary btn-mini btn-info bootstro-next-btn">Next &raquo;</button>',
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
-            finishButton : '<button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button" href="/audit"><i class="icon-ok"></i> Finish Tutorial </button>'};
+            finishButton : '<a href="/audit/"><button class="btn btn-danger btn-mini btn-success bootstro-finish-btn" type="button" ><i class="icon-ok"></i> Finish Tutorial </button></a>'};
     $("#tutorialSubmit").click(function(){
       //console.log("turtorial started");
       bootstro.start($(".initialTutorial"), options);
@@ -31,46 +33,39 @@ $(document).ready(function() {
 });
 
 var createSidebar = function(){
-  var height = $(window).height();
-  $("#enteredInfo").css("height", height-170);
-  $(window).resize(function(){
-    var height = $(window).height();
-  $("#enteredInfo").css("height", height-170);
-  });
   $('#enteredInfo').html('');
   $('#enteredInfo').append("<table id='currentBallot'></table>");
-  currentBallot = $('#currentBallot');
+  
 
   allRaces = audit.getCurrentBallot().races;
   
   var currentBallot = $('#currentBallot');
+  currentBallot.html('');
 
-  for (var i = 0; i < allRaces.length; i++){
+  //for (var i = 0; i < 3; i++){
   		
-        var race = allRaces[i].name;
-        currentBallot.append('<tr><td class=\'raceName\'>' + race + '</td></tr>');
-        currentBallot.append('<tr><td id=\'race' + i + 'winner\' class=\'candidateName\'></td></tr>');
-        currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
-  }
-	
-  $('#fixMistakeBtn').show();
-  $('#fixMistakeBtn').attr('disabled','disabled');
+        //var race = allRaces[i].name;
+        currentBallot.append('<tr><td class=\'raceName\'>' + "Race 1" + '</td></tr>');
+        currentBallot.append('<tr><td class=\'candidateName\'>' + 'Candidate A' + '</td></tr>');
+        currentBallot.append('<tr><td class=\'raceName\'>' + "Race 2" + '</td></tr>');
+        currentBallot.append('<tr><td class=\'candidateName\'>' + 'Candidate B' + '</td></tr>');
+        currentBallot.append('<tr><td class=\'raceName\'>' + "Race 3" + '</td></tr>');
+        currentBallot.append('<tr><td class=\'candidateName\'>' + 'Candidate A' + '</td></tr>');
+        //currentBallot.append('<tr><td id=\'race' + i + 'winner\' class=\'candidateName\'></td></tr>');
+        //currentBallot.append('<tr><td class=\'raceSeparator\'></td></tr>');
+  //}
+	$('#enteredInfo').animate({scrollTop:$('#enteredInfo')[0].scrollHeight},500);
+  //$('#fixMistakeBtn').show();
+  //$('#fixMistakeBtn').attr('disabled','disabled');
 
-  $('#btnRestart').hide();
-  $('#cancelFixMistake').hide();
+  
 
 	// Click functionality for fix mistake button
-  $("#fixMistakeBtn").click(function(){
-    enterErrorMode();
+  $("#fixMistakeBtn").click(function(e) {
+    parent.location='/audit/tutorialfix/';
   });
 
-  $('#cancelFixMistake').click(function(e) {
-    exitErrorMode();
-  });
-
-  $('#btnRestart').click(function(e) {
-    restartAudit();
-  });
+  
 }
 
 var restoreSidebar = function(){
@@ -98,24 +93,22 @@ var restoreSidebar = function(){
 
 //Candidate is entered and is added to sidebar
 var updateSidebar = function(raceObject){
-  if (!(audit.currentBallot == 0 && audit.getCurrentBallot().currentRace == 0)) {
-    $('#fixMistakeBtn').removeAttr('disabled');
-  }
-
+  bootstro.next();
+/*
   // update ballot number and progress bar
   $('#ballotNumber').html('<p>Ballot ' + (audit.currentBallot + 1) + '</p>');
   $('.bar').css('width', (audit.currentRaceNumber/audit.totalNumRaces)*100+ '%');
 
   var raceNumber = audit.racesMap[raceObject.name];
   if (raceNumber==0 && audit.currentBallot != 0) {
-    $('.candidateName').html('');
+    $('.candidaName').html('');
     sidebarState = [];
   }
   $('#race' + raceNumber + 'winner').html(raceObject.winner.name);
-  sidebarState.push(raceObject.winner.name);
+  sidebarState.push(raceObject.winner.name);*/
 }
 
-var exitErrorMode = function() {
+/*var exitErrorMode = function() {
   $('#helpMenu').hide();
   $('#enteredInfo').html('');
   $('#fixMistakeBtn').show();
@@ -290,4 +283,4 @@ var resetBallotModal = function (type){
       confirmationDialog.modal('hide');
     });
     confirmationDialog.modal({show: true});
-}
+}*/

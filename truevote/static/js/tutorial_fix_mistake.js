@@ -40,9 +40,9 @@ $(function() {
 		if (raceName == 'reset') {
 			$('#fixRaceTitle').html('You are about to reset the ' + ballot + ' ballot.');
 		} else {
-			$('#fixRaceTitle').html('You are about to restart from "' + raceName.bold() + '".');
+			$('#fixRaceTitle').html('You are about to restart from "' + raceName + '" on the ' + ballot + ' ballot.');
 		}
-		$('#fixRaceBody').html('<h4 class="modal-text">You will have to re-enter all information from here on.</h4>');
+		$('#fixRaceBody').html('<h3>You will have to re-enter all information after that. Would you like to continue?</h3>');
 
 		$('#confirmFixRace').modal({show: true});
 	});

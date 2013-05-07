@@ -55,7 +55,7 @@ var Race = function(name,candidates) {
  */
 var Ballot = function(races) {
 	this.races = races;
-	this.currentRace = 0;
+	this.currentRace = 3;
 
 	this.getCurrentRace = function() {
 		if (this.currentRace < this.races.length) {
@@ -93,9 +93,9 @@ var Ballot = function(races) {
 var Audit = function(numBallots, races) {
 	this.numBallots = numBallots;
 	this.ballots = [];
-	this.currentBallot = 0;
+	this.currentBallot = 4;
 	this.totalNumRaces = numBallots*races.length;
-	this.currentRaceNumber = 0;
+	this.currentRaceNumber = 3;
 
 	this.racesMap = {};
 
@@ -149,45 +149,36 @@ var unenrolledParty = new Party("Unenrolled Party", "Unenrolled");
 
 ///// RACES /////
 
-var presidential = new Race("Race Name", [
+var presidential = new Race("Race Number 1", [
 		new Candidate("Candidate A","CandidateA",democraticParty),
 		new Candidate("Candidate B","CandidateB",republicanParty),
 		new Candidate("Candidate C","CandidateC",libertarianParty),
 		new Candidate("Candidate D","CandidateD",greenParty)
 	]);
 
-var senate = new Race("Senator in Congress", [
-		new Candidate("Elizabeth Warren","Warren",democraticParty),
-		new Candidate("Scott Brown","Brown",republicanParty)
+var senate = new Race("Race Number 2", [
+		new Candidate("Candidate A","CandidateA",democraticParty),
+		new Candidate("Candidate B","CandidateB",republicanParty),
+		new Candidate("Candidate C","CandidateC",libertarianParty),
+		new Candidate("Candidate D","CandidateD",greenParty)
 	]);
 
-var congress = new Race("Representative in Congress", [
-		new Candidate("Nicola Tsongas","Tsongas",democraticParty),
-		new Candidate("Jonathan Golnik","Golnik",republicanParty)
+
+var congress = new Race("Race Number 3", [
+		new Candidate("Candidate A","CandidateA",democraticParty),
+		new Candidate("Candidate B","CandidateB",republicanParty),
+		new Candidate("Candidate C","CandidateC",libertarianParty),
+		new Candidate("Candidate D","CandidateD",greenParty)
 	]);
 
-var councillor = new Race("Councillor", [
-		new Candidate("Marilyn Devaney","Petitto",democraticParty),
-		new Candidate("Thomas Sheff","Sheff",unenrolledParty)
+var councillor = new Race("Race Number 4", [
+		new Candidate("Candidate A","CandidateA",democraticParty),
+		new Candidate("Candidate B","CandidateB",republicanParty),
+		new Candidate("Candidate C","CandidateC",libertarianParty),
+		new Candidate("Candidate D","CandidateD",greenParty)
 	]);
 
-var senatorGeneralCourt = new Race("Senator in General Court", [
-		new Candidate("Michael Barrett","Barrett",democraticParty),
-		new Candidate("Sandi Martinez","Martinez",republicanParty)
-	]);
 
-var representativeGeneralCourt = new Race("Representative in General Court", [
-		new Candidate("Cory Atkins","Atkins",democraticParty),
-		new Candidate("Michael Benn","Benn",republicanParty)
-	]);
-
-var clerk = new Race("Clerk of Courts", [
-		new Candidate("Michael Sullivan","Sullivan",democraticParty)
-	]);
-
-var register = new Race("Register of Deeds", [
-		new Candidate("Maria Curtatone","Curtatone",democraticParty)
-	]);
 
 ///// AUDIT /////
-var audit = new Audit(5,[presidential,senate,congress,councillor,senatorGeneralCourt,representativeGeneralCourt,clerk,register]);
+var audit = new Audit(5,[presidential,senate,congress,councillor]);

@@ -33,6 +33,9 @@ $(function() {
 	$("#fixMistakeBtn").click(function(e) {
 		parent.location='/audit/fix/';
 	});
+	$('#takeBreakBtn').click(function (e) {
+		$('#logout').modal({show: true});
+	});
 });
 
 var getData = function() {
@@ -45,22 +48,26 @@ var loadData = function(data) {
 }
 
 var loadCandidates = function(data) {
-	if (data.transition) {
-		displayTransition();
+	if (data['end'] == true) {
+		displayEnd();
 	} else {
-		var currentRace = data.currentRace;
+		if (data.transition) {
+			displayTransition();
+		} else {
+			var currentRace = data.currentRace;
 
-		var raceName = currentRace.name;
-		var candidatesArray = currentRace.candidates;
-		var candidates = [];
+			var raceName = currentRace.name;
+			var candidatesArray = currentRace.candidates;
+			var candidates = [];
 
-		for (var i=0;i<candidatesArray.length;i++) {
-			c = candidatesArray[i];
-			candidates.push(new Candidate(c.name,c.party));
+			for (var i=0;i<candidatesArray.length;i++) {
+				c = candidatesArray[i];
+				candidates.push(new Candidate(c.name,c.party));
+			}
+
+			race = new Race(raceName,candidates);
+			displayVoteCountButtons();
 		}
-
-		race = new Race(raceName,candidates);
-		displayVoteCountButtons();
 	}
 }
 
@@ -105,24 +112,37 @@ var loadSidebar = function(data) {
 var displayTransition = function() {
 	var buttonsDiv = $('.countButtons');
 	buttonsDiv.html(''); //clear buttons
-	$('.bar').css('width', '100%');
+	buttonsDiv.html("<div class='outerTransition'><div class='innerTransition'><div class='transitionContent'></div></div></div>");
 
-	var transitionText = $("<h2 class='transition'>You are done with this ballot. Please get the next ballot ready.</h2>");
-	buttonsDiv.append(transitionText);
+	var transitionDiv = $('.transitionContent');
 
-	var nextBtn = $("<input type='button' class='raceBtn btn btn-info' value='Next'></input>");
-	nextBtn.css('position','absolute');
-	nextBtn.css('height','20%');
-	nextBtn.css('width','32.5%');
-	nextBtn.css('left','47.5%');
-	nextBtn.css('bottom','20%');
-	nextBtn.addClass('btn-info-top');
+	var transitionText = $("<h2 class='transition'>You are done with this ballot.<br />Please get the next ballot ready.</h2>");
+	transitionDiv.append(transitionText);
 
+	var nextBtn = $("<input type='button' class='transitionBtn raceBtn btn btn-info' value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'></input>");
 	nextBtn.click(function(e) {
 		$.getJSON('vote/nextballot', loadData);
 	});
 
-	buttonsDiv.append(nextBtn);
+	transitionDiv.append(nextBtn);
+}
+
+var displayEnd = function() {
+	var buttonsDiv = $('.countButtons');
+	buttonsDiv.html(''); //clear buttons
+	buttonsDiv.html("<div class='outerTransition'><div class='innerTransition'><div class='transitionContent'></div></div></div>");
+
+	var transitionDiv = $('.transitionContent');
+
+	var transitionText = $("<h2 class='transition'>You are done with this audit.</h2>");
+	transitionDiv.append(transitionText);
+
+	var nextBtn = $("<input type='button' class='transitionBtn raceBtn btn btn-info' value='&nbsp;&nbsp;&nbsp;&nbsp;Submit Results&nbsp;&nbsp;&nbsp;&nbsp;'></input>");
+	nextBtn.click(function(e) {
+		parent.location='/audit/submit/';
+	});
+
+	transitionDiv.append(nextBtn);
 }
 
 var displayVoteCountButtons = function() {
@@ -136,7 +156,7 @@ var displayVoteCountButtons = function() {
 		var raceName = $("<h1>" + race.name + "</h1>");
 		raceName.css('position','absolute');
 		raceName.css('top','42.5%');
-		raceName.css('right','25%');
+		raceName.css('right','29%');
 		raceName.css('word-wrap','break-word');
 		raceName.css('width','45%');
 		raceName.css('text-align','center');
@@ -158,20 +178,20 @@ var displayVoteCountButtons = function() {
 			candidate.css('position','absolute');
 			if (c.party == "Republican Party") {
 				candidate.css('height','20%');
-				candidate.css('width','45%');
-				candidate.css('left','28%');
+				candidate.css('width','43%');
+				candidate.css('left','27%');
 				candidate.css('bottom','5%');
 				candidate.addClass('btn-info-top');
 			} else if (c.party == "Democratic Party") {
 				candidate.css('top','5%');
 				candidate.css('height','20%');
-				candidate.css('width','45%');
-				candidate.css('left','28%');
+				candidate.css('width','43%');
+				candidate.css('left','27%');
 				candidate.addClass('btn-info-top');
 			} else {
 				candidate.css('top',(15 + currentOther*(70.0/numOther + 2.5*(numOther-1))) +'%');
 				candidate.css('width','20%');
-				candidate.css('left','5%');
+				candidate.css('left','3.5%');
 
 				var height = Math.min((70.0/numOther - 2.5*(numOther-1)),32.5);
 				candidate.css('height', height + '%');
@@ -181,7 +201,7 @@ var displayVoteCountButtons = function() {
 		}
 		var blank = $("<input type='button' class='raceBtn btn btn-info' value='Blank'></input>");
 		blank.css('position','absolute');
-		blank.css('right','5%');
+		blank.css('right','6.5%');
 		blank.css('top', '15%');
 		blank.css('width', '20%');
 		blank.css('height', '32.5%');
@@ -189,7 +209,7 @@ var displayVoteCountButtons = function() {
 
 		var writeIn = $("<input type='button' class='raceBtn btn btn-info' value='Write-In'></input>");
 		writeIn.css('position','absolute');
-		writeIn.css('right','5%');
+		writeIn.css('right','6.5%');
 		writeIn.css('top', '52.5%');
 		writeIn.css('width', '20%');
 		writeIn.css('height', '32.5%');
