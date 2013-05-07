@@ -1,39 +1,60 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>TrueVote - Warden</title>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/results.js"></script>
-		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
-		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
-		
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
-		<script>
-		$('.carousel').carousel();
-		</script>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/results.js"></script>
-		
-	  </head>
-	  <body>
-		<div class="container">
-		<div class="well">
-		<h1> 2012 Presidential Election Results </h1>
-		<img src="truevote\static\img\logo.png">
-		</div>
-		<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
-		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#tab1" data-toggle="tab">President and Vice President</a></li>
-			<li><a href="#tab2" data-toggle="tab">Senator in Congress</a></li>
-		  </ul>
-		  <div class="tab-content">
-			<div class="tab-pane active" id="tab1">
-				<h3> Projected Winner: Obama and Bidenr </h3>
-				<div class="center" id="chart_div" style="width: 600px; height: 400px;"></div>
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>TrueVote - Audit</title>
+ 	<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+ 	<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
+ 	<link href="{{ STATIC_URL }}css/results.css" rel="stylesheet" media="screen">
+ 	<link href="{{ STATIC_URL }}css/jquery-ui-1.10.2.custom.css" rel="stylesheet" media="screen">
+ 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300' rel='stylesheet' type='text/css'>
+
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/bootbox.min.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.2.custom.js"></script>
+ 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/results.js"></script>
+ </head>
+
+ <body>
+ 	<div id="mainFixMistake" class="row-fluid">
+ 		<div id="helpFixMistake" class="span3">
+ 			<img src="{{ STATIC_URL }}img/logo.png">
+ 			<h1>Projected Results</h1>
+ 			<div id="tabbable">
+				<ul id = "RaceButtons" class="nav nav-pills nav-stacked"> 
+				</ul>
 			</div>
-		  </div>
-		</div>
-		<a href="/warden/"><button class="btn btn-primary">Back</button></a>
-		</div>
-	  </body>
-	</html>
+ 		</div>
+ 		<div id="rightScreen" class="span9">
+ 			  <div id="ballotTable" class='tabbable'>
+ 			    <ul class='nav nav-tabs'>
+ 			      <li class='active tableTab'><a href='#currentBallotTab' data-toggle='tab'>My Audit</a></li>
+	 			  <li><a href='#previousBallotTab' class='tableTab' data-toggle='tab'>Overall</a></li>
+ 			    </ul>
+ 			    <div class='tab-content'>
+
+ 			      <div class='tab-pane active' id='currentBallotTab'>
+ 			      		<!--Fill with JavaScript -->
+ 			      		<div class="tab-pane active" id="aTab">
+ 			      			<div id="cTitle"><h3>Projected Winner:</h3></div>
+ 			      			<div class="center chart" id="currentBallotTabGraph">
+ 			      			</div>
+ 			      		</div>
+ 			      </div>
+ 			      
+ 			      <div class='tab-pane' id='previousBallotTab'>
+ 			      		<!--Fill with JavaScript -->
+ 			      		<div class="tab-pane\" id="oTab\">
+ 			      			<div id="oTitle"><h3>Projected Winner:</h3></div>
+ 			      			<div class="center chart" id="previousBallotTabGraph">
+ 			      			</div>
+ 			      		</div>
+ 			      </div>
+
+ 			    </div>
+ 			  </div>
+	 	</div>
+</body>
+</html>
