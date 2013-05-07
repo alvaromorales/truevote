@@ -175,20 +175,20 @@ var displayVoteCountButtons = function() {
 			candidate.css('position','absolute');
 			if (c.party == "Republican Party") {
 				candidate.css('height','20%');
-				candidate.css('width','45%');
-				candidate.css('left','28%');
+				candidate.css('width','43%');
+				candidate.css('left','27%');
 				candidate.css('bottom','5%');
 				candidate.addClass('btn-info-top');
 			} else if (c.party == "Democratic Party") {
 				candidate.css('top','5%');
 				candidate.css('height','20%');
-				candidate.css('width','45%');
-				candidate.css('left','28%');
+				candidate.css('width','43%');
+				candidate.css('left','27%');
 				candidate.addClass('btn-info-top');
 			} else {
 				candidate.css('top',(15 + currentOther*(70.0/numOther + 2.5*(numOther-1))) +'%');
 				candidate.css('width','20%');
-				candidate.css('left','5%');
+				candidate.css('left','3.5%');
 
 				var height = Math.min((70.0/numOther - 2.5*(numOther-1)),32.5);
 				candidate.css('height', height + '%');
@@ -198,7 +198,7 @@ var displayVoteCountButtons = function() {
 		}
 		var blank = $("<input type='button' class='raceBtn btn btn-info' value='Blank'></input>");
 		blank.css('position','absolute');
-		blank.css('right','5%');
+		blank.css('right','6.5%');
 		blank.css('top', '15%');
 		blank.css('width', '20%');
 		blank.css('height', '32.5%');
@@ -206,7 +206,7 @@ var displayVoteCountButtons = function() {
 
 		var writeIn = $("<input type='button' class='raceBtn btn btn-info' value='Write-In'></input>");
 		writeIn.css('position','absolute');
-		writeIn.css('right','5%');
+		writeIn.css('right','6.5%');
 		writeIn.css('top', '52.5%');
 		writeIn.css('width', '20%');
 		writeIn.css('height', '32.5%');
