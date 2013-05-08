@@ -185,6 +185,17 @@ def results(request):
             candidate_result['name'] = c['name']
             candidate_result['votes'] = Race.objects.filter(auditor=up,race_name=r,winner=c['name']).count()
             user.append(candidate_result)
+        
+        blank_result = {}
+        blank_result['name'] = 'Blank'
+        blank_result['votes'] = Race.objects.filter(auditor=up,race_name=r,winner='Blank').count()
+
+        writein_result = {}
+        writein_result['name'] = 'Write-In'
+        writein_result['votes'] = Race.objects.filter(auditor=up,race_name=r,winner='Write-In').count()
+
+        user.append(blank_result)
+        user.append(writein_result)
 
         overall = []
         for c in Election.CANDIDATES[r]:
@@ -193,6 +204,17 @@ def results(request):
             candidate_result['votes'] = Race.objects.filter(race_name=r,winner=c['name']).count()
             overall.append(candidate_result)
         
+        blank_result = {}
+        blank_result['name'] = 'Blank'
+        blank_result['votes'] = Race.objects.filter(race_name=r,winner='Blank').count()
+
+        writein_result = {}
+        writein_result['name'] = 'Write-In'
+        writein_result['votes'] = Race.objects.filter(race_name=r,winner='Write-In').count()
+
+        overall.append(blank_result)
+        overall.append(writein_result)
+            
         race_result = {}
         race_result['raceName'] = r
         race_result['results'] = [user,overall]
