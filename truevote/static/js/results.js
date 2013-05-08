@@ -69,7 +69,7 @@ function makeGraphs(i){
 
     var a_data = google.visualization.arrayToDataTable(objectToArray(raceData[i]["results"][0]));
 
-      var a_options = {'width':530,
+      var a_options = {'width':620,
                     'height':350,
                   'legend': 'none',
                   'backgroundColor': '#eee',
@@ -81,7 +81,7 @@ function makeGraphs(i){
 
       var o_data = google.visualization.arrayToDataTable(objectToArray(raceData[i]["results"][1]));
 
-      var o_options = {'width':530,
+      var o_options = {'width':620,
                     'height':350,
                   'legend': 'none',
                   'backgroundColor': '#eee',

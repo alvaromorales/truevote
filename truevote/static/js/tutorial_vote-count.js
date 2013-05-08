@@ -4,7 +4,7 @@ $(function() {
 	bootstro.on_step(
           function() {
           	tutorialStep+=1;
-          	if (tutorialStep==7){
+          	if (tutorialStep==6){
           		$('#fixMistakeBtn').attr('enabled','enabled');
 				
 				
@@ -84,7 +84,7 @@ var displayVoteCountButtons = function(race) {
 			}
 			buttonsDiv.append(candidate);
 		}
-		var blankWriteInDiv = $("<div class='bootstro initialTutorial' data-bootstro-step='3' data-bootsro-title='Welcome to TrueVote!' data-bootstro-placement='left' data-bootstro-content='The buttons for blank and write-in will always appear in the same place on the screen.'></div>")
+		var blankWriteInDiv = $("<div class='bootstro initialTutorial' data-bootstro-step='3' data-bootsro-title='Welcome to TrueVote!' data-bootstro-placement='left' data-bootstro-content='The buttons for blank and write-in will always appear on the right.'></div>")
 		blankWriteInDiv.css('position','absolute');
 		blankWriteInDiv.css('right','6.5%');
 		blankWriteInDiv.css('top', '15%');
