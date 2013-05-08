@@ -11,53 +11,38 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/welcome.js"></script>
 </head>
 <body>
-	<div class="navbar">
-	  <div class="navbar-inner navbar-fixed-top">
-		<div class="row">
-		<div class="span3">
-		<a class="brand" href="#"><img src="{{ STATIC_URL }}img\logo.png" width="500" height="120"></a>
-		</div>
-		</div>
-	  </div>
-	</div>
 	<div class="containerParent">
-	<div class="background">
-		<img src="{{ STATIC_URL }}img/login.png" class="background-img">
-	</div>
 	<div class="container-outer">
     <div class="content">
       <div class="row">
         <div class="login-form">
-          <h1> Welcome, {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</h1>
+		  <legend>
+		  <a class="brand" href="#"><img src="{{ STATIC_URL }}img\logo.png" width="350"></a>
+		  </legend>
+          <h1> 
+		  Welcome, {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}
+		  </h1>
 		  <h4> You are auditing the 2012 Presidential Election. </h4>
-		  <div class="well">
 		  	{% if userprofile.counter == 0 %}
 		  		<h3>You have been assigned {{ userprofile.ballots }} ballots. </h3>
 		  	{% else %}
 		  		<h3>You have {{ remaining_ballots }} ballots left to audit. </h3>
 		  	{% endif %}
-		  </div>
 		  <!--<a href="/tutorial/" class="btn btn-info login-button pull-right">Continue</a></button>-->
 		  {% if userprofile.counter == 0 %}
-		  	<a href="/tutorial/" class="btn btn-info login-button pull-right proceed">Start</a></button>
+		  	<a href="/tutorial/" class="btn login-button pull-right proceed">Start</a></button>
 		  {% elif remaining_ballots == 0 %}
-		  	<a href="/audit/results/" class="btn btn-info login-button pull-right proceed">View Results</a></button>
+		  	<a href="/audit/results/" class="btn login-button pull-right proceed">View Results</a></button>
 		  {% else %}
-		  	<a href="/audit/" class="btn btn-info login-button pull-right proceed">Continue</a></button>
+			<a id="continueButton" href="/logout/" class="btn input-small">Logout</a>
+			&nbsp;
+			&nbsp;
+		  	<a href="/audit/" class="btn btn-info proceed input-small">Continue</a></button>
 		  {% endif %}
         </div>
       </div>
 	</div>
     </div>
   </div> 
-  <div class="navbar">
-	  <div class="navbar-inner navbar-fixed-bottom">
-		<div class="row">
-		<div class="span3">
-		<a class="brand" href="#"></a>
-		</div>
-		</div>
-	  </div>
-	</div>
 </body>
 </html>
