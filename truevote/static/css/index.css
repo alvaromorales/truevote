@@ -150,6 +150,23 @@ h2 {
   background-image: linear-gradient(top, #404040, #404040);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'404040, endColorstr='#'404040, GradientType=0);
 }
+
+.btn-success.disabled,
+.btn-success[disabled] {
+color: #404040 !important;
+background-color: #24748c ! important;
+
+background-image: -webkit-linear-gradient(top, #7a8ea0, #738696);
+}
+
+.raceBtn.disabled {
+  color: #404040 !important;
+  background:#dddddd;
+  background-image: -webkit-linear-gradient(top, #7a8ea0, #738696);
+  /*background-color: #24748c \9;*/
+  *background-color: #24748c;
+
+}
 .endAudit {
 	width: 100%;
 	position: absolute;

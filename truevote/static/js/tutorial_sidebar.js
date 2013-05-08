@@ -23,7 +23,7 @@ $(document).ready(function() {
             prevButton : '<button class="btn btn-primary btn-mini btn-info bootstro-prev-btn">&laquo; Previous</button>',
             finishButton : '<a href="/audit/">Finish Tutorial</a>'};
     $("#tutorialSubmit").click(function(){
-      //console.log("turtorial started");
+      
       bootstro.start($(".initialTutorial"), options);
       $('#startTutorial').modal('hide');
     });

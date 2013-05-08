@@ -207,7 +207,7 @@ var displayVoteCountButtons = function() {
 		blank.css('height', '32.5%');
 		buttonsDiv.append(blank);
 
-		var writeIn = $("<input type='button' class='raceBtn btn btn-info' value='Write-In'></input>");
+		var writeIn = $("<input type='button' id='writeinbutton' class='raceBtn btn btn-info' value='Write-In'></input>");
 		writeIn.css('position','absolute');
 		writeIn.css('right','6.5%');
 		writeIn.css('top', '52.5%');
@@ -217,6 +217,7 @@ var displayVoteCountButtons = function() {
 
 		$('.raceBtn').click(function(e) {
 			$('.raceBtn').attr('disabled','disabled');
+			
 			var buttonsDiv = $('.countButtons');
 			var winner = e.target.value;
 
