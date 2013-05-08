@@ -65,7 +65,7 @@ function makeGraphs(i){
     raceInfo_o = race["results"][1];
     for(var k=0; k<raceInfo_o.length; k++){
 
-      if (raceInfo_o[k]["votes"] > winner_o_count){
+      if (raceInfo_o[k]["votes"] == winner_o_count){
         winner_o = "Undecided: Tie";
       }
 
