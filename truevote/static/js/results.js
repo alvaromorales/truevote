@@ -49,6 +49,13 @@ function makeGraphs(i){
 
       raceInfo_c = race["results"][0];
       for(var j=0; j<raceInfo_c.length; j++){
+
+        //If two candidates have the same count, there is no single winner
+        if (raceInfo_c[j]["votes"] == winner_c_count){
+          winner_c = "Undecided: Tie";
+        }
+
+        //If this count is higher, update the winner
         if (raceInfo_c[j]["votes"] > winner_c_count){
           winner_c_count = raceInfo_c[j]["votes"];
           winner_c = raceInfo_c[j]["name"];
@@ -57,6 +64,11 @@ function makeGraphs(i){
 
     raceInfo_o = race["results"][1];
     for(var k=0; k<raceInfo_o.length; k++){
+
+      if (raceInfo_o[k]["votes"] > winner_o_count){
+        winner_o = "Undecided: Tie";
+      }
+
       if (raceInfo_o[k]["votes"] > winner_o_count){
         winner_o_count = raceInfo_o[k]["votes"];
         winner_o = raceInfo_o[k]["name"];
