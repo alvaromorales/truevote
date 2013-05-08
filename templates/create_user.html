@@ -24,34 +24,65 @@
 								<legend>
 								<a class="brand" href="#"><img src="{{ STATIC_URL }}img/logo.png" width="350" ></a>
 								</legend>
+
+								<p class='smallhelp'>(*) Required Field<br /></p>
+
 								<div class="control-group">
-									<label class="control-label login-label">Username</label>
+									<label class="control-label login-label">First Name</label>
+									<div class="controls">
+										<input id="id_first_name" maxlength="30" name="first_name" type="text" />
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label login-label">Last Name</label>
+									<div class="controls">
+										<input id="id_last_name" maxlength="30" name="last_name" type="text" />
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label login-label">Username*</label>
 									<div class="controls">
 										{{ form.username }}
 									</div>
 								</div>
+
+								{% if form.errors.username %}
+								<div class="alert alert-error">
+									{{ form.errors.username }}
+								</div>
+								{% endif %}
+
 								<div class="control-group">
-									<label class="control-label login-label">Password</label>
+									<label class="control-label login-label">Password*</label>
 									<div class="controls">
 										{{ form.password1 }}
 									</div>
 								</div>
+
+								{% if form.errors.password1 %}
+								<div class="alert alert-error">
+									{{ form.errors.password1 }}
+								</div>
+								{% endif %}
+
 								<div class="control-group">
-									<label class="control-label login-label">Confirm Password</label>
+									<label class="control-label login-label">Confirm Password*</label>
 									<div class="controls">
 										{{ form.password2 }}
 									</div>
 								</div>
 
-								{% if form.errors %}
+								{% if form.errors.password2 %}
 								<div class="alert alert-error">
-									{{ form.errors }}
+									{{ form.errors.password2 }}
 								</div>
 								{% endif %}
 
 								<div id="loginbtn">
-									<input type="button" class="btn login-button input-large" value="&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;" />
-									<input type="submit" class="btn login-button input-large" value="&nbsp;&nbsp;&nbsp;Create&nbsp;&nbsp;&nbsp;" />
+									<a href='/'<input type="button" class="btn login-button" value="" />&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</a>
+									<input type="submit" class="btn login-button" value="&nbsp;&nbsp;&nbsp;Create&nbsp;&nbsp;&nbsp;" />
 									<p></p>
 								</div>
 								<input type="hidden" name="next" value="{{ next }}" />

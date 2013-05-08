@@ -1,38 +1,13 @@
 from apps.audit.models import UserProfile, Race
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from apps.audit.election import Election
 from django.utils import simplejson as json
 from django.http import HttpResponse
 from django.db.models import F
-
-def create_user(request):
-    if request.method == 'POST':
-        user_form = UserCreationForm(request.POST)
-        if user_form.is_valid():
-            username = user_form.clean_username()
-            password = user_form.clean_password2()
-            user_form.save()
-            user = authenticate(username=username,
-                                password=password)
-            login(request, user)
-            return welcome(request)
-        else:
-            render_to_response('create_user.html', 
-                              {
-            'form': user_form,
-            },
-                               context_instance=RequestContext(request))
-            
-    return render_to_response('create_user.html', 
-                              {
-            'form': UserCreationForm(),
-            },
-                              context_instance=RequestContext(request))
-
 
 @login_required()
 def welcome(request):
@@ -221,3 +196,34 @@ def results(request):
         data.append(race_result)
     
     return HttpResponse(json.dumps(data), mimetype='application/json')
+
+def create_user(request):
+    if request.method == 'POST':
+
+        user_form = UserCreationForm(request.POST)
+        if user_form.is_valid():
+            username = user_form.clean_username()
+            password = user_form.clean_password2()
+            user_form.save()
+            user = authenticate(username=username,
+                                password=password)
+
+            user.first_name = request.POST[u'first_name']
+            user.last_name = request.POST[u'last_name']
+            
+            user.save()
+
+            login(request, user)
+            return welcome(request)
+        else:
+            return render_to_response('create_user.html', 
+                              {
+            'form': user_form,
+            },
+                               context_instance=RequestContext(request))
+            
+    return render_to_response('create_user.html', 
+                              {
+            'form': UserCreationForm(),
+            },
+                              context_instance=RequestContext(request))

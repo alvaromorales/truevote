@@ -115,3 +115,13 @@ input {
 .createusernamelink {
 	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 }
+
+.control-label {
+	font-size: 1.1em;
+}
+
+.smallhelp {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: #5F0000;
+}
