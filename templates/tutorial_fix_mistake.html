@@ -23,7 +23,7 @@
 <div id="startAudit" class="modal hide fade">
  	  <div class="modal-header">
  	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
- 	    <h1 id="errorTitle" class="modal-text">Tutorial has finished.</h1>
+ 	    <h1 id="errorTitle" class="modal-text">You are ready to get started!</h1>
  	  </div>
  	  <div id="errorBody" class="modal-body">
  	    <h4 class="modal-text">You are about to begin the actual audit.</h4>
@@ -42,7 +42,7 @@
  			<h1>Fix Mistake</h1>
  			<p class="helpText"><br/><br />Click on a candidate's name to change your selection.</p>
  			<div id="fixButtons" class="row-fluid">
- 			  <button id='btnRestart' class='fixBtn btn btn-danger bootstro tutorial' data-bootstro-step="4"  data-bootstro-placement="right" data-bootstro-width='500px' data-bootstro-content="You can also easily restart the entire audit if you made significant mistakes.">&nbsp;&nbsp;Restart Audit&nbsp;&nbsp;</button>
+ 			  <button id='btnRestart' class='fixBtn btn btn-danger bootstro tutorial' data-bootstro-step="4"  data-bootstro-placement="right" data-bootstro-width='500px' data-bootstro-content="You can also restart the entire audit if you made significant mistakes.">&nbsp;&nbsp;Restart Audit&nbsp;&nbsp;</button>
  			  &nbsp;&nbsp;&nbsp;&nbsp;
  			  <button id='cancelFixMistake' class='fixBtn btn input-small'>Cancel</button>
  			</div>
@@ -70,11 +70,11 @@
  			      			</div>
  			      			<div class="span9">
  			      				{% with current_ballot|first as first_race %}
- 			      					<button class='reset fixMistakeBtn btn btn-danger input-large bootstro tutorial' data-bootstro-step="2"  data-bootstro-placement="bottom" data-bootstro-width='500px' data-bootstro-content="You can restart the entire current ballot." value='{{ first_race.number }}|reset|current' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
+ 			      					<button class='reset fixMistakeBtn btn btn-danger input-large bootstro tutorial' data-bootstro-step="2"  data-bootstro-placement="bottom" data-bootstro-width='500px' data-bootstro-content="You can restart the entire ballot." value='{{ first_race.number }}|reset|current' value='{{ first_race.number }}|reset|current'>Reset Ballot</button>
  			      				{% endwith %}
  			      			</div>
  			      		</div>
-	 			      	<table id='currentBallotTable' class='table table-hover bootstro tutorial' data-bootstro-step="1"  data-bootstro-placement="left" data-bootstro-width='500px' data-bootstro-content="You can start over and fix a specific race by clicking here.">
+	 			      	<table id='currentBallotTable' class='table table-hover bootstro tutorial' data-bootstro-step="1"  data-bootstro-placement="left" data-bootstro-width='500px' data-bootstro-content="Click on a candidate's name to start over from this point.">
 	 			      			
 	 			      				<tr>
 	 			      					<td class='raceName'>

@@ -210,7 +210,7 @@ $(document).ready(function(){
         {
             if (activeIndex == 0)
             {
-                alert('At start of intros');
+                //alert('At start of intros');
             }
             else 
                 bootstro.go_to(activeIndex -1);
