@@ -167,3 +167,9 @@ h2 {
 	border-radius: 10px;
 	white-space: normal;
 }
+
+.tutorialLink{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}

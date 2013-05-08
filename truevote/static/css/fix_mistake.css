@@ -100,3 +100,9 @@ h1 {
 .modal-text{
 	font-weight: normal;
 }
+
+.tutorialLink{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
