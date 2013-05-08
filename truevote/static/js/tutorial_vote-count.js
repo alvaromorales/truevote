@@ -37,7 +37,7 @@ var displayVoteCountButtons = function(race) {
 		var raceName = $("<h1>" + race.name + "</h1>");
 		raceName.css('position','absolute');
 		raceName.css('top','42.5%');
-		raceName.css('right','25%');
+		raceName.css('right','29%');
 		raceName.css('word-wrap','break-word');
 		raceName.css('width','45%');
 		raceName.css('text-align','center');
