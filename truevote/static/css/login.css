@@ -91,6 +91,10 @@ legend {
 	font-size: 1.2em;
 }
 
+#loginbtn {
+	text-align: center;
+}
+
 
 fieldset {
 padding-top: -10%;
@@ -100,4 +104,14 @@ border: 0;
 
 p{
 	font-size:0.95em;
+	margin-top: 10px;
+	text-align: center;
+}
+
+input {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+}
+
+.createusernamelink {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 }

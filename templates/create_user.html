@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TrueVote</title>
+		<title>TrueVote - 6.813 Access</title>
 		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
 		<link href="{{ STATIC_URL }}css/bootstrap-themed.css" rel="stylesheet" media="screen">
 		<link href="{{ STATIC_URL }}css/login.css" rel="stylesheet" media="screen">
 		
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/login.js"></script>
 	</head>
 	
 	<body>
@@ -19,14 +18,14 @@
 			<div class="content">
 				<div class="row">
 					<div class="login-form">
-						<form name="loginform" class="form-horizontal center" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+						<form class="form-horizontal center" method="post" action="/create/">
 						{% csrf_token %}
 							<fieldset>
 								<legend>
 								<a class="brand" href="#"><img src="{{ STATIC_URL }}img/logo.png" width="350" ></a>
 								</legend>
 								<div class="control-group">
-									<label class="control-label login-label" autofocus="autofocus">Username</label>
+									<label class="control-label login-label">Username</label>
 									<div class="controls">
 										{{ form.username }}
 									</div>
@@ -34,20 +33,26 @@
 								<div class="control-group">
 									<label class="control-label login-label">Password</label>
 									<div class="controls">
-										{{ form.password }}
+										{{ form.password1 }}
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label login-label">Confirm Password</label>
+									<div class="controls">
+										{{ form.password2 }}
 									</div>
 								</div>
 
 								{% if form.errors %}
 								<div class="alert alert-error">
-								  <p>Your username and password didn't match. Please try again.</p>
+									{{ form.errors }}
 								</div>
 								{% endif %}
 
 								<div id="loginbtn">
-									<input type="submit" class="btn login-button input-large" value="&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;" />
+									<input type="button" class="btn login-button input-large" value="&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;" />
+									<input type="submit" class="btn login-button input-large" value="&nbsp;&nbsp;&nbsp;Create&nbsp;&nbsp;&nbsp;" />
 									<p></p>
-									<a href='/create/' class='createusernamelink'>Are you in 6.813? Click here to create a username</a>
 								</div>
 								<input type="hidden" name="next" value="{{ next }}" />
 							</fieldset>
