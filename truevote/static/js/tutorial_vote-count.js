@@ -58,7 +58,7 @@ var displayVoteCountButtons = function(race) {
 			var candidate = $("<input type='button' class='raceBtn btn btn-info' value='" + c.name + "'></input>");
 			candidate.css('position','absolute');
 			if (c.party == republicanParty) {
-				candidate = $("<input type='button' class='raceBtn btn btn-info bootstro initialTutorial' data-bootstro-step='2' data-bootstro-content='The Republican candidate will always appear on the Bottom.' data-bootsro-title='Welcome to TrueVote!' data-bootstro-placement='top' value='" + c.name + "'></input>");
+				candidate = $("<input type='button' class='raceBtn btn btn-info bootstro initialTutorial' data-bootstro-step='2' data-bootstro-content='The Republican candidate will always appear on the bottom.' data-bootsro-title='Welcome to TrueVote!' data-bootstro-placement='top' value='" + c.name + "'></input>");
 				candidate.css('height','20%');
 				candidate.css('width','43%');
 				candidate.css('left','27%');
@@ -66,7 +66,7 @@ var displayVoteCountButtons = function(race) {
 				candidate.css('position','absolute');
 				candidate.addClass('btn-info-top');
 			} else if (c.party == democraticParty) {
-				candidate = $("<input type='button' class='raceBtn btn btn-info bootstro initialTutorial' data-bootstro-step='1' data-bootstro-content='The Democratic candidate will always appear on the Top.' data-bootsro-title='Welcome to TrueVote!' data-bootstro-placement='bottom' value='" + c.name + "'></input>");
+				candidate = $("<input type='button' class='raceBtn btn btn-info bootstro initialTutorial' data-bootstro-step='1' data-bootstro-content='The Democratic candidate will always appear on the top.' data-bootsro-title='Welcome to TrueVote!' data-bootstro-placement='bottom' value='" + c.name + "'></input>");
 				candidate.css('top','5%');
 				candidate.css('height','20%');
 				candidate.css('width','43%');

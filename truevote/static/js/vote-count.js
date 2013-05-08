@@ -96,7 +96,7 @@ var loadSidebar = function(data) {
 	var currentBallot = $('#currentBallot');
 
 	if (previousRaces.length == 0) {
-		currentBallot.append('<tr><td class=\'raceName\'>No selections yet</td></tr>');
+		//currentBallot.append('<tr><td class=\'raceName\'>No selections yet for this ballot.</td></tr>');
 	}
 
 	for (var i = 0; i < previousRaces.length; i++){
