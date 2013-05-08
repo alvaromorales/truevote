@@ -8,8 +8,7 @@ html, body{
 	position: relative;
 	height: 100%;
 	background-image:url('/static/img/cream_dust.png');
-/*	overflow: hidden;
-*/}
+}
 
 #ballotTable {
 	padding: 3em;
@@ -90,10 +89,6 @@ h3 {
 	height: 100%;
 }
 
-/*#ballotTable{
-	height: 100%;
-}*/
-
 #RaceButtons{
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -127,19 +122,23 @@ h3 {
 #currentBallotTabGraph{
 	margin-top: 30px;
 	margin-bottom: 5px;
-	/*display: block;
-	margin: 0 auto;*/
 	position: static;
 }
 
 #previousBallotTabGraph{
 	margin-top: 30px;
 	margin-bottom: 5px;
-	/*display: block;
-	margin: 0 auto;*/
 	position: static;
 }
 
-/*#centerChart{
-	position: absolute !important;
-}*/
+#fixButtons {
+	position: absolute;
+	height: 10%;
+	bottom: 0;
+}
+
+.fixBtn {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+	font-size: 1.4em;
+	height: 2em;
+}
