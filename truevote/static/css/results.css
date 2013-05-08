@@ -8,11 +8,13 @@ html, body{
 	position: relative;
 	height: 100%;
 	background-image:url('/static/img/cream_dust.png');
-	overflow: hidden;
-}
+/*	overflow: hidden;
+*/}
 
 #ballotTable {
 	padding: 3em;
+	padding-bottom: 0;
+	padding-top: 3em;
 }
 
 #helpFixMistake {
@@ -20,70 +22,21 @@ html, body{
 	text-align: center;
 	height: 100%;
 	background-image:url('/static/img/wavegrid.png');
-	overflow: hidden;
-}
-
-#fixButtons {
-	position: absolute;
-	height: 10%;
-	bottom: 0;
+	overflow-x: hidden;
 }
 
 #currentBallotTab, #previousBallotTab {
 	padding: 10px;
 }
 
-.raceName {
-	font-size: 1.2em;
-
-}
-
-.fixMistakeBtn {
-	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
-	font-size: 1.2em;
-	border-radius: 3px;
-	border-color: black;
-}
-
-.reset {
-	margin-top: 6px;
-	font-size: 1.6em;
-	border-color: transparent;
-}
-
 .tableTab {
 	font-size: 1.6em;
 	line-height: 1.6em;
-}
-
-.ballotHeader {
-	font-size: 3em;
-	line-height: 1em;
-	margin-bottom: 1em;
-	font-weight: bold;
-}
-
-.noSelection {
-	font-size: 1.6em;
-	font-style: italic;
-	line-height: 1.6em;
-}
-
-a {
 	font-style: italic;
 }
 
 td {
 	width: 45%;
-}
-
-.helpText {
-	color: gray;
-	padding: 20px;
-	bottom: 40%;
-	font-size: 1.8em;
-	line-height: 1em;
-	text-align: center;
 }
 
 h1 {
@@ -93,21 +46,17 @@ h1 {
 }
 
 h3 {
-	font-size: 30px;
+	font-size: 45px;
+	color: black;
 }
 
 .info {
 	text-align: center;
 }
 
-.fixBtn {
-	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
-	font-size: 1.4em;
-	height: 2em;
-}
-
 #RaceButtons{
 	margin-top: 50px;
+	overflow: auto;
 }
 
 .raceTitle{
@@ -121,12 +70,18 @@ h3 {
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
     background-color: #ccc;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.nav-pills:hover{
+	cursor: pointer;
 }
 
 #rightScreen {
 	position: relative;
 	text-align: center;
 	height: 100%;
+	overflow: auto;
 }
 
 #currentBallotTab{
@@ -135,9 +90,9 @@ h3 {
 	height: 100%;
 }
 
-#ballotTable{
+/*#ballotTable{
 	height: 100%;
-}
+}*/
 
 #RaceButtons{
 	overflow-y: auto;
@@ -149,3 +104,42 @@ h3 {
 	white-space: nowrap;
 
 }
+
+.pWinner {
+	font-size: 1.95em;
+	color: gray;
+	line-height: 0.7em;
+}
+
+.wName{
+	font-size: 3.1em;
+	color: black;
+	line-height: 1.1em;
+}
+
+.pWCaption{
+	font-size: 1.2em;
+	font-style: italic;
+	color: gray;
+	line-height: 4em;
+}
+
+#currentBallotTabGraph{
+	margin-top: 40px;
+	margin-bottom: 10px;
+	/*display: block;
+	margin: 0 auto;*/
+	position: static;
+}
+
+#previousBallotTabGraph{
+	margin-top: 40px;
+	margin-bottom: 10px;
+	/*display: block;
+	margin: 0 auto;*/
+	position: static;
+}
+
+/*#centerChart{
+	position: absolute !important;
+}*/

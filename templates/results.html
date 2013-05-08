@@ -26,8 +26,10 @@
 				<ul id = "RaceButtons" class="nav nav-pills nav-stacked"> 
 				</ul>
 			</div>
+			<a id="lgtButton" href="/logout/" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;</a>
  		</div>
  		<div id="rightScreen" class="span9">
+ 			<div class="row-fluid">
  			  <div id="ballotTable" class='tabbable'>
  			    <ul class='nav nav-tabs'>
  			      <li class='active tableTab'><a href='#currentBallotTab' data-toggle='tab'>My Audit</a></li>
@@ -38,23 +40,27 @@
  			      <div class='tab-pane active' id='currentBallotTab'>
  			      		<!--Fill with JavaScript -->
  			      		<div class="tab-pane active" id="aTab">
- 			      			<div id="cTitle"><h3>Projected Winner:</h3></div>
- 			      			<div class="center chart" id="currentBallotTabGraph">
- 			      			</div>
+ 			      			<div id="cTitlePW"><p class="pWinner">Projected Winner</p></div>
+ 			      			<div id="cTitle"><p class="wName">Candidate</p></div>
+ 			      			<div class="center chart" id="currentBallotTabGraph" align="center"></div>
+ 			      			<div id="info"><p class="pWCaption">Hover over the graph to see details</p></div>
  			      		</div>
  			      </div>
  			      
  			      <div class='tab-pane' id='previousBallotTab'>
  			      		<!--Fill with JavaScript -->
  			      		<div class="tab-pane\" id="oTab\">
- 			      			<div id="oTitle"><h3>Projected Winner:</h3></div>
- 			      			<div class="center chart" id="previousBallotTabGraph">
- 			      			</div>
+ 			      			<div id="oTitlePW"><p class="pWinner">Projected Winner</p></div>
+ 			      			<div id="oTitle"><p class="wName">Candidate</p></div>
+ 			      			<div class="center chart" id="previousBallotTabGraph" align="center"></div>
+ 			      			<div id="info2"><p class="pWCaption">Hover over the graph to see details</p></div>
  			      		</div>
+ 			      	</div>
  			      </div>
 
  			    </div>
  			  </div>
+ 			</div>
 	 	</div>
 </body>
 </html>

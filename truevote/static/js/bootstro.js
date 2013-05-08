@@ -39,6 +39,19 @@ $(document).ready(function(){
         function add_nav_btn(content, i)
         {
             count = $elements.size();
+            /*content = content + "<div class='bootstro-nav-wrapper'> <table> <tr>";
+            if (count != 1)
+            {
+                if (i == 0)
+                    content = content + "<td>" + settings.nextButton + "</td>" + "<td>"+settings.finishButton+ "</td>";
+                else if (i == count -1 )
+                    content = content + settings.finishButton+ settings.prevButton;
+                else 
+                    content = content + "<td>"+ settings.prevButton + "</td>" + "<td>"+settings.finishButton + "</td>"+ "<td>"+settings.nextButton+ "</td>";
+            }
+            content = content + '</tr> </table> </div>';
+              
+            //content = content +'<div class="bootstro-finish-btn-wrapper">' + settings.finishButton + '</div>'; */
             content = content + "<div class='bootstro-nav-wrapper'>";
             if (count != 1)
             {
@@ -91,6 +104,7 @@ $(document).ready(function(){
               //  p.title = t + ' - ' + p.title;
             //else if (p.title == '') 
              //   p.title = t;
+             //p.title= '<div class="bootstro-finish-btn-wrapper">' + settings.finishButton + '</div>';
 
             p.content = $el.attr('data-bootstro-content') || '';
             p.content = add_nav_btn(p.content, i);
@@ -112,7 +126,7 @@ $(document).ready(function(){
             
             //resize popover if it's explicitly specified
             //note: this is ugly. Could have been best if popover supports width & height
-            p.template = '<div class="popover" style="' + style + '"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div>' +
+            p.template = '<div class="popover" style="' + style + '"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title bootstro-popover-title"></h3><div class="popover-content"><p></p></div></div>' +
              '</div>';
             
             return p;

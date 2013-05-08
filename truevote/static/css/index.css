@@ -46,6 +46,7 @@ html, body{
 	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
 	font-size: 1.4em;
 	height: 2em;
+	width: 140px;
 }
 
 h1 {
@@ -139,6 +140,33 @@ h2 {
 	white-space: normal;
 }
 
+.raceBtn:hover{
+	background-color: #404040;
+	background-image: -moz-linear-gradient(top, #404040, #404040);
+  background-image: -ms-linear-gradient(top, #404040, #404040);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#404040), to(#404040));
+  background-image: -webkit-linear-gradient(top, #404040, #404040;
+  background-image: -o-linear-gradient(top, #404040, #404040);
+  background-image: linear-gradient(top, #404040, #404040);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'404040, endColorstr='#'404040, GradientType=0);
+}
+
+.btn-success.disabled,
+.btn-success[disabled] {
+color: #404040 !important;
+background-color: #24748c ! important;
+
+background-image: -webkit-linear-gradient(top, #7a8ea0, #738696);
+}
+
+.raceBtn.disabled {
+  color: #404040 !important;
+  background:#dddddd;
+  background-image: -webkit-linear-gradient(top, #7a8ea0, #738696);
+  /*background-color: #24748c \9;*/
+  *background-color: #24748c;
+
+}
 .endAudit {
 	width: 100%;
 	position: absolute;
